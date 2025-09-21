@@ -2,5 +2,8 @@
   "item.minecraft_study.sapphire": "Sapphire",
   "item.minecraft_study.raw_sapphire": "Raw Sapphire",
 
+  "block.minecraft_study.sapphire_block": "Block of Sapphire",
+  "block.minecraft_study.raw_sapphire_block": "Block of Raw Sapphire",
+
   "creativetab.tutorial_tab": "Tutorial tab"
 }

@@ -8,6 +8,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 import zz.dbrvkf.minecraft_study.Minecraft_study;
+import zz.dbrvkf.minecraft_study.block.NewBlocks;
 
 public class NewCreativeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
@@ -20,6 +21,8 @@ public class NewCreativeTabs {
                             .displayItems(((pParms, pOutput) -> {
                                 pOutput.accept(NewItems.SAPPHIRE.get());
                                 pOutput.accept(NewItems.RAW_SAPPHIRE.get());
+                                pOutput.accept(NewBlocks.SAPPHIRE_BLOCK.get());
+                                pOutput.accept(NewBlocks.RAW_SAPPHIRE_BLOCK.get());
                             })).build());
 
     public static void register(IEventBus eventBus) {

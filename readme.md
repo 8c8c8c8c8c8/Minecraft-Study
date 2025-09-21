@@ -24,3 +24,12 @@ forge 대략적인 로딩 순서
 위 순서 중 생략한 부분이 있는데 추후 관련된 부분을 개발할 경우 추가할 예정.
 
 </details>
+
+### Day 2
+<details>
+<summary>Block 생성</summary>
+
+forge 는 instance 생성을 피하고 method, member variable 을 static 으로 구현을 권장한다.  
+`Block` 을 구현할 때 `BlockItem` 도 등록하는 게 일반적이다.
+
+</details>
