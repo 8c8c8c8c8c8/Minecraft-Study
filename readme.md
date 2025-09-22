@@ -33,3 +33,14 @@ forge 는 instance 생성을 피하고 method, member variable 을 static 으로
 `Block` 을 구현할 때 `BlockItem` 도 등록하는 게 일반적이다.
 
 </details>
+
+### Day 3
+<details>
+<summary>Custom Recipes, Loot tables</summary>
+
+custom block 을 생성할 때 다음 3가지 과정이 필요하다.
+1. `[backend]` `DeferredRegister` 에 `Block` 을 등록한다.
+2. `[frontend]` `blockstates` 에 어떤 block model 을 사용할지 정의한다.
+3. `[frontend]` `models/block` 에 block model 을 정의한다.
+
+</details>

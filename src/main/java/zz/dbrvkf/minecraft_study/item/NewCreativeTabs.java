@@ -23,6 +23,10 @@ public class NewCreativeTabs {
                                 pOutput.accept(NewItems.RAW_SAPPHIRE.get());
                                 pOutput.accept(NewBlocks.SAPPHIRE_BLOCK.get());
                                 pOutput.accept(NewBlocks.RAW_SAPPHIRE_BLOCK.get());
+                                pOutput.accept(NewBlocks.SAPPHIRE_ORE.get());
+                                pOutput.accept(NewBlocks.DEEPSLATE_SAPPHIRE_ORE.get());
+                                pOutput.accept(NewBlocks.NETHER_SAPPHIRE_ORE.get());
+                                pOutput.accept(NewBlocks.END_STONE_SAPPHIRE_ORE.get());
                             })).build());
 
     public static void register(IEventBus eventBus) {
