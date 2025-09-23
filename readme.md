@@ -44,3 +44,14 @@ custom block 을 생성할 때 다음 3가지 과정이 필요하다.
 3. `[frontend]` `models/block` 에 block model 을 정의한다.
 
 </details>
+
+### Day 4
+<details>
+<summary>Advanced Items</summary>
+
+Custom Item `Metal Detector` 를 생성했다.  
+이 Item을 사용하면 y축 `+` 방향으로 64칸을 탐색하여 사전에 정의한 Valuable block에 해당되면 그 좌표를 출력한다.  
+내구도 100으로 설정하고 한번 사용하면 1씩 감소하도록 했지만 감소되지 않는다.  
+추후 해결할 예정이다.  
+
+</details>
