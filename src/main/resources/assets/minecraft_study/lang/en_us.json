@@ -2,14 +2,15 @@
   "item.minecraft_study.sapphire": "Sapphire",
   "item.minecraft_study.raw_sapphire": "Raw Sapphire",
   "item.minecraft_study.metal_detector": "Metal Detector",
+  "item.minecraft_study.strawberry": "Strawberry",
 
   "block.minecraft_study.sapphire_block": "Block of Sapphire",
   "block.minecraft_study.raw_sapphire_block": "Block of Raw Sapphire",
-
   "block.minecraft_study.sapphire_ore": "Sapphire Ore",
   "block.minecraft_study.deepslate_sapphire_ore": "Deepslate Sapphire Ore",
   "block.minecraft_study.nether_sapphire_ore": "Nether Sapphire Ore",
   "block.minecraft_study.end_stone_sapphire_ore": "Endstone Sapphire Ore",
+  "block.minecraft_study.sound_block": "Sound Block",
 
   "creativetab.tutorial_tab": "Tutorial tab"
 }

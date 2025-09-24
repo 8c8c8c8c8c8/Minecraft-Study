@@ -55,3 +55,18 @@ Custom Item `Metal Detector` 를 생성했다.
 추후 해결할 예정이다.  
 
 </details>
+
+### Day 5
+<details>
+<summary>Advanced Block, Food Item</summary>  
+
+`Sound Block` 을 만들어 봤다.  
+우클릭하면 소리가 난다.  
+
+음식 `Strawberry` 를 만들어 봤다.  
+0.1의 확률로 이동속도가 10초 빨라진다.  
+
+지난 시간에 `Metal Detector` 를 사용하면 내구도가 감소하지 않은 이유는 `Creative mode` 에서는 체력, 배고픔, 내구도가 감소 하지 않기 때문이였다.  
+포만감이 가득 찬 경우 음식을 먹을 수 없다.  
+
+</details>

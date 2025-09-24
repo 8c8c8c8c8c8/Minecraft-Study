@@ -18,6 +18,8 @@ public class NewItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> META_DETECTOR = ITEMS.register("metal_detector",
             () -> new MetalDetectorItem(new Item.Properties().durability(100)));
+    public static final RegistryObject<Item> STRAWBERRY = ITEMS.register("strawberry",
+            () -> new Item(new Item.Properties().food(NewFoods.STRAWBERRY)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

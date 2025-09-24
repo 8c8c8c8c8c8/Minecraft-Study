@@ -13,6 +13,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import zz.dbrvkf.minecraft_study.Minecraft_study;
+import zz.dbrvkf.minecraft_study.block.custom.SoundBlock;
 import zz.dbrvkf.minecraft_study.item.NewItems;
 
 import java.util.function.Supplier;
@@ -38,6 +39,8 @@ public class NewBlocks {
     public static final RegistryObject<Block> END_STONE_SAPPHIRE_ORE = registryBlock("end_stone_sapphire_ore",
             () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.END_STONE)
                     .strength(5f).requiresCorrectToolForDrops(), UniformInt.of(3, 7)));
+    public static final RegistryObject<Block> SOUND_BLOCK = registryBlock("sound_block",
+            () -> new SoundBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
 
     public static <T extends Block> RegistryObject<T> registryBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
