@@ -3,6 +3,7 @@
   "item.minecraft_study.raw_sapphire": "Raw Sapphire",
   "item.minecraft_study.metal_detector": "Metal Detector",
   "item.minecraft_study.strawberry": "Strawberry",
+  "item.minecraft_study.pine_cone": "Pine Cone",
 
   "block.minecraft_study.sapphire_block": "Block of Sapphire",
   "block.minecraft_study.raw_sapphire_block": "Block of Raw Sapphire",
@@ -12,5 +13,8 @@
   "block.minecraft_study.end_stone_sapphire_ore": "Endstone Sapphire Ore",
   "block.minecraft_study.sound_block": "Sound Block",
 
-  "creativetab.tutorial_tab": "Tutorial tab"
+  "creativetab.tutorial_tab": "Tutorial tab",
+
+  "tooltip.minecraft_study.metal_detector.tooltip": "Finds valuables underground.\nwhenever used one time, hp will be decreased -1",
+  "tooltip.minecraft_study.sound_block.tooltip": "Makes some sound when touched."
 }

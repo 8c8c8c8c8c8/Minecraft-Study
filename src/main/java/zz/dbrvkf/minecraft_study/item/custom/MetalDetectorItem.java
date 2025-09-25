@@ -6,10 +6,17 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.Nullable;
+import zz.dbrvkf.minecraft_study.util.NewTags;
+
+import java.util.List;
 
 public class MetalDetectorItem extends Item {
     public MetalDetectorItem(Properties properties) {
@@ -42,6 +49,12 @@ public class MetalDetectorItem extends Item {
         return InteractionResult.SUCCESS;
     }
 
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        pTooltipComponents.add(Component.translatable("tooltip.minecraft_study.metal_detector.tooltip"));
+        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+    }
+
     private void printValuableCoordinates(BlockPos blockPos, Player player, Block block) {
         String msg = String.format("Found: %s at (%s, %s, %s)", I18n.get(block.getDescriptionId()),
                 blockPos.getX(), blockPos.getY(), blockPos.getZ());
@@ -49,6 +62,6 @@ public class MetalDetectorItem extends Item {
     }
 
     private boolean isValuableBlock(BlockState state) {
-        return state.is(Blocks.IRON_BLOCK) || state.is(Blocks.DIAMOND_BLOCK);
+        return state.is(NewTags.Blocks.METAL_DETECTOR_VALUABLES);
     }
 }

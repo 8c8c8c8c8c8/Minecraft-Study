@@ -23,6 +23,7 @@ public class NewCreativeTabs {
                                 pOutput.accept(NewItems.RAW_SAPPHIRE.get());
                                 pOutput.accept(NewItems.META_DETECTOR.get());
                                 pOutput.accept(NewItems.STRAWBERRY.get());
+                                pOutput.accept(NewItems.PINE_CONE.get());
                                 pOutput.accept(NewBlocks.SAPPHIRE_BLOCK.get());
                                 pOutput.accept(NewBlocks.RAW_SAPPHIRE_BLOCK.get());
                                 pOutput.accept(NewBlocks.SAPPHIRE_ORE.get());

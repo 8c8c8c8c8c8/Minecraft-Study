@@ -7,6 +7,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import zz.dbrvkf.minecraft_study.Minecraft_study;
 import zz.dbrvkf.minecraft_study.item.custom.MetalDetectorItem;
+import zz.dbrvkf.minecraft_study.item.custom.PineConeItem;
 
 public class NewItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -20,6 +21,8 @@ public class NewItems {
             () -> new MetalDetectorItem(new Item.Properties().durability(100)));
     public static final RegistryObject<Item> STRAWBERRY = ITEMS.register("strawberry",
             () -> new Item(new Item.Properties().food(NewFoods.STRAWBERRY)));
+    public static final RegistryObject<Item> PINE_CONE = ITEMS.register("pine_cone",
+            () -> new PineConeItem(new Item.Properties(), 200));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

@@ -70,3 +70,12 @@ Custom Item `Metal Detector` 를 생성했다.
 포만감이 가득 찬 경우 음식을 먹을 수 없다.  
 
 </details>
+
+### Day 6
+<details>
+<summary>Fuel Item, Tooltips, Tags</summary>
+
+custom `Tags` 를 만들때 `#forge:ores` 의 의미는 forge 에 등록된 모든 ores 이다.  
+즉, custom ores 도 여기에 포함된다.  
+다른 mod 에서 추가된 ores 도 포함되므로 사용하기 좋다.  
+</details>
