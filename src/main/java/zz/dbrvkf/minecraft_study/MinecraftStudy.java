@@ -21,15 +21,15 @@ import zz.dbrvkf.minecraft_study.item.NewCreativeTabs;
 import zz.dbrvkf.minecraft_study.item.NewItems;
 
 // The value here should match an entry in the META-INF/mods.toml file
-@Mod(Minecraft_study.MOD_ID)
-public class Minecraft_study {
+@Mod(MinecraftStudy.MOD_ID)
+public class MinecraftStudy {
 
     // Define mod id in a common place for everything to reference
     public static final String MOD_ID = "minecraft_study";
     // Directly reference a slf4j logger
     private static final Logger LOGGER = LogUtils.getLogger();
 
-    public Minecraft_study() {
+    public MinecraftStudy() {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         NewItems.register(modEventBus);

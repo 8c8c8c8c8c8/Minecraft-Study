@@ -5,13 +5,13 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import zz.dbrvkf.minecraft_study.Minecraft_study;
+import zz.dbrvkf.minecraft_study.MinecraftStudy;
 import zz.dbrvkf.minecraft_study.item.custom.MetalDetectorItem;
 import zz.dbrvkf.minecraft_study.item.custom.PineConeItem;
 
 public class NewItems {
     public static final DeferredRegister<Item> ITEMS =
-            DeferredRegister.create(ForgeRegistries.ITEMS, Minecraft_study.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.ITEMS, MinecraftStudy.MOD_ID);
 
     public static final RegistryObject<Item> SAPPHIRE = ITEMS.register("sapphire",
             () -> new Item(new Item.Properties()));

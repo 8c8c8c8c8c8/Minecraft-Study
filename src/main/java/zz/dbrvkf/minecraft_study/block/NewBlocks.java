@@ -12,7 +12,7 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
-import zz.dbrvkf.minecraft_study.Minecraft_study;
+import zz.dbrvkf.minecraft_study.MinecraftStudy;
 import zz.dbrvkf.minecraft_study.block.custom.SoundBlock;
 import zz.dbrvkf.minecraft_study.item.NewItems;
 
@@ -20,7 +20,7 @@ import java.util.function.Supplier;
 
 public class NewBlocks {
     public static final DeferredRegister<Block> BLOCKS =
-            DeferredRegister.create(ForgeRegistries.BLOCKS, Minecraft_study.MOD_ID);
+            DeferredRegister.create(ForgeRegistries.BLOCKS, MinecraftStudy.MOD_ID);
 
     public static final RegistryObject<Block> SAPPHIRE_BLOCK = registryBlock("sapphire_block",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST)));

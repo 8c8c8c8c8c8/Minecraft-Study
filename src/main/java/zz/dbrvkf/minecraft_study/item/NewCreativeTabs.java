@@ -7,12 +7,12 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
-import zz.dbrvkf.minecraft_study.Minecraft_study;
+import zz.dbrvkf.minecraft_study.MinecraftStudy;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
 
 public class NewCreativeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
-            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Minecraft_study.MOD_ID);
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, MinecraftStudy.MOD_ID);
 
     public static final RegistryObject<CreativeModeTab> TUTORIAL_TAB =
             CREATIVE_MODE_TABS.register("tutorial_tab",

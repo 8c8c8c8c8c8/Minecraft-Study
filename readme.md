@@ -79,3 +79,13 @@ custom `Tags` 를 만들때 `#forge:ores` 의 의미는 forge 에 등록된 모�
 즉, custom ores 도 여기에 포함된다.  
 다른 mod 에서 추가된 ores 도 포함되므로 사용하기 좋다.  
 </details>
+
+### Day 7
+<details>
+<summary>Data generator</summary>
+
+`resource/assets` 에는 custom object 에 대한 정보(.json)가 있다.  
+이는 수작업으로 만들고 있었는데 `Provider` 라는 기능이 있어 이것들을 생성해 준다.  
+덕분에 우리는 `lang` 과 `texture` 에 신경쓰면 된다.  
+
+</details>
