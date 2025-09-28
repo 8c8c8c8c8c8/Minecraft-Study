@@ -89,3 +89,13 @@ custom `Tags` 를 만들때 `#forge:ores` 의 의미는 forge 에 등록된 모�
 덕분에 우리는 `lang` 과 `texture` 에 신경쓰면 된다.  
 
 </details>
+
+### Day 8
+<details>
+<summary>Day 7(2)</summary>
+
+`BlockLootTables` 를 만들때 `sapphire` 기반의 `ores` 의 drop 은 `raw sapphire` 가 된다.  
+이유는 `ores` 는 환경에 따라 형태가 다를 뿐 채굴 결과는 동일해야 한다는 마인크래프트 기본 로직이 있기 때문이다.  
+`end stone sapphire`, `nether sapphire` 는 `sapphire` 의 한 종류이며 drop 이 `raw sapphire` 라면 인벤토리 관리와 제련이 편리하기 때문이다.  
+
+</details>
