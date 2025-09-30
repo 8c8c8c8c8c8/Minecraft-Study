@@ -12,6 +12,15 @@
   "block.minecraft_study.nether_sapphire_ore": "Nether Sapphire Ore",
   "block.minecraft_study.end_stone_sapphire_ore": "Endstone Sapphire Ore",
   "block.minecraft_study.sound_block": "Sound Block",
+  "block.minecraft_study.sapphire_stairs": "Sapphire Stairs",
+  "block.minecraft_study.sapphire_slab": "Sapphire Slab",
+  "block.minecraft_study.sapphire_button": "Sapphire Button",
+  "block.minecraft_study.sapphire_pressure_plate": "Sapphire Pressure Plate",
+  "block.minecraft_study.sapphire_fence": "Sapphire Fence",
+  "block.minecraft_study.sapphire_fence_gate": "Sapphire Fence Gate",
+  "block.minecraft_study.sapphire_wall": "Sapphire Wall",
+  "block.minecraft_study.sapphire_door": "Sapphire Door",
+  "block.minecraft_study.sapphire_trapdoor": "Sapphire Trapdoor",
 
   "creativetab.tutorial_tab": "Tutorial tab",
 

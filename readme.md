@@ -99,3 +99,12 @@ custom `Tags` 를 만들때 `#forge:ores` 의 의미는 forge 에 등록된 모�
 `end stone sapphire`, `nether sapphire` 는 `sapphire` 의 한 종류이며 drop 이 `raw sapphire` 라면 인벤토리 관리와 제련이 편리하기 때문이다.  
 
 </details>
+
+### Day 9
+<details>
+<summary>Stairs, Slabs, etc.</summary>
+
+영상에 나온대로 하지 않고 기존의 method 를 활용했다.  
+java 문법을 좀 더 공부한다면 `NewItemModelProvider` 를 간단하게 만들 수 있을듯...  
+
+</details>

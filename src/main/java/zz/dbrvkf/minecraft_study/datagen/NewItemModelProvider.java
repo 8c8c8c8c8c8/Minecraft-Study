@@ -2,13 +2,15 @@ package zz.dbrvkf.minecraft_study.datagen;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.registries.RegistryObject;
-import zz.dbrvkf.minecraft_study.MinecraftStudy;
+import net.minecraftforge.registries.ForgeRegistries;
+import zz.dbrvkf.minecraft_study.block.NewBlocks;
 import zz.dbrvkf.minecraft_study.item.NewItems;
+
+import java.util.Objects;
 
 public class NewItemModelProvider extends ItemModelProvider {
     public NewItemModelProvider(PackOutput output, String modid, ExistingFileHelper existingFileHelper) {
@@ -17,16 +19,36 @@ public class NewItemModelProvider extends ItemModelProvider {
 
     @Override
     protected void registerModels() {
-        simpleItem(NewItems.META_DETECTOR);
-        simpleItem(NewItems.PINE_CONE);
-        simpleItem(NewItems.RAW_SAPPHIRE);
-        simpleItem(NewItems.STRAWBERRY);
-        simpleItem(NewItems.SAPPHIRE);
+        basicItem(NewItems.META_DETECTOR.get());
+        basicItem(NewItems.PINE_CONE.get());
+        basicItem(NewItems.RAW_SAPPHIRE.get());
+        basicItem(NewItems.STRAWBERRY.get());
+        basicItem(NewItems.SAPPHIRE.get());
+        basicItem(NewBlocks.SAPPHIRE_DOOR.get());
+
+        basicBlockItemWithParent(NewBlocks.SAPPHIRE_TRAPDOOR.get(), modLoc("block/" + getBlockPath(NewBlocks.SAPPHIRE_TRAPDOOR.get()) + "_bottom"));
+        basicBlockItemWithParent(NewBlocks.SAPPHIRE_STAIRS.get(), modLoc("block/" + getBlockPath(NewBlocks.SAPPHIRE_STAIRS.get())));
+        basicBlockItemWithParent(NewBlocks.SAPPHIRE_SLAB.get(), modLoc("block/" + getBlockPath(NewBlocks.SAPPHIRE_SLAB.get())));
+        basicBlockItemWithParent(NewBlocks.SAPPHIRE_PRESSURE_PLATE.get(), modLoc("block/" + getBlockPath(NewBlocks.SAPPHIRE_PRESSURE_PLATE.get())));
+        basicBlockItemWithParent(NewBlocks.SAPPHIRE_FENCE_GATE.get(), modLoc("block/" + getBlockPath(NewBlocks.SAPPHIRE_FENCE_GATE.get())));
+        basicBlockItemWithParent(NewBlocks.SAPPHIRE_FENCE.get(), mcLoc("block/fence_inventory"))
+                .texture("texture", modLoc("block/" + getBlockPath(NewBlocks.SAPPHIRE_BLOCK.get())));
+        basicBlockItemWithParent(NewBlocks.SAPPHIRE_BUTTON.get(), mcLoc("block/button_inventory"))
+                .texture("texture", modLoc("block/" + getBlockPath(NewBlocks.SAPPHIRE_BLOCK.get())));
+        basicBlockItemWithParent(NewBlocks.SAPPHIRE_WALL.get(), mcLoc("block/wall_inventory"))
+                .texture("wall", modLoc("block/" + getBlockPath(NewBlocks.SAPPHIRE_BLOCK.get())));
     }
 
-    private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
-        return withExistingParent(item.getId().getPath(),
-                new ResourceLocation("item/generated")).texture("layer0",
-                new ResourceLocation(MinecraftStudy.MOD_ID, "item/" + item.getId().getPath()));
+    private void basicItem(Block block) {
+        basicItem(Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)));
     }
+
+    private ItemModelBuilder basicBlockItemWithParent(Block block, ResourceLocation parent) {
+        return this.withExistingParent(getBlockPath(block), parent);
+    }
+
+    private String getBlockPath(Block block) {
+        return ForgeRegistries.BLOCKS.getKey(block).getPath();
+    }
+
 }

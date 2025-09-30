@@ -31,6 +31,15 @@ public class NewCreativeTabs {
                                 pOutput.accept(NewBlocks.NETHER_SAPPHIRE_ORE.get());
                                 pOutput.accept(NewBlocks.END_STONE_SAPPHIRE_ORE.get());
                                 pOutput.accept(NewBlocks.SOUND_BLOCK.get());
+                                pOutput.accept(NewBlocks.SAPPHIRE_STAIRS.get());
+                                pOutput.accept(NewBlocks.SAPPHIRE_SLAB.get());
+                                pOutput.accept(NewBlocks.SAPPHIRE_BUTTON.get());
+                                pOutput.accept(NewBlocks.SAPPHIRE_PRESSURE_PLATE.get());
+                                pOutput.accept(NewBlocks.SAPPHIRE_FENCE.get());
+                                pOutput.accept(NewBlocks.SAPPHIRE_FENCE_GATE.get());
+                                pOutput.accept(NewBlocks.SAPPHIRE_WALL.get());
+                                pOutput.accept(NewBlocks.SAPPHIRE_DOOR.get());
+                                pOutput.accept(NewBlocks.SAPPHIRE_TRAPDOOR.get());
                             })).build());
 
     public static void register(IEventBus eventBus) {

@@ -29,13 +29,20 @@ public class NewBlockTagProvider extends BlockTagsProvider {
                 .add(NewBlocks.SAPPHIRE_BLOCK.get());
         this.tag(BlockTags.NEEDS_STONE_TOOL)
                 .add(NewBlocks.NETHER_SAPPHIRE_ORE.get());
+        this.tag(Tags.Blocks.NEEDS_NETHERITE_TOOL)
+                .add(NewBlocks.END_STONE_SAPPHIRE_ORE.get());
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE)
                 .add(NewBlocks.RAW_SAPPHIRE_BLOCK.get())
                 .add(NewBlocks.SAPPHIRE_ORE.get())
                 .add(NewBlocks.DEEPSLATE_SAPPHIRE_ORE.get())
                 .add(NewBlocks.NETHER_SAPPHIRE_ORE.get())
                 .add(NewBlocks.END_STONE_SAPPHIRE_ORE.get())
-                .add(NewBlocks.END_STONE_SAPPHIRE_ORE.get())
                 .add(NewBlocks.SOUND_BLOCK.get());
+        this.tag(BlockTags.FENCES)
+                .add(NewBlocks.SAPPHIRE_FENCE.get());
+        this.tag(BlockTags.FENCE_GATES)
+                .add(NewBlocks.SAPPHIRE_FENCE_GATE.get());
+        this.tag(BlockTags.WALLS)
+                .add(NewBlocks.SAPPHIRE_WALL.get());
     }
 }
