@@ -108,3 +108,13 @@ custom `Tags` 를 만들때 `#forge:ores` 의 의미는 forge 에 등록된 모�
 java 문법을 좀 더 공부한다면 `NewItemModelProvider` 를 간단하게 만들 수 있을듯...  
 
 </details>
+
+### Day 10
+<details>
+<summary>2D Texture with 3D model, custom tools, LangProvider</summary>
+
+`resource/assets/lang/en_us.json` 을 `NewEnLangProvider` 로 대체 하였다.  
+수작업으로 item 을 추가하는 부분을 자동으로 바꾸는 방법에 대해 생각해 볼 예정이다.  
+예를 들면 `NewCreativeTabs` 에 새로 추가한 item 을 수작업으로 등록해야 한다.  
+코드의 간결화를 위해 반드시 수작업은 반드시 바꿔야 한다.  
+</details>

@@ -24,6 +24,12 @@ public class NewCreativeTabs {
                                 pOutput.accept(NewItems.META_DETECTOR.get());
                                 pOutput.accept(NewItems.STRAWBERRY.get());
                                 pOutput.accept(NewItems.PINE_CONE.get());
+                                pOutput.accept(NewItems.SAPPHIRE_STAFF.get());
+                                pOutput.accept(NewItems.SAPPHIRE_SWORD.get());
+                                pOutput.accept(NewItems.SAPPHIRE_PICKAXE.get());
+                                pOutput.accept(NewItems.SAPPHIRE_AXE.get());
+                                pOutput.accept(NewItems.SAPPHIRE_SHOVEL.get());
+                                pOutput.accept(NewItems.SAPPHIRE_HOE.get());
                                 pOutput.accept(NewBlocks.SAPPHIRE_BLOCK.get());
                                 pOutput.accept(NewBlocks.RAW_SAPPHIRE_BLOCK.get());
                                 pOutput.accept(NewBlocks.SAPPHIRE_ORE.get());

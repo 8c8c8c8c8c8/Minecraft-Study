@@ -2,11 +2,13 @@ package zz.dbrvkf.minecraft_study.datagen;
 
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
 import zz.dbrvkf.minecraft_study.item.NewItems;
 
@@ -24,6 +26,16 @@ public class NewItemModelProvider extends ItemModelProvider {
         basicItem(NewItems.RAW_SAPPHIRE.get());
         basicItem(NewItems.STRAWBERRY.get());
         basicItem(NewItems.SAPPHIRE.get());
+        simpleItem(NewItems.SAPPHIRE_SWORD, "item/handheld")
+                .texture("layer0", modLoc("item/" + getItemPath(NewItems.SAPPHIRE_SWORD.get())));
+        simpleItem(NewItems.SAPPHIRE_PICKAXE, "item/handheld")
+                .texture("layer0", modLoc("item/" + getItemPath(NewItems.SAPPHIRE_PICKAXE.get())));
+        simpleItem(NewItems.SAPPHIRE_AXE, "item/handheld")
+                .texture("layer0", modLoc("item/" + getItemPath(NewItems.SAPPHIRE_AXE.get())));
+        simpleItem(NewItems.SAPPHIRE_SHOVEL, "item/handheld")
+                .texture("layer0", modLoc("item/" + getItemPath(NewItems.SAPPHIRE_SHOVEL.get())));
+        simpleItem(NewItems.SAPPHIRE_HOE, "item/handheld")
+                .texture("layer0", modLoc("item/" + getItemPath(NewItems.SAPPHIRE_HOE.get())));
         basicItem(NewBlocks.SAPPHIRE_DOOR.get());
 
         basicBlockItemWithParent(NewBlocks.SAPPHIRE_TRAPDOOR.get(), modLoc("block/" + getBlockPath(NewBlocks.SAPPHIRE_TRAPDOOR.get()) + "_bottom"));
@@ -47,8 +59,16 @@ public class NewItemModelProvider extends ItemModelProvider {
         return this.withExistingParent(getBlockPath(block), parent);
     }
 
+    private String getItemPath(Item item) {
+        return ForgeRegistries.ITEMS.getKey(item).getPath();
+    }
+
     private String getBlockPath(Block block) {
         return ForgeRegistries.BLOCKS.getKey(block).getPath();
     }
 
+    private <T> ItemModelBuilder simpleItem(RegistryObject<T> obj, String parent) {
+        return withExistingParent(obj.getId().getPath(),new ResourceLocation(parent));
+
+    }
 }

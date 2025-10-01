@@ -44,5 +44,7 @@ public class NewBlockTagProvider extends BlockTagsProvider {
                 .add(NewBlocks.SAPPHIRE_FENCE_GATE.get());
         this.tag(BlockTags.WALLS)
                 .add(NewBlocks.SAPPHIRE_WALL.get());
+        this.tag(NewTags.Blocks.NEEDS_SAPPHIRE_TOOL)
+                .add(NewBlocks.SOUND_BLOCK.get());
     }
 }
