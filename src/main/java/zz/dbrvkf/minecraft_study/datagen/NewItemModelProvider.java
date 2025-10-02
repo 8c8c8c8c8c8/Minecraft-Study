@@ -49,6 +49,15 @@ public class NewItemModelProvider extends ItemModelProvider {
                 .texture("texture", modLoc("block/" + getBlockPath(NewBlocks.SAPPHIRE_BLOCK.get())));
         basicBlockItemWithParent(NewBlocks.SAPPHIRE_WALL.get(), mcLoc("block/wall_inventory"))
                 .texture("wall", modLoc("block/" + getBlockPath(NewBlocks.SAPPHIRE_BLOCK.get())));
+
+        trimmableArmorItem(NewItems.SAPPHIRE_HELMET.get());
+        trimmableArmorItem(NewItems.SAPPHIRE_CHESTPLATE.get());
+        trimmableArmorItem(NewItems.SAPPHIRE_LEGGINGS.get());
+        trimmableArmorItem(NewItems.SAPPHIRE_BOOTS.get());
+    }
+
+    private void trimmableArmorItem(Item item) {
+
     }
 
     private void basicItem(Block block) {

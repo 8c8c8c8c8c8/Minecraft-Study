@@ -23,6 +23,10 @@ public class NewEnLangProvider extends LanguageProvider {
         this.addItem(NewItems.SAPPHIRE_AXE, "Sapphire Axe");
         this.addItem(NewItems.SAPPHIRE_SHOVEL, "Sapphire Shovel");
         this.addItem(NewItems.SAPPHIRE_HOE, "Sapphire Hoe");
+        this.addItem(NewItems.SAPPHIRE_HELMET, "Sapphire Helmet");
+        this.addItem(NewItems.SAPPHIRE_CHESTPLATE, "Sapphire Chest plate");
+        this.addItem(NewItems.SAPPHIRE_LEGGINGS, "Sapphire Leggings");
+        this.addItem(NewItems.SAPPHIRE_BOOTS, "Sapphire Boots");
         this.addBlock(NewBlocks.SAPPHIRE_BLOCK, "Block of Sapphire");
         this.addBlock(NewBlocks.RAW_SAPPHIRE_BLOCK, "Block of Raw Sapphire");
         this.addBlock(NewBlocks.SAPPHIRE_ORE, "Sapphire Ore");

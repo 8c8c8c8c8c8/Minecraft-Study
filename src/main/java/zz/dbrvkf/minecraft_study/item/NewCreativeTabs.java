@@ -30,6 +30,10 @@ public class NewCreativeTabs {
                                 pOutput.accept(NewItems.SAPPHIRE_AXE.get());
                                 pOutput.accept(NewItems.SAPPHIRE_SHOVEL.get());
                                 pOutput.accept(NewItems.SAPPHIRE_HOE.get());
+                                pOutput.accept(NewItems.SAPPHIRE_HELMET.get());
+                                pOutput.accept(NewItems.SAPPHIRE_CHESTPLATE.get());
+                                pOutput.accept(NewItems.SAPPHIRE_LEGGINGS.get());
+                                pOutput.accept(NewItems.SAPPHIRE_BOOTS.get());
                                 pOutput.accept(NewBlocks.SAPPHIRE_BLOCK.get());
                                 pOutput.accept(NewBlocks.RAW_SAPPHIRE_BLOCK.get());
                                 pOutput.accept(NewBlocks.SAPPHIRE_ORE.get());
