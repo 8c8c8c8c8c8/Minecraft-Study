@@ -128,3 +128,13 @@ java 문법을 좀 더 공부한다면 `NewItemModelProvider` 를 간단하게 �
 이에 관한 `models/item` `.json` 을 만들어야 하는데 관련 코드가 약간 복잡하다.  
 따라서 제공된 코드를 보고 분석하여 나만의 코드를 만들 예정이며 현재는 빈칸으로 남겨놨다.
 </details>
+
+### Day 12
+<details>
+<summary>full-suit set-bonus effect</summary>
+
+제공받은 예시 코드를 refactoring 할 것.  
+server-side, client-side 구분하여 프로그래밍 할 수 있다.  
+event bus 에 등록하면 server-side 에서만 실행할 수 있다.  
+다만 어려운 점은 어떤 부분을 event bus 에 등록하는 것이냐 인데...  
+</details>
