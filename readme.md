@@ -138,3 +138,19 @@ server-side, client-side 구분하여 프로그래밍 할 수 있다.
 event bus 에 등록하면 server-side 에서만 실행할 수 있다.  
 다만 어려운 점은 어떤 부분을 event bus 에 등록하는 것이냐 인데...  
 </details>
+
+### Day 13
+<details>
+<summary>global loot modifier</summary>
+
+`global loot modifier` 는 모든 block, entity 등 에 대한 전리품 획득을 수정할 수 있다.  
+`provider` 는 전리품 규칙을 json 으로 생성한다.  
+java object 에서 의미있는 데이터를 모아 통신가능한 형태(json 같이)로 저장한다.  
+이를 `직렬화(serializer)` 라 한다(반대는 `역직렬화`).  
+전리품 획득 상황이 나오면 앞서 설정한 규칙이 현 상황과 일치하면 새로운 규칙에 의한 전리품을 추가한다.  
+
+#### To-do.
+
+#### Done.
+
+</details>

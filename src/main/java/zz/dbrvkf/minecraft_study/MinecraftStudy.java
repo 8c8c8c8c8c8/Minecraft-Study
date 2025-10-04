@@ -19,6 +19,7 @@ import org.slf4j.Logger;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
 import zz.dbrvkf.minecraft_study.item.NewCreativeTabs;
 import zz.dbrvkf.minecraft_study.item.NewItems;
+import zz.dbrvkf.minecraft_study.loot.NewLootModifiers;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(MinecraftStudy.MOD_ID)
@@ -35,6 +36,7 @@ public class MinecraftStudy {
         NewItems.register(modEventBus);
         NewCreativeTabs.register(modEventBus);
         NewBlocks.register(modEventBus);
+        NewLootModifiers.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);

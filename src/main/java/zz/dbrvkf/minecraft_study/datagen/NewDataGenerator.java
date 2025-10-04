@@ -22,6 +22,7 @@ public class NewDataGenerator {
 
         generator.addProvider(event.includeServer(), new NewRecipeProvider(packOutput));
         generator.addProvider(event.includeServer(), NewLootTableProvider.create(packOutput));
+        generator.addProvider(event.includeServer(), new NewGlobalModifierProvider(packOutput, MinecraftStudy.MOD_ID));
 
         generator.addProvider(event.includeClient(), new NewEnLangProvider(packOutput, MinecraftStudy.MOD_ID, "en_us"));
         generator.addProvider(event.includeClient(), new NewBlockStateProvider(packOutput, MinecraftStudy.MOD_ID, existingFileHelper));
