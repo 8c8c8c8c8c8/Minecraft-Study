@@ -6,6 +6,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import zz.dbrvkf.minecraft_study.MinecraftStudy;
+import zz.dbrvkf.minecraft_study.block.NewBlocks;
 import zz.dbrvkf.minecraft_study.item.custom.MetalDetectorItem;
 import zz.dbrvkf.minecraft_study.item.custom.NewArmorItem;
 import zz.dbrvkf.minecraft_study.item.custom.PineConeItem;
@@ -44,6 +45,8 @@ public class NewItems {
             () -> new NewArmorItem(NewArmorMaterials.SAPPHIRE, ArmorItem.Type.LEGGINGS, new Item.Properties()));
     public static final RegistryObject<Item> SAPPHIRE_BOOTS = ITEMS.register("sapphire_boots",
             () -> new NewArmorItem(NewArmorMaterials.SAPPHIRE, ArmorItem.Type.BOOTS, new Item.Properties()));
+    public static final RegistryObject<Item> STRAWBERRY_SEEDS = ITEMS.register("strawberry_seeds",
+            () -> new ItemNameBlockItem(NewBlocks.STRAWBERRY_CROP.get(), new Item.Properties()));
 
 
     public static void register(IEventBus eventBus) {

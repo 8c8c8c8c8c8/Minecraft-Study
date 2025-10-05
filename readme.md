@@ -154,3 +154,20 @@ java object 에서 의미있는 데이터를 모아 통신가능한 형태(json 
 #### Done.
 
 </details>
+
+### Day 14
+<details>
+<summary>adding item to suspicious sand, custom crops</summary>
+
+`수상한 모래(suspicious sand)` 에 전리품을 추가하는 방법을 배웠다.  
+영상에서는 새로운 loot modifier 를 만들었지만 나는 기존의 modifier 를 이용하려고 한다.  
+loot modifier 의 doApply 는 전리품을 추가하는 방식이다.  
+만약 다른 방식이 필요하다면 새로운 modifier 를 만드는게 좋다.  
+수상한 모래에 sapphire 를 추가하여 이를 확인하고 싶었는데 도저히 찾을 수가 없어 보류한다.  
+world 를 생성할 때 야생의 수상한 모래만 drop table 에 연결되고 creative mode 에서 얻은 수상한 모래에는 연결되지 않는다.  
+
+이름에 `predicate` 가 있으면 참 혹은 거짓을 반환하는 역할이다.  
+`StatePropertiesPredicate` 는 주어진 block 의 상태를 확인하여 properties 가 조건에 맞는지 검사하는 역할을 한다.  
+`STRAWBERRY_CROP` 는 BlockItem 을 만들 필요가 없어서 등록할 때 `BLOCKS.register` 를 사용했다.  
+
+</details>

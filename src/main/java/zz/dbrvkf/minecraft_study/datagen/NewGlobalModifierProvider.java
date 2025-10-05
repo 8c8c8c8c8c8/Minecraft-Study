@@ -31,5 +31,10 @@ public class NewGlobalModifierProvider extends GlobalLootModifierProvider {
                 new NewItemModifier(new LootItemCondition[]{
                         new LootTableIdCondition.Builder(new ResourceLocation("chests/jungle_temple")).build()},
                         NewItems.META_DETECTOR.get()));
+        add("sapphire_from_desert_pyramid",
+                new NewItemModifier(new LootItemCondition[]{
+                        new LootTableIdCondition.Builder(new ResourceLocation("archaeology/desert_pyramid")).build(),
+                        LootItemRandomChanceCondition.randomChance(0.5f).build()},
+                        NewItems.SAPPHIRE.get()));
     }
 }
