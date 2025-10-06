@@ -35,6 +35,8 @@ public class NewCreativeTabs {
                                 pOutput.accept(NewItems.SAPPHIRE_LEGGINGS.get());
                                 pOutput.accept(NewItems.SAPPHIRE_BOOTS.get());
                                 pOutput.accept(NewItems.STRAWBERRY_SEEDS.get());
+                                pOutput.accept(NewItems.CORN_SEEDS.get());
+                                pOutput.accept(NewItems.CORN.get());
                                 pOutput.accept(NewBlocks.SAPPHIRE_BLOCK.get());
                                 pOutput.accept(NewBlocks.RAW_SAPPHIRE_BLOCK.get());
                                 pOutput.accept(NewBlocks.SAPPHIRE_ORE.get());
@@ -52,6 +54,7 @@ public class NewCreativeTabs {
                                 pOutput.accept(NewBlocks.SAPPHIRE_DOOR.get());
                                 pOutput.accept(NewBlocks.SAPPHIRE_TRAPDOOR.get());
                                 pOutput.accept(NewBlocks.STRAWBERRY_CROP.get());
+                                pOutput.accept(NewBlocks.CORN_CROP.get());
                             })).build());
 
     public static void register(IEventBus eventBus) {

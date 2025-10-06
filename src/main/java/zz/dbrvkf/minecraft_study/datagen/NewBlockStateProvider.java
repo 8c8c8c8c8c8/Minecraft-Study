@@ -9,6 +9,7 @@ import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
+import zz.dbrvkf.minecraft_study.block.custom.CornCropBlock;
 import zz.dbrvkf.minecraft_study.block.custom.StrawberryCropBlock;
 
 import java.util.function.Function;
@@ -41,6 +42,8 @@ public class NewBlockStateProvider extends BlockStateProvider {
         trapdoorBlockWithRenderType(((TrapDoorBlock) NewBlocks.SAPPHIRE_TRAPDOOR.get()), modLoc("block/sapphire_trapdoor"), true, "cutout");
         makeStrawberryCrop((CropBlock) NewBlocks.STRAWBERRY_CROP.get(),
                 "strawberry_stage", "strawberry_stage");
+        makeCornCrop((CropBlock) NewBlocks.CORN_CROP.get(),
+                "corn_stage_", "corn_stage_");
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {
@@ -54,6 +57,19 @@ public class NewBlockStateProvider extends BlockStateProvider {
 
     private ConfiguredModel[] strawberryStates(BlockState state, CropBlock block, String modelName, String textureName) {
         IntegerProperty age = ((StrawberryCropBlock) block).getAgeProperty();
+        return new ConfiguredModel[]{new ConfiguredModel(
+                models().crop(modelName + state.getValue(age),
+                                modLoc("block/" + textureName + state.getValue(age)))
+                        .renderType("cutout"))};
+    }
+
+    public void makeCornCrop(CropBlock block, String modelName, String textureName) {
+        Function<BlockState, ConfiguredModel[]> function = state -> cornStates(state, block, modelName, textureName);
+        getVariantBuilder(block).forAllStates(function);
+    }
+
+    private ConfiguredModel[] cornStates(BlockState state, CropBlock block, String modelName, String textureName) {
+        IntegerProperty age = ((CornCropBlock) block).getAgeProperty();
         return new ConfiguredModel[]{new ConfiguredModel(
                 models().crop(modelName + state.getValue(age),
                                 modLoc("block/" + textureName + state.getValue(age)))

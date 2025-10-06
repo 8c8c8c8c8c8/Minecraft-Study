@@ -38,6 +38,9 @@ public class NewItemModelProvider extends ItemModelProvider {
                 .texture("layer0", modLoc("item/" + getItemPath(NewItems.SAPPHIRE_HOE.get())));
         basicItem(NewBlocks.SAPPHIRE_DOOR.get());
         basicItem(NewItems.STRAWBERRY_SEEDS.get());
+        basicItem(NewItems.STRAWBERRY.get());
+        basicItem(NewItems.CORN_SEEDS.get());
+        basicItem(NewItems.CORN.get());
 
         basicBlockItemWithParent(NewBlocks.SAPPHIRE_TRAPDOOR.get(), modLoc("block/" + getBlockPath(NewBlocks.SAPPHIRE_TRAPDOOR.get()) + "_bottom"));
         basicBlockItemWithParent(NewBlocks.SAPPHIRE_STAIRS.get(), modLoc("block/" + getBlockPath(NewBlocks.SAPPHIRE_STAIRS.get())));

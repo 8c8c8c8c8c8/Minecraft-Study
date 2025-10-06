@@ -171,3 +171,24 @@ world 를 생성할 때 야생의 수상한 모래만 drop table 에 연결되�
 `STRAWBERRY_CROP` 는 BlockItem 을 만들 필요가 없어서 등록할 때 `BLOCKS.register` 를 사용했다.  
 
 </details>
+
+### Day 15
+<details>
+<summary>block high crops</summary>
+
+`Day 14` 와 다른 점은 2칸 높이의 작물 구현이다.  
+
+_**CornCropBlock**_
+- SHAPE_BY_AGE : AGE 에 따른 block 의 시각적 모양
+- randomTick : 밝기 조건, 윗 블럭 생성 조건 아니면 AGE 증가
+- canSurvive : 아래 block 이 파괴되면 윗 block 도 파괴
+- growCrops : `뼛가루(Bonemeal)` 를 사용하여 성장, currentAge 에 따라 윗 block 생성
+
+`noCollission` : 충돌없이 지나갈 수 있음.  
+`noOcclusion` : 빛을 가리거나 막을 수 없음.  
+
+#### To-do
+- [ ] `NewBlockStateProvider` makeStrawberryCrop, strawberryStates 를 refactoring 할 것.
+- [ ] `CornCropBlock` randomTick 을 refactoring 해볼 것.
+
+</details>

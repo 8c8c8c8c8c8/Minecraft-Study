@@ -28,6 +28,8 @@ public class NewEnLangProvider extends LanguageProvider {
         this.addItem(NewItems.SAPPHIRE_LEGGINGS, "Sapphire Leggings");
         this.addItem(NewItems.SAPPHIRE_BOOTS, "Sapphire Boots");
         this.addItem(NewItems.STRAWBERRY_SEEDS, "Strawberry Seeds");
+        this.addItem(NewItems.CORN_SEEDS, "Corn Seeds");
+        this.addItem(NewItems.CORN, "Corn");
         this.addBlock(NewBlocks.SAPPHIRE_BLOCK, "Block of Sapphire");
         this.addBlock(NewBlocks.RAW_SAPPHIRE_BLOCK, "Block of Raw Sapphire");
         this.addBlock(NewBlocks.SAPPHIRE_ORE, "Sapphire Ore");

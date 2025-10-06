@@ -47,6 +47,10 @@ public class NewItems {
             () -> new NewArmorItem(NewArmorMaterials.SAPPHIRE, ArmorItem.Type.BOOTS, new Item.Properties()));
     public static final RegistryObject<Item> STRAWBERRY_SEEDS = ITEMS.register("strawberry_seeds",
             () -> new ItemNameBlockItem(NewBlocks.STRAWBERRY_CROP.get(), new Item.Properties()));
+    public static final RegistryObject<Item> CORN_SEEDS = ITEMS.register("corn_seeds",
+            () -> new ItemNameBlockItem(NewBlocks.CORN_CROP.get(), new Item.Properties()));
+    public static final RegistryObject<Item> CORN = ITEMS.register("corn",
+            () -> new Item(new Item.Properties()));
 
 
     public static void register(IEventBus eventBus) {

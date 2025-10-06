@@ -15,6 +15,7 @@ import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
+import zz.dbrvkf.minecraft_study.block.custom.CornCropBlock;
 import zz.dbrvkf.minecraft_study.block.custom.StrawberryCropBlock;
 import zz.dbrvkf.minecraft_study.item.NewItems;
 
@@ -55,6 +56,14 @@ public class NewModBlockLootTables extends BlockLootSubProvider {
         this.add(NewBlocks.STRAWBERRY_CROP.get(),
                 createCropDrops(NewBlocks.STRAWBERRY_CROP.get(), NewItems.STRAWBERRY.get(),
                         NewItems.STRAWBERRY_SEEDS.get(), lootItemConditionBuilder));
+        this.add(NewBlocks.CORN_CROP.get(),
+                createCropDrops(NewBlocks.CORN_CROP.get(), NewItems.CORN.get(),
+                        NewItems.CORN_SEEDS.get(), LootItemBlockStatePropertyCondition
+                                .hasBlockStateProperties(NewBlocks.CORN_CROP.get())
+                                .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornCropBlock.AGE, 7))
+                                .or(LootItemBlockStatePropertyCondition
+                                        .hasBlockStateProperties(NewBlocks.CORN_CROP.get())
+                                        .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornCropBlock.AGE, 8)))));
     }
 
     protected LootTable.Builder createCopperLikeOreDrops(Block pBlock, Item item) {
