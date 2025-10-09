@@ -9,6 +9,7 @@ import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+import zz.dbrvkf.minecraft_study.MinecraftStudy;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
 import zz.dbrvkf.minecraft_study.item.NewItems;
 
@@ -58,14 +59,15 @@ public class NewItemModelProvider extends ItemModelProvider {
         trimmableArmorItem(NewItems.SAPPHIRE_CHESTPLATE.get());
         trimmableArmorItem(NewItems.SAPPHIRE_LEGGINGS.get());
         trimmableArmorItem(NewItems.SAPPHIRE_BOOTS.get());
+        simpleBlockItemBlockTexture(NewBlocks.CATMINT);
     }
 
     private void trimmableArmorItem(Item item) {
-
+        // todo
     }
 
-    private void basicItem(Block block) {
-        basicItem(Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)));
+    private ItemModelBuilder basicItem(Block block) {
+        return basicItem(Objects.requireNonNull(ForgeRegistries.BLOCKS.getKey(block)));
     }
 
     private ItemModelBuilder basicBlockItemWithParent(Block block, ResourceLocation parent) {
@@ -82,6 +84,11 @@ public class NewItemModelProvider extends ItemModelProvider {
 
     private <T> ItemModelBuilder simpleItem(RegistryObject<T> obj, String parent) {
         return withExistingParent(obj.getId().getPath(),new ResourceLocation(parent));
+    }
 
+    private ItemModelBuilder simpleBlockItemBlockTexture(RegistryObject<Block> item) {
+        return withExistingParent(item.getId().getPath(),
+                new ResourceLocation("item/generated")).texture("layer0",
+                new ResourceLocation(MinecraftStudy.MOD_ID,"block/" + item.getId().getPath()));
     }
 }

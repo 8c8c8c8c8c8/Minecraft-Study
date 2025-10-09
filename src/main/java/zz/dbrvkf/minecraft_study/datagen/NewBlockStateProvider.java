@@ -1,6 +1,7 @@
 package zz.dbrvkf.minecraft_study.datagen;
 
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
@@ -44,6 +45,12 @@ public class NewBlockStateProvider extends BlockStateProvider {
                 "strawberry_stage", "strawberry_stage");
         makeCornCrop((CropBlock) NewBlocks.CORN_CROP.get(),
                 "corn_stage_", "corn_stage_");
+        simpleBlockWithItem(NewBlocks.CATMINT.get(),
+                models().cross(blockTexture(NewBlocks.CATMINT.get()).getPath(),
+                        blockTexture(NewBlocks.CATMINT.get())).renderType("cutout"));
+        simpleBlockWithItem(NewBlocks.POTTED_CATMINT.get(), models().singleTexture("potted_catmint",
+                new ResourceLocation("flower_pot_cross"), "plant",
+                blockTexture(NewBlocks.CATMINT.get())).renderType("cutout"));
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

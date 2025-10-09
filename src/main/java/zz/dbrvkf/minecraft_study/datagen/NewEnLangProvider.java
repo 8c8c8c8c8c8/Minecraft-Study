@@ -46,6 +46,7 @@ public class NewEnLangProvider extends LanguageProvider {
         this.addBlock(NewBlocks.SAPPHIRE_WALL, "Sapphire Wall");
         this.addBlock(NewBlocks.SAPPHIRE_DOOR, "Sapphire Door");
         this.addBlock(NewBlocks.SAPPHIRE_TRAPDOOR, "Sapphire Trapdoor");
+        this.addBlock(NewBlocks.CATMINT, "Catmint");
         this.add("creativetab.tutorial_tab", "Tutorial tab");
         this.add("tooltip.minecraft_study.metal_detector.tooltip", "Finds valuables underground.\nwhenever used one time, hp will be decreased -1");
         this.add("tooltip.minecraft_study.sound_block.tooltip", "Makes some sound when touched.");

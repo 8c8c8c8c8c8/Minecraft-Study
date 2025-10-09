@@ -55,6 +55,7 @@ public class NewCreativeTabs {
                                 pOutput.accept(NewBlocks.SAPPHIRE_TRAPDOOR.get());
                                 pOutput.accept(NewBlocks.STRAWBERRY_CROP.get());
                                 pOutput.accept(NewBlocks.CORN_CROP.get());
+                                pOutput.accept(NewBlocks.CATMINT.get());
                             })).build());
 
     public static void register(IEventBus eventBus) {

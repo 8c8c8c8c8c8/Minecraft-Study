@@ -192,3 +192,20 @@ _**CornCropBlock**_
 - [ ] `CornCropBlock` randomTick 을 refactoring 해볼 것.
 
 </details>
+
+### Day 16
+<details>
+<summary>custom flowers</summary>
+
+`commonSetup` 은 게임 초기화 단계에서 생성과 렌더링에 관계없이 서버와 클라이언트 모두에 공통적으로 실행되어야 하는 로직을 실행하는데 사용된다.  
+예를 들어 아이템-블록 간의 연결 정의(예: flower-potted_flower), player 에게 특정 recipe 공개 등.  
+여기서는 반드시 `event.enqueueWork` 를 사용해야 하는데 병렬로 처리할 수 있기 때문이다.  
+`commonSetup` 은 모든 object 들이 registry 에 등록된 후 실행된다.  
+main thread 에서 실행하도록 보장한다.  
+
+아직 `commonSetup` 에 대해 이해하지 못함...  
+
+### To-do
+- [ ] **refactoring:** `NewBlockStateProvider`, `NewItemModelProvider`
+
+</details>

@@ -64,6 +64,8 @@ public class NewModBlockLootTables extends BlockLootSubProvider {
                                 .or(LootItemBlockStatePropertyCondition
                                         .hasBlockStateProperties(NewBlocks.CORN_CROP.get())
                                         .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornCropBlock.AGE, 8)))));
+        this.dropSelf(NewBlocks.CATMINT.get());
+        this.add(NewBlocks.POTTED_CATMINT.get(), createPotFlowerItemTable(NewBlocks.CATMINT.get()));
     }
 
     protected LootTable.Builder createCopperLikeOreDrops(Block pBlock, Item item) {
