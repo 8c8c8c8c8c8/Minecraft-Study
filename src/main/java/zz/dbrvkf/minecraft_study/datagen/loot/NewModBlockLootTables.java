@@ -47,7 +47,7 @@ public class NewModBlockLootTables extends BlockLootSubProvider {
         this.add(NewBlocks.DEEPSLATE_SAPPHIRE_ORE.get(),
                 block -> createCopperLikeOreDrops(block, NewItems.RAW_SAPPHIRE.get()));
         this.add(NewBlocks.SAPPHIRE_SLAB.get(), this::createSlabItemTable);
-        this.add(NewBlocks.SAPPHIRE_DOOR.get(), this::createSlabItemTable);
+        this.add(NewBlocks.SAPPHIRE_DOOR.get(), this::createDoorTable);
 
         LootItemCondition.Builder lootItemConditionBuilder = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(NewBlocks.STRAWBERRY_CROP.get())

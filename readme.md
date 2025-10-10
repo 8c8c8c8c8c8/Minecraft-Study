@@ -188,7 +188,7 @@ _**CornCropBlock**_
 `noOcclusion` : 빛을 가리거나 막을 수 없음.  
 
 #### To-do
-- [ ] `NewBlockStateProvider` makeStrawberryCrop, strawberryStates 를 refactoring 할 것.
+- [x] `NewBlockStateProvider` makeStrawberryCrop, strawberryStates 를 refactoring 할 것.
 - [ ] `CornCropBlock` randomTick 을 refactoring 해볼 것.
 
 </details>
@@ -206,6 +206,15 @@ main thread 에서 실행하도록 보장한다.
 아직 `commonSetup` 에 대해 이해하지 못함...  
 
 ### To-do
-- [ ] **refactoring:** `NewBlockStateProvider`, `NewItemModelProvider`
+- [x] **refactoring:** `NewBlockStateProvider`, `NewItemModelProvider`
 
+</details>
+
+### Day 17
+<details>
+<summary>refactoring, bug fix</summary>
+
+### Done
+- [x] **refactoring:** `NewBlockStateProvider`, `NewItemModelProvider`, `AbsCropBlock`
+- [x] **fix:** `NewModBlockLootTables`
 </details>
