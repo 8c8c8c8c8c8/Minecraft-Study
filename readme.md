@@ -218,3 +218,35 @@ main thread 에서 실행하도록 보장한다.
 - [x] **refactoring:** `NewBlockStateProvider`, `NewItemModelProvider`, `AbsCropBlock`
 - [x] **fix:** `NewModBlockLootTables`
 </details>
+
+### Day 18
+<details>
+<summary>trades, villager, sound</summary>
+
+- trades for villager and wandering trader
+- custom villagers
+- custom sounds
+
+`@Mod.EventBusSubscriber` 가 붙은 class 는 해당 class 의 `@SubscribeEvent` 가 붙은 `static` method 를 forge 의 event system 에 등록한다.  
+위 annotation 이 붙었다고 해서 server-side 에서 실행되는 게 아니다.  
+event 에 따라서 어디서 실행될지 결정되는 것.  
+
+`POI(Point Of Interest)` 는 villager 가 상호작용할 수 있는 특정 위치를 말한다.  
+예를 들어 침대 POI 는 잠자는 장소이다.  
+이들은 POI 를 기준으로 경로를 탐색하고 활동한다.  
+주의점은 이미 POI type 을 가지고 있는 block 에 새로운 POI type 을 만들 수 없다.
+
+`assets/sounds.json` 은 `datagen` 대상이 아니다.  
+이는 client assets 에 속하기 때문이다.  
+
+`sapphire staff` 는 gui, 1인칭, 3인칭에 따라 모델링이 다르다.  
+이런 복합 모델은 manual 정의를 한다.  
+이를 생성하는 datagen helper 는 없다.  
+
+마크의 사운드 확장자는 `ogg` 만 가능하다.  
+다른 확장자(예: mp3) 는 라이센스 문제가 발생할 수 있다.  
+
+### To-do
+- [ ] **refactoring:** `NewEvents`, `MetalDetectorItem`
+
+</details>

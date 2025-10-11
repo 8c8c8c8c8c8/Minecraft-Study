@@ -1,0 +1,38 @@
+{
+  "metal_detector_found_ore": {
+    "subtitles": "sounds.minecraft_study.metal_detector_found_ore",
+    "sounds": [
+      "minecraft_study:metal_detector_found_ore"
+    ]
+  },
+  "sound_block_break": {
+    "subtitles": "sounds.minecraft_study.sound_block_break",
+    "sounds": [
+      "minecraft_study:sound_block_break"
+    ]
+  },
+  "sound_block_fall": {
+    "subtitles": "sounds.minecraft_study.sound_block_fall",
+    "sounds": [
+      "minecraft_study:sound_block_fall"
+    ]
+  },
+  "sound_block_hit": {
+    "subtitles": "sounds.minecraft_study.sound_block_hit",
+    "sounds": [
+      "minecraft_study:sound_block_hit"
+    ]
+  },
+  "sound_block_place": {
+    "subtitles": "sounds.minecraft_study.sound_block_place",
+    "sounds": [
+      "minecraft_study:sound_block_place"
+    ]
+  },
+  "sound_block_step": {
+    "subtitles": "sounds.minecraft_study.sound_block_step",
+    "sounds": [
+      "minecraft_study:sound_block_step"
+    ]
+  }
+}

@@ -21,6 +21,8 @@ import zz.dbrvkf.minecraft_study.block.NewBlocks;
 import zz.dbrvkf.minecraft_study.item.NewCreativeTabs;
 import zz.dbrvkf.minecraft_study.item.NewItems;
 import zz.dbrvkf.minecraft_study.loot.NewLootModifiers;
+import zz.dbrvkf.minecraft_study.sound.NewSounds;
+import zz.dbrvkf.minecraft_study.villager.NewVillagers;
 
 // The value here should match an entry in the META-INF/mods.toml file
 @Mod(MinecraftStudy.MOD_ID)
@@ -38,6 +40,8 @@ public class MinecraftStudy {
         NewCreativeTabs.register(modEventBus);
         NewBlocks.register(modEventBus);
         NewLootModifiers.register(modEventBus);
+        NewVillagers.register(modEventBus);
+        NewSounds.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);

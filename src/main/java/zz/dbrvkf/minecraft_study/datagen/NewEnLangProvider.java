@@ -50,5 +50,7 @@ public class NewEnLangProvider extends LanguageProvider {
         this.add("creativetab.tutorial_tab", "Tutorial tab");
         this.add("tooltip.minecraft_study.metal_detector.tooltip", "Finds valuables underground.\nwhenever used one time, hp will be decreased -1");
         this.add("tooltip.minecraft_study.sound_block.tooltip", "Makes some sound when touched.");
+        this.add("entity.minecraft.villager.minecraft_study.sound_master", "Sound Master");
+        this.add("sounds.minecraft_study.metal_detector_found_ore", "Metal Detector Jingle");
     }
 }

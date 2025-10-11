@@ -17,6 +17,7 @@ import zz.dbrvkf.minecraft_study.block.custom.CornCropBlock;
 import zz.dbrvkf.minecraft_study.block.custom.SoundBlock;
 import zz.dbrvkf.minecraft_study.block.custom.StrawberryCropBlock;
 import zz.dbrvkf.minecraft_study.item.NewItems;
+import zz.dbrvkf.minecraft_study.sound.NewSounds;
 
 import java.util.function.Supplier;
 
@@ -42,7 +43,7 @@ public class NewBlocks {
             () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.END_STONE)
                     .strength(5f).requiresCorrectToolForDrops(), UniformInt.of(3, 7)));
     public static final RegistryObject<Block> SOUND_BLOCK = registryBlock("sound_block",
-            () -> new SoundBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK)));
+            () -> new SoundBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(NewSounds.SOUND_BLOCK_SOUNDS)));
     public static final RegistryObject<Block> SAPPHIRE_STAIRS = registryBlock("sapphire_stairs",
             () -> new StairBlock(() -> NewBlocks.SAPPHIRE_BLOCK.get().defaultBlockState(),
                     BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST)));
