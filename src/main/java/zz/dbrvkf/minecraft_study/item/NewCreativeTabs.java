@@ -37,6 +37,7 @@ public class NewCreativeTabs {
                                 pOutput.accept(NewItems.STRAWBERRY_SEEDS.get());
                                 pOutput.accept(NewItems.CORN_SEEDS.get());
                                 pOutput.accept(NewItems.CORN.get());
+                                pOutput.accept(NewItems.BAR_BRAWL_MUSIC_DISC.get());
                                 pOutput.accept(NewBlocks.SAPPHIRE_BLOCK.get());
                                 pOutput.accept(NewBlocks.RAW_SAPPHIRE_BLOCK.get());
                                 pOutput.accept(NewBlocks.SAPPHIRE_ORE.get());

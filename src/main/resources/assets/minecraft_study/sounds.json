@@ -34,5 +34,14 @@
     "sounds": [
       "minecraft_study:sound_block_step"
     ]
+  },
+  "bar_brawl": {
+    "subtitles": "",
+    "sounds": [
+      {
+        "name": "minecraft_study:bar_brawl",
+        "stream": true
+      }
+    ]
   }
 }

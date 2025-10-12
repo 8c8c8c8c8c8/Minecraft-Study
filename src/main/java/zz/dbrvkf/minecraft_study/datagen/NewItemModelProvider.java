@@ -56,6 +56,7 @@ public class NewItemModelProvider extends ItemModelProvider {
         trimmableArmorItem(NewItems.SAPPHIRE_BOOTS.get());
         simpleItem(NewBlocks.CATMINT, "item/generated")
                 .texture("layer0", getModLocWithObj(NewBlocks.CATMINT, "block"));
+        basicItem(NewItems.BAR_BRAWL_MUSIC_DISC.get());
     }
 
     private void trimmableArmorItem(Item item) {

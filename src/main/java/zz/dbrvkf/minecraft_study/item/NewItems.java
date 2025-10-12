@@ -10,6 +10,7 @@ import zz.dbrvkf.minecraft_study.block.NewBlocks;
 import zz.dbrvkf.minecraft_study.item.custom.MetalDetectorItem;
 import zz.dbrvkf.minecraft_study.item.custom.NewArmorItem;
 import zz.dbrvkf.minecraft_study.item.custom.PineConeItem;
+import zz.dbrvkf.minecraft_study.sound.NewSounds;
 
 public class NewItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -51,7 +52,8 @@ public class NewItems {
             () -> new ItemNameBlockItem(NewBlocks.CORN_CROP.get(), new Item.Properties()));
     public static final RegistryObject<Item> CORN = ITEMS.register("corn",
             () -> new Item(new Item.Properties()));
-
+    public static final RegistryObject<Item> BAR_BRAWL_MUSIC_DISC = ITEMS.register("bar_brawl_music_disc",
+            () -> new RecordItem(6, NewSounds.BAR_BRAWL, new Item.Properties().stacksTo(1), 2440));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

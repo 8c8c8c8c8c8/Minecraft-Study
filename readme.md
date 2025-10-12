@@ -246,7 +246,25 @@ event 에 따라서 어디서 실행될지 결정되는 것.
 마크의 사운드 확장자는 `ogg` 만 가능하다.  
 다른 확장자(예: mp3) 는 라이센스 문제가 발생할 수 있다.  
 
+</details>
+
+### Day 19
+<details>
+<summary>disc</summary>
+
+- custom disc
+  - Item 이 특수한 상호작용을 하는 경우(예: trimmable, sound event) 관련 tag 를 추가한다.  
+  - tag 를 추가한다고 작동되는 게 아니라 동작도 구현해야 한다.
+
+mod 를 개발할 때 일반적으로 DB 를 사용하지 않는다고 한다.  
+예를 들어 tooltip 을 가져오기 위해 DB 를 사용하는 건 복잡한 과정이라고 한다.  
+
 ### To-do
+- [ ] **feat:** `assets/sounds.json` 생성하는 provider 만들어 보기
+- [ ] **feat:** `NewItemModelProvider.trimmableArmorItem` 구현
 - [ ] **refactoring:** `NewEvents`, `MetalDetectorItem`
+
+### Done
+- [x] **feat:** `NewEnLangProvider` Item, Block 에 description 추가하는 method 구현  
 
 </details>
