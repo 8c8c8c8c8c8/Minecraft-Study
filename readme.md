@@ -259,12 +259,22 @@ event 에 따라서 어디서 실행될지 결정되는 것.
 mod 를 개발할 때 일반적으로 DB 를 사용하지 않는다고 한다.  
 예를 들어 tooltip 을 가져오기 위해 DB 를 사용하는 건 복잡한 과정이라고 한다.  
 
-### To-do
-- [ ] **feat:** `assets/sounds.json` 생성하는 provider 만들어 보기
-- [ ] **feat:** `NewItemModelProvider.trimmableArmorItem` 구현
-- [ ] **refactoring:** `NewEvents`, `MetalDetectorItem`
-
 ### Done
 - [x] **feat:** `NewEnLangProvider` Item, Block 에 description 추가하는 method 구현  
+
+</details>
+
+### Day 20
+<details>
+<summary>mob</summary>
+
+- custom mobs
+
+EntityModel -> HierarchicalModel ??
+NewEventBus annotation 차이?
+
+### To-do
+- [ ] **feat:** `NewItemModelProvider.trimmableArmorItem` 구현
+- [ ] **refactoring:** `NewEvents`, `MetalDetectorItem`
 
 </details>

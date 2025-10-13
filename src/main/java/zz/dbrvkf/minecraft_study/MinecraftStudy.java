@@ -2,6 +2,8 @@ package zz.dbrvkf.minecraft_study;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -18,6 +20,10 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
+import zz.dbrvkf.minecraft_study.entity.NewEntities;
+import zz.dbrvkf.minecraft_study.entity.client.NewModelLayers;
+import zz.dbrvkf.minecraft_study.entity.client.RhinoModel;
+import zz.dbrvkf.minecraft_study.entity.client.RhinoRenderer;
 import zz.dbrvkf.minecraft_study.item.NewCreativeTabs;
 import zz.dbrvkf.minecraft_study.item.NewItems;
 import zz.dbrvkf.minecraft_study.loot.NewLootModifiers;
@@ -42,6 +48,7 @@ public class MinecraftStudy {
         NewLootModifiers.register(modEventBus);
         NewVillagers.register(modEventBus);
         NewSounds.register(modEventBus);
+        NewEntities.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -67,7 +74,7 @@ public class MinecraftStudy {
 
     // Add the example block item to the building blocks tab
     private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if(event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(NewItems.SAPPHIRE);
             event.accept(NewItems.RAW_SAPPHIRE);
         }
@@ -89,6 +96,8 @@ public class MinecraftStudy {
             // Some client setup code
             LOGGER.info("HELLO FROM CLIENT SETUP");
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
+            EntityRenderers.register(NewEntities.RHINO.get(),
+                    (EntityRendererProvider.Context pContext) -> new RhinoRenderer(pContext, new RhinoModel<>(pContext.bakeLayer(NewModelLayers.RHINO_LAYER)), 2f));
         }
     }
 }
