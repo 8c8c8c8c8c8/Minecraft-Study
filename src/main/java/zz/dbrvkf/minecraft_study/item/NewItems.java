@@ -1,12 +1,14 @@
 package zz.dbrvkf.minecraft_study.item;
 
 import net.minecraft.world.item.*;
+import net.minecraftforge.common.ForgeSpawnEggItem;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import zz.dbrvkf.minecraft_study.MinecraftStudy;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
+import zz.dbrvkf.minecraft_study.entity.NewEntities;
 import zz.dbrvkf.minecraft_study.item.custom.MetalDetectorItem;
 import zz.dbrvkf.minecraft_study.item.custom.NewArmorItem;
 import zz.dbrvkf.minecraft_study.item.custom.PineConeItem;
@@ -54,6 +56,8 @@ public class NewItems {
             () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> BAR_BRAWL_MUSIC_DISC = ITEMS.register("bar_brawl_music_disc",
             () -> new RecordItem(6, NewSounds.BAR_BRAWL, new Item.Properties().stacksTo(1), 2440));
+    public static final RegistryObject<Item> RHINO_SPAWN_EGG = ITEMS.register("rhino_spawn_egg",
+            () -> new ForgeSpawnEggItem(NewEntities.RHINO, 0x7e9680, 0xc5d1c5, new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

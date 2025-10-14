@@ -57,6 +57,7 @@ public class NewItemModelProvider extends ItemModelProvider {
         simpleItem(NewBlocks.CATMINT, "item/generated")
                 .texture("layer0", getModLocWithObj(NewBlocks.CATMINT, "block"));
         basicItem(NewItems.BAR_BRAWL_MUSIC_DISC.get());
+        simpleItem(NewItems.RHINO_SPAWN_EGG, "item/template_spawn_egg");
     }
 
     private void trimmableArmorItem(Item item) {

@@ -1,8 +1,13 @@
 package zz.dbrvkf.minecraft_study.entity.custom;
 
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.AgeableMob;
+import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
@@ -16,8 +21,37 @@ import org.jetbrains.annotations.Nullable;
 import zz.dbrvkf.minecraft_study.entity.NewEntities;
 
 public class RhinoEntity extends Animal {
+    public final AnimationState idleAnimationState = new AnimationState();
+    private int idleAnimationTimeout = 0;
+
     public RhinoEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        if (level().isClientSide()) {
+            setupAnimationStates();
+        }
+    }
+
+    private void setupAnimationStates() {
+        if (idleAnimationTimeout <= 0) {
+            idleAnimationTimeout = random.nextInt(40) + 80;
+            idleAnimationState.start(tickCount);
+        } else {
+            --idleAnimationTimeout;
+        }
+    }
+
+    @Override
+    protected void updateWalkAnimation(float pPartialTick) {
+        float animationPlaySpeed = 0f;
+        if (getPose() == Pose.STANDING) {
+            animationPlaySpeed = Math.min(pPartialTick * 6F, 1f);
+        }
+        walkAnimation.update(animationPlaySpeed, 0.2f);
     }
 
     public static AttributeSupplier.Builder createAttribute() {
@@ -49,5 +83,20 @@ public class RhinoEntity extends Animal {
     @Override
     public boolean isFood(ItemStack pStack) {
         return pStack.is(Items.COOKED_BEEF);
+    }
+
+    @Override
+    protected @Nullable SoundEvent getAmbientSound() {
+        return SoundEvents.HOGLIN_AMBIENT;
+    }
+
+    @Override
+    protected @Nullable SoundEvent getHurtSound(DamageSource pDamageSource) {
+        return SoundEvents.RAVAGER_HURT;
+    }
+
+    @Override
+    protected @Nullable SoundEvent getDeathSound() {
+        return SoundEvents.DOLPHIN_DEATH;
     }
 }

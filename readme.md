@@ -270,11 +270,24 @@ mod 를 개발할 때 일반적으로 DB 를 사용하지 않는다고 한다.
 
 - custom mobs
 
-EntityModel -> HierarchicalModel ??
-NewEventBus annotation 차이?
+- `EntityModel` vs `HierarchicalModel`
+  - 전자는 단순한, 후자는 복잡한 model 에 사용하기 적합하다.  
+  - 전자는 entity 의 모든 part 를 수동으로 설정해야 됨, 후자는 root part 를 설정하면 나머지 부분이 이를 따라 움직인다.  
+  - 요구되는 resource 크기 차이는 없다.  
+  - resource 는 model 을 구성하는 part 가 많을수록 gpu 요구량이 커진다.  
+  - 또한 생성해야 하는 model 이 많을수록 cpu, memory 요구량이 커진다.  
+- `NewEventBus` vs `NewClientEventBus`
+  - 전자는 entity 의 attribute 을 server, client 가 모두 알아야 해서 양쪽에서 실행된다.  
+  - 후자는 entity 의 rendering 관련으로 server 에서 실행할 필요가 없다.  
+
+`RhinoModel` 을 보면 코드의 양이 많다.  
+이는 하드코딩이 아니며 `BlockBench` 에서 modeling 하고 java 로 변환한 것이다.  
+modeling 이 복잡할수록 양이 많아 진다.  
+
+minecraft 에서 `Entity` 는 living object(예: player, monster...), 움직이지만 생명체가 아닌 object(예: arrow, dropped item, falling block...), special object(예: orb, ...) 를 말한다.  
 
 ### To-do
 - [ ] **feat:** `NewItemModelProvider.trimmableArmorItem` 구현
-- [ ] **refactoring:** `NewEvents`, `MetalDetectorItem`
+- [ ] **refactoring:** `NewEvents`, `MetalDetectorItem`, `NewCreativeTabs`
 
 </details>
