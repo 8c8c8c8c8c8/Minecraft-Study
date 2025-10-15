@@ -286,8 +286,25 @@ modeling 이 복잡할수록 양이 많아 진다.
 
 minecraft 에서 `Entity` 는 living object(예: player, monster...), 움직이지만 생명체가 아닌 object(예: arrow, dropped item, falling block...), special object(예: orb, ...) 를 말한다.  
 
-### To-do
-- [ ] **feat:** `NewItemModelProvider.trimmableArmorItem` 구현
-- [ ] **refactoring:** `NewEvents`, `MetalDetectorItem`, `NewCreativeTabs`
+</details>
+
+### Day 21
+<details>
+<summary>attack animation</summary>
+
+player 가 monster 에게 damage 를 주거나 받을 때 log file 생성하는 것이 더 효율적이다.  
+db 연결하여 저장하는 것은 비추천한다.  
+
+`static initialization block` 은 jvm 이 해당 class 를 load 할 때 단 한 번 실행된다.  
+이것은 static field 의 initialization 을 위해 존재하므로 이 다음으로 static block 이 실행된다.  
+
+class field 는 상속되지 않는다.  
+같은 이름을 사용할 경우 `hiding` 이라 부른다.  
+자식 class 에서 상속받은 method 를 사용하면 method 가 정의된 scope 내 field 를 참조한다.  
+즉 hiding 한 자식 class 의 field 를 참조하는 것이 아닌 부모 class 의 field 를 참조한다.   
+
+### Done
+- [x] **feat:** `NewItemModelProvider.trimmableArmorItem` 구현
+- [x] **refactoring:** `NewEvents`, `MetalDetectorItem`, `NewCreativeTabs`
 
 </details>

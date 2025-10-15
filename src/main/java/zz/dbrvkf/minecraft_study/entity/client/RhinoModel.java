@@ -184,6 +184,7 @@ public class RhinoModel<T extends Entity> extends HierarchicalModel<T> {
         applyHeadRotation(netHeadYaw, headPitch, ageInTicks);
         animateWalk(NewAnimationDefinitions.RHINO_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
         animate(((RhinoEntity) entity).idleAnimationState, NewAnimationDefinitions.RHINO_IDLE, ageInTicks, 1f);
+        animate(((RhinoEntity) entity).idleAnimationState, NewAnimationDefinitions.RHINO_ATTACK, ageInTicks, 1f);
     }
 
     private void applyHeadRotation(float pNetHeadYaw, float pHeadPitch, float pAgeInTicks) {

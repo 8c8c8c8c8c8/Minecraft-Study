@@ -24,7 +24,7 @@ import zz.dbrvkf.minecraft_study.entity.NewEntities;
 import zz.dbrvkf.minecraft_study.entity.client.NewModelLayers;
 import zz.dbrvkf.minecraft_study.entity.client.RhinoModel;
 import zz.dbrvkf.minecraft_study.entity.client.RhinoRenderer;
-import zz.dbrvkf.minecraft_study.item.NewCreativeTabs;
+import zz.dbrvkf.minecraft_study.tab.NewCreativeTabs;
 import zz.dbrvkf.minecraft_study.item.NewItems;
 import zz.dbrvkf.minecraft_study.loot.NewLootModifiers;
 import zz.dbrvkf.minecraft_study.sound.NewSounds;

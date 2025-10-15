@@ -25,6 +25,12 @@ public class NewEvents {
 
     @SubscribeEvent
     public static void addCustomTrades(VillagerTradesEvent event) {
+        addFarmerTrades(event);
+        addLibrarianTrades(event);
+        addSoundMasterTrades(event);
+    }
+
+    private static void addFarmerTrades(VillagerTradesEvent event) {
         if (event.getType() == VillagerProfession.FARMER) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
 
@@ -41,19 +47,9 @@ public class NewEvents {
                     new ItemStack(NewItems.CORN_SEEDS.get(), 2),
                     2, 12, 0.075f));
         }
+    }
 
-        if (event.getType() == VillagerProfession.LIBRARIAN) {
-            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
-            ItemStack enchantedBook = EnchantedBookItem.createForEnchantment(
-                    new EnchantmentInstance(Enchantments.THORNS, 2)
-            );
-
-            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
-                    new ItemStack(Items.EMERALD, 32),
-                    enchantedBook,
-                    2, 8, 0.02f));
-        }
-
+    private static void addSoundMasterTrades(VillagerTradesEvent event) {
         if (event.getType() == NewVillagers.SOUND_MASTER.get()) {
             Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
 
@@ -65,6 +61,20 @@ public class NewEvents {
                     new ItemStack(Items.EMERALD, 6),
                     new ItemStack(NewBlocks.SAPPHIRE_ORE.get(), 2),
                     5, 12, 0.02f));
+        }
+    }
+
+    private static void addLibrarianTrades(VillagerTradesEvent event) {
+        if (event.getType() == VillagerProfession.LIBRARIAN) {
+            Int2ObjectMap<List<VillagerTrades.ItemListing>> trades = event.getTrades();
+            ItemStack enchantedBook = EnchantedBookItem.createForEnchantment(
+                    new EnchantmentInstance(Enchantments.THORNS, 2)
+            );
+
+            trades.get(1).add((pTrader, pRandom) -> new MerchantOffer(
+                    new ItemStack(Items.EMERALD, 32),
+                    enchantedBook,
+                    2, 8, 0.02f));
         }
     }
 

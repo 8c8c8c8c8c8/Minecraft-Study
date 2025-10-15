@@ -24,6 +24,8 @@ import java.util.function.Supplier;
 public class NewBlocks {
     public static final DeferredRegister<Block> BLOCKS =
             DeferredRegister.create(ForgeRegistries.BLOCKS, MinecraftStudy.MOD_ID);
+    public static final DeferredRegister<Block> NO_BLOCK_ITEMS =
+            DeferredRegister.create(ForgeRegistries.BLOCKS, MinecraftStudy.MOD_ID);
 
     public static final RegistryObject<Block> SAPPHIRE_BLOCK = registryBlock("sapphire_block",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST)));
@@ -65,14 +67,14 @@ public class NewBlocks {
             () -> new DoorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST).noOcclusion(), BlockSetType.IRON));
     public static final RegistryObject<Block> SAPPHIRE_TRAPDOOR = registryBlock("sapphire_trapdoor",
             () -> new TrapDoorBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST).noOcclusion(), BlockSetType.IRON));
-    public static final RegistryObject<Block> STRAWBERRY_CROP = BLOCKS.register("strawberry_crop",
+    public static final RegistryObject<Block> STRAWBERRY_CROP = NO_BLOCK_ITEMS.register("strawberry_crop",
             () -> new StrawberryCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noCollission().noOcclusion()));
-    public static final RegistryObject<Block> CORN_CROP = BLOCKS.register("corn_crop",
+    public static final RegistryObject<Block> CORN_CROP = NO_BLOCK_ITEMS.register("corn_crop",
             () -> new CornCropBlock(BlockBehaviour.Properties.copy(Blocks.WHEAT).noCollission().noOcclusion()));
     public static final RegistryObject<Block> CATMINT = registryBlock("catmint",
             () -> new FlowerBlock(() -> MobEffects.LUCK, 5,
                     BlockBehaviour.Properties.copy(Blocks.ALLIUM).noOcclusion().noCollission()));
-    public static final RegistryObject<Block> POTTED_CATMINT = BLOCKS.register("potted_catmint",
+    public static final RegistryObject<Block> POTTED_CATMINT = NO_BLOCK_ITEMS.register("potted_catmint",
             () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, NewBlocks.CATMINT,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_ALLIUM).noOcclusion()));
 
@@ -83,10 +85,11 @@ public class NewBlocks {
     }
 
     private static <T extends Block> void registryBlockItem(String name, RegistryObject<T> block) {
-        NewItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
+        NewItems.BLOCK_ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties()));
     }
 
     public static void register(IEventBus eventBus) {
         BLOCKS.register(eventBus);
+        NO_BLOCK_ITEMS.register(eventBus);
     }
 }

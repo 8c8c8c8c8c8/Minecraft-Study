@@ -26,31 +26,32 @@ public class MetalDetectorItem extends Item {
 
     @Override
     public InteractionResult useOn(UseOnContext pContext) {
-        if (!pContext.getLevel().isClientSide()) {
-            BlockPos posClicked = pContext.getClickedPos();
-            Player player = pContext.getPlayer();
-            boolean foundBlock = false;
-
-            BlockState state;
-            for (int i = 0; i <= posClicked.getY() + 64; i++) {
-                state = pContext.getLevel().getBlockState(posClicked.below(i));
-                if (isValuableBlock(state)) {
-                    printValuableCoordinates(posClicked.below(i), player, state.getBlock());
-                    foundBlock = true;
-                    pContext.getLevel().playSeededSound(null,
-                            posClicked.getX(), posClicked.getY(), posClicked.getZ(),
-                            NewSounds.METAL_DETECTOR_FOUND_ORE.get(), SoundSource.BLOCKS,
-                            1f, 1f, 0);
-                    break;
-                }
-            }
-
-            if (!foundBlock) {
-                player.sendSystemMessage(Component.literal("No Valuables Found!"));
-            }
-        }
         pContext.getItemInHand().hurtAndBreak(1, pContext.getPlayer(),
                 player -> player.broadcastBreakEvent(player.getUsedItemHand()));
+
+        if (pContext.getLevel().isClientSide())
+            return InteractionResult.SUCCESS;
+
+        BlockPos posClicked = pContext.getClickedPos();
+        Player player = pContext.getPlayer();
+        boolean hasValuableBlock = false;
+        for (int i = 0; i <= posClicked.getY() + 64; i++) {
+            BlockState state = pContext.getLevel().getBlockState(posClicked.below(i));
+            if (isValuableBlock(state)) {
+                printValuableCoordinates(posClicked.below(i), player, state.getBlock());
+                hasValuableBlock = true;
+                pContext.getLevel().playSeededSound(null,
+                        posClicked.getX(), posClicked.getY(), posClicked.getZ(),
+                        NewSounds.METAL_DETECTOR_FOUND_ORE.get(), SoundSource.BLOCKS,
+                        1f, 1f, 0);
+                break;
+            }
+        }
+
+        if (!hasValuableBlock) {
+            String noValuablesMsg = "No Valuables Found!";
+            player.sendSystemMessage(Component.literal(noValuablesMsg));
+        }
         return InteractionResult.SUCCESS;
     }
 

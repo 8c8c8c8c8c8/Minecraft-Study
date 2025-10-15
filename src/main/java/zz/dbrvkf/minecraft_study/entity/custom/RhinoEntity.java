@@ -1,5 +1,8 @@
 package zz.dbrvkf.minecraft_study.entity.custom;
 
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -11,6 +14,7 @@ import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
@@ -19,13 +23,37 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.Nullable;
 import zz.dbrvkf.minecraft_study.entity.NewEntities;
+import zz.dbrvkf.minecraft_study.entity.ai.RhinoAttackGoal;
 
 public class RhinoEntity extends Animal {
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
+    private static final EntityDataAccessor<Boolean> ATTACKING =
+            SynchedEntityData.defineId(RhinoEntity.class, EntityDataSerializers.BOOLEAN);
+    public final AnimationState attackAnimationState = new AnimationState();
+    private int attackAnimationTimeout = 0;
+
     public RhinoEntity(EntityType<? extends Animal> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
+    }
+
+    public void resetAttackTimeout() {
+        attackAnimationTimeout = 0;
+    }
+
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        entityData.define(ATTACKING, false);
+    }
+
+    public void setAttacking(boolean attacking) {
+        entityData.set(ATTACKING, attacking);
+    }
+
+    public boolean isAttacking() {
+        return entityData.get(ATTACKING);
     }
 
     @Override
@@ -37,12 +65,32 @@ public class RhinoEntity extends Animal {
     }
 
     private void setupAnimationStates() {
+        setupIdleAnimationState();
+        setupAttackAnimationState();
+        setupStopAttackAnimationState();
+    }
+
+    private void setupIdleAnimationState() {
         if (idleAnimationTimeout <= 0) {
             idleAnimationTimeout = random.nextInt(40) + 80;
             idleAnimationState.start(tickCount);
-        } else {
-            --idleAnimationTimeout;
+            return;
         }
+        --idleAnimationTimeout;
+    }
+
+    private void setupAttackAnimationState() {
+        if (isAttacking() && attackAnimationTimeout <= 0) {
+            attackAnimationTimeout = 80;
+            attackAnimationState.start(tickCount);
+            return;
+        }
+        --attackAnimationTimeout;
+    }
+
+    private void setupStopAttackAnimationState() {
+        if (!isAttacking())
+            attackAnimationState.stop();
     }
 
     @Override
@@ -67,12 +115,14 @@ public class RhinoEntity extends Animal {
     @Override
     protected void registerGoals() {
         goalSelector.addGoal(0, new FloatGoal(this));
-        goalSelector.addGoal(1, new BreedGoal(this, 1.25D));
-        goalSelector.addGoal(2, new TemptGoal(this, 1.2D, Ingredient.of(Items.COOKED_BEEF), false));
-        goalSelector.addGoal(3, new FollowParentGoal(this, 1.1D));
-        goalSelector.addGoal(4, new WaterAvoidingRandomStrollGoal(this, 1.1D));
-        goalSelector.addGoal(5, new LookAtPlayerGoal(this, Player.class, 3f));
-        goalSelector.addGoal(6, new RandomLookAroundGoal(this));
+        goalSelector.addGoal(1, new RhinoAttackGoal(this, 1.0D, true));
+        goalSelector.addGoal(2, new BreedGoal(this, 1.25D));
+        goalSelector.addGoal(3, new TemptGoal(this, 1.2D, Ingredient.of(Items.COOKED_BEEF), false));
+        goalSelector.addGoal(4, new FollowParentGoal(this, 1.1D));
+        goalSelector.addGoal(5, new WaterAvoidingRandomStrollGoal(this, 1.1D));
+        goalSelector.addGoal(6, new LookAtPlayerGoal(this, Player.class, 3f));
+        goalSelector.addGoal(7, new RandomLookAroundGoal(this));
+        targetSelector.addGoal(1, new HurtByTargetGoal(this));
     }
 
     @Override

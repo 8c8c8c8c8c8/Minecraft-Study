@@ -14,8 +14,12 @@ import zz.dbrvkf.minecraft_study.item.custom.NewArmorItem;
 import zz.dbrvkf.minecraft_study.item.custom.PineConeItem;
 import zz.dbrvkf.minecraft_study.sound.NewSounds;
 
+import javax.swing.*;
+
 public class NewItems {
     public static final DeferredRegister<Item> ITEMS =
+            DeferredRegister.create(ForgeRegistries.ITEMS, MinecraftStudy.MOD_ID);
+    public static final DeferredRegister<Item> BLOCK_ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, MinecraftStudy.MOD_ID);
 
     public static final RegistryObject<Item> SAPPHIRE = ITEMS.register("sapphire",
@@ -61,5 +65,6 @@ public class NewItems {
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
+        BLOCK_ITEMS.register(eventBus);
     }
 }
