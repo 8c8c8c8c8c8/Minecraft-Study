@@ -2,6 +2,7 @@ package zz.dbrvkf.minecraft_study;
 
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -20,10 +21,13 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
+import zz.dbrvkf.minecraft_study.block.entity.NewBlockEntities;
 import zz.dbrvkf.minecraft_study.entity.NewEntities;
 import zz.dbrvkf.minecraft_study.entity.client.NewModelLayers;
 import zz.dbrvkf.minecraft_study.entity.client.RhinoModel;
 import zz.dbrvkf.minecraft_study.entity.client.RhinoRenderer;
+import zz.dbrvkf.minecraft_study.screen.GemPolishingStationScreen;
+import zz.dbrvkf.minecraft_study.screen.NewMenuTypes;
 import zz.dbrvkf.minecraft_study.tab.NewCreativeTabs;
 import zz.dbrvkf.minecraft_study.item.NewItems;
 import zz.dbrvkf.minecraft_study.loot.NewLootModifiers;
@@ -49,6 +53,8 @@ public class MinecraftStudy {
         NewVillagers.register(modEventBus);
         NewSounds.register(modEventBus);
         NewEntities.register(modEventBus);
+        NewBlockEntities.register(modEventBus);
+        NewMenuTypes.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -98,6 +104,7 @@ public class MinecraftStudy {
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
             EntityRenderers.register(NewEntities.RHINO.get(),
                     (EntityRendererProvider.Context pContext) -> new RhinoRenderer(pContext, new RhinoModel<>(pContext.bakeLayer(NewModelLayers.RHINO_LAYER)), 2f));
+            MenuScreens.register(NewMenuTypes.GEM_POLISHING_MENU.get(), GemPolishingStationScreen::new);
         }
     }
 }

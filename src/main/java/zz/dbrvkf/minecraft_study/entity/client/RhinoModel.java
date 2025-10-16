@@ -181,13 +181,17 @@ public class RhinoModel<T extends Entity> extends HierarchicalModel<T> {
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount,
                           float ageInTicks, float netHeadYaw, float headPitch) {
         root().getAllParts().forEach(ModelPart::resetPose);
-        applyHeadRotation(netHeadYaw, headPitch, ageInTicks);
+        applyHeadRotation(netHeadYaw, headPitch);
         animateWalk(NewAnimationDefinitions.RHINO_WALK, limbSwing, limbSwingAmount, 2f, 2.5f);
-        animate(((RhinoEntity) entity).idleAnimationState, NewAnimationDefinitions.RHINO_IDLE, ageInTicks, 1f);
-        animate(((RhinoEntity) entity).idleAnimationState, NewAnimationDefinitions.RHINO_ATTACK, ageInTicks, 1f);
+        RhinoEntity rhino = (RhinoEntity) entity;
+        if (rhino.isAttacking()) {
+            animate(rhino.attackAnimationState, NewAnimationDefinitions.RHINO_ATTACK, ageInTicks, 1f);
+            return;
+        }
+        animate(rhino.idleAnimationState, NewAnimationDefinitions.RHINO_IDLE, ageInTicks, 1f);
     }
 
-    private void applyHeadRotation(float pNetHeadYaw, float pHeadPitch, float pAgeInTicks) {
+    private void applyHeadRotation(float pNetHeadYaw, float pHeadPitch) {
         float clampedNetHeadYaw = Mth.clamp(pNetHeadYaw, -30.0F, 30.F);
         float clampedHeadPitch = Mth.clamp(pHeadPitch, -25.0F, 25.0F);
         head.yRot = clampedNetHeadYaw * ((float) Math.PI / 180F);

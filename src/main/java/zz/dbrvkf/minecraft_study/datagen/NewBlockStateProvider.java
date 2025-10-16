@@ -5,6 +5,7 @@ import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.RegistryObject;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
@@ -52,6 +53,8 @@ public class NewBlockStateProvider extends BlockStateProvider {
                 "strawberry_stage", "strawberry_stage");
         makeToCrop((CornCropBlock) NewBlocks.CORN_CROP.get(),
                 "corn_stage_", "corn_stage_");
+        simpleBlockWithItem(NewBlocks.GEM_POLISHING_STATION.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/gem_polishing_station")));
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

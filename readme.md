@@ -308,3 +308,18 @@ class field 는 상속되지 않는다.
 - [x] **refactoring:** `NewEvents`, `MetalDetectorItem`, `NewCreativeTabs`
 
 </details>
+
+### Day 22
+<details>
+<summary>block entity</summary>
+
+- custom block entity
+
+`NewBlocks` 에서 blockItem 을 만드는 block 과 그렇지 않은 block 을 구분했다(`BLOCKS`, `NO_BLOCK_ITEMS`).  
+`NewBlockLootTables.getKnownBlocks` 는 loot table 을 만들어야 할 모든 custom block 들을 반환해야 한다.  
+기존은 `BLOCKS` 만 반환하여 오류가 발생했다.  
+`NO_BLOCK_ITEMS` 를 추가하여 해결했다.  
+
+`RhinoModel.setupAnim` 의 logic 중 idleAnimationState 에 idle, attack state 가 입력되고 있다.  
+논리적으로 문제가 있어 이를 수정했다.  
+</details>

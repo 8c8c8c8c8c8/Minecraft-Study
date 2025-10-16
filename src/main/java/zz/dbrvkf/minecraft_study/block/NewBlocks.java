@@ -14,6 +14,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import zz.dbrvkf.minecraft_study.MinecraftStudy;
 import zz.dbrvkf.minecraft_study.block.custom.CornCropBlock;
+import zz.dbrvkf.minecraft_study.block.custom.GemPolishingStationBlock;
 import zz.dbrvkf.minecraft_study.block.custom.SoundBlock;
 import zz.dbrvkf.minecraft_study.block.custom.StrawberryCropBlock;
 import zz.dbrvkf.minecraft_study.item.NewItems;
@@ -77,6 +78,8 @@ public class NewBlocks {
     public static final RegistryObject<Block> POTTED_CATMINT = NO_BLOCK_ITEMS.register("potted_catmint",
             () -> new FlowerPotBlock(() -> (FlowerPotBlock) Blocks.FLOWER_POT, NewBlocks.CATMINT,
                     BlockBehaviour.Properties.copy(Blocks.POTTED_ALLIUM).noOcclusion()));
+    public static final RegistryObject<Block> GEM_POLISHING_STATION = registryBlock("gem_polishing_station",
+            () -> new GemPolishingStationBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
 
     public static <T extends Block> RegistryObject<T> registryBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
