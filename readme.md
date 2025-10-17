@@ -323,3 +323,16 @@ class field 는 상속되지 않는다.
 `RhinoModel.setupAnim` 의 logic 중 idleAnimationState 에 idle, attack state 가 입력되고 있다.  
 논리적으로 문제가 있어 이를 수정했다.  
 </details>
+
+### Day 23
+<details>
+<summary>recipe type</summary>
+
+- custom recipe types
+
+### To-do
+- [ ] **bug:** `GemPolishingStationBlockEntity` 에 문제가 생겨 polishing 작동이 되지 않는다.  
+- [ ] **refactoring:** `GemPolishing` 관련 모든 코드(하드코딩, method 분리)
+- [ ] **feat:** custom recipe type 나머지 부분 완성
+
+</details>

@@ -29,9 +29,11 @@ import zz.dbrvkf.minecraft_study.MinecraftStudy;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
 import zz.dbrvkf.minecraft_study.block.custom.GemPolishingStationBlock;
 import zz.dbrvkf.minecraft_study.item.NewItems;
+import zz.dbrvkf.minecraft_study.recipe.GemPolishingRecipe;
 import zz.dbrvkf.minecraft_study.screen.GemPolishingStationMenu;
 
 import javax.crypto.spec.PSource;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 public class GemPolishingStationBlockEntity extends BlockEntity implements MenuProvider {
@@ -153,6 +155,21 @@ public class GemPolishingStationBlockEntity extends BlockEntity implements MenuP
         ItemStack result = new ItemStack(NewItems.SAPPHIRE.get());
         return hasCraftingItem() && canInsertAmountIntoOutputSlot(result.getCount())
                 && canInsertItemIntoOutputSlot(result.getItem());
+    }
+
+    private boolean hasRecipeV2() {
+        Optional<GemPolishingRecipe> recipe = getCurrentRecipe();
+        if (recipe.isEmpty())
+            return false;
+        ItemStack result = recipe.get().getResultItem(getLevel().registryAccess());
+        return canInsertAmountIntoOutputSlot(result.getCount())
+                && canInsertItemIntoOutputSlot(result.getItem());
+    }
+
+    private Optional<GemPolishingRecipe> getCurrentRecipe() {
+        SimpleContainer inventory = new SimpleContainer(ITEM_HANDLER.getSlots());
+        IntStream.of(ITEM_HANDLER.getSlots()).forEach(i -> inventory.setItem(i, ITEM_HANDLER.getStackInSlot(i)));
+        return level.getRecipeManager().getRecipeFor(GemPolishingRecipe.Type.INSTANCE, inventory, level);
     }
 
     private boolean canInsertItemIntoOutputSlot(Item item) {

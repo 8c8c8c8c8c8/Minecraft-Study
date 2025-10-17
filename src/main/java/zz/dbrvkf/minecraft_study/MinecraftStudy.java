@@ -26,6 +26,7 @@ import zz.dbrvkf.minecraft_study.entity.NewEntities;
 import zz.dbrvkf.minecraft_study.entity.client.NewModelLayers;
 import zz.dbrvkf.minecraft_study.entity.client.RhinoModel;
 import zz.dbrvkf.minecraft_study.entity.client.RhinoRenderer;
+import zz.dbrvkf.minecraft_study.recipe.NewRecipes;
 import zz.dbrvkf.minecraft_study.screen.GemPolishingStationScreen;
 import zz.dbrvkf.minecraft_study.screen.NewMenuTypes;
 import zz.dbrvkf.minecraft_study.tab.NewCreativeTabs;
@@ -55,6 +56,7 @@ public class MinecraftStudy {
         NewEntities.register(modEventBus);
         NewBlockEntities.register(modEventBus);
         NewMenuTypes.register(modEventBus);
+        NewRecipes.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
