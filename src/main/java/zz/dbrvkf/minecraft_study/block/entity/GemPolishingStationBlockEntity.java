@@ -65,7 +65,7 @@ public class GemPolishingStationBlockEntity extends BlockEntity implements MenuP
 
             @Override
             public int getCount() {
-                return 2;
+                return SLOT_SIZE;
             }
         };
     }
@@ -118,7 +118,7 @@ public class GemPolishingStationBlockEntity extends BlockEntity implements MenuP
 
     public void drops() {
         SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        IntStream.of(itemHandler.getSlots()).forEach(index -> inventory.setItem(index, itemHandler.getStackInSlot(index)));
+        IntStream.range(0, itemHandler.getSlots()).forEach(index -> inventory.setItem(index, itemHandler.getStackInSlot(index)));
         Containers.dropContents(level, worldPosition, inventory);
     }
 
@@ -136,7 +136,8 @@ public class GemPolishingStationBlockEntity extends BlockEntity implements MenuP
     }
 
     private void craftItem() {
-        ItemStack result = new ItemStack(NewItems.SAPPHIRE.get(), 1);
+        Optional<GemPolishingRecipe> recipe = getCurrentRecipe();
+        ItemStack result = recipe.get().getResultItem(null);
         itemHandler.extractItem(INPUT_SLOT, 1, false);
         itemHandler.setStackInSlot(OUTPUT_SLOT, new ItemStack(result.getItem(),
                 itemHandler.getStackInSlot(OUTPUT_SLOT).getCount() + result.getCount()));
@@ -151,14 +152,6 @@ public class GemPolishingStationBlockEntity extends BlockEntity implements MenuP
     }
 
     private boolean hasRecipe() {
-        ItemStack result = new ItemStack(NewItems.SAPPHIRE.get());
-        return hasCraftingItem() && canInsertAmountIntoOutputSlot(result.getCount())
-                && canInsertItemIntoOutputSlot(result.getItem());
-    }
-
-    private boolean hasRecipeV2() {
-        // todo
-        // modifying
         Optional<GemPolishingRecipe> recipe = getCurrentRecipe();
         if (recipe.isEmpty())
             return false;
@@ -169,7 +162,7 @@ public class GemPolishingStationBlockEntity extends BlockEntity implements MenuP
 
     private Optional<GemPolishingRecipe> getCurrentRecipe() {
         SimpleContainer inventory = new SimpleContainer(itemHandler.getSlots());
-        IntStream.of(itemHandler.getSlots()).forEach(i -> inventory.setItem(i, itemHandler.getStackInSlot(i)));
+        IntStream.range(0, itemHandler.getSlots()).forEach(i -> inventory.setItem(i, itemHandler.getStackInSlot(i)));
         return level.getRecipeManager().getRecipeFor(GemPolishingRecipe.Type.INSTANCE, inventory, level);
     }
 

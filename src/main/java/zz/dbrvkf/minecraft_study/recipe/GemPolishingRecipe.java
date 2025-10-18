@@ -80,14 +80,14 @@ public class GemPolishingRecipe implements Recipe<SimpleContainer> {
             ItemStack result = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(pSerializedRecipe, "result"));
             JsonArray ingredients = GsonHelper.getAsJsonArray(pSerializedRecipe, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(1, Ingredient.EMPTY);
-            IntStream.of(inputs.size()).forEach(i -> inputs.set(i, Ingredient.fromJson(ingredients.get(i))));
+            IntStream.range(0, inputs.size()).forEach(i -> inputs.set(i, Ingredient.fromJson(ingredients.get(i))));
             return new GemPolishingRecipe(inputs, result, pRecipeId);
         }
 
         @Override
         public @Nullable GemPolishingRecipe fromNetwork(ResourceLocation pRecipeId, FriendlyByteBuf pBuffer) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(pBuffer.readInt(), Ingredient.EMPTY);
-            IntStream.of(inputs.size()).forEach(i -> inputs.set(i, Ingredient.fromNetwork(pBuffer)));
+            IntStream.range(0, inputs.size()).forEach(i -> inputs.set(i, Ingredient.fromNetwork(pBuffer)));
             ItemStack result = pBuffer.readItem();
             return new GemPolishingRecipe(inputs, result, pRecipeId);
         }

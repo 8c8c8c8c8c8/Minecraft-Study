@@ -339,14 +339,17 @@ class field 는 상속되지 않는다.
 
 ### Day 24
 <details>
-<summary>Day 22</summary>
+<summary>Day 22, 23</summary>
 
-- Day 22 코드 중 일부 수정함.
+- Day 22, 23 일부 수정.
+- Day 23 미흡한 부분 추가.
 
 ### Todo
-- [ ] **refactoring:** `GemPolishingStationBlockEntity` 일부 진행함.  
+- [ ] **refactoring:** `GemPolishingStationBlockEntity` 일부 진행함, `GemPolishingStationMenu`
+- [ ] **feat:** `diamond`, `sapphire` 에 대한 `gem_polishing` recipe 를 provider 로 생성해보기.  
 
 ### Done
 - [x] **fix:** `GemPolishingStationBlockEntity.tick` 이 부분 중 `resetProgress()` 의 위치가 잘못 되어 수정함.  
+- [x] **fix:** `IntStream.of` - > `IntStream.range` 로 수정
 
 </details>
