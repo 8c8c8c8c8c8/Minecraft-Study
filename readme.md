@@ -336,3 +336,17 @@ class field 는 상속되지 않는다.
 - [ ] **feat:** custom recipe type 나머지 부분 완성
 
 </details>
+
+### Day 24
+<details>
+<summary>Day 22</summary>
+
+- Day 22 코드 중 일부 수정함.
+
+### Todo
+- [ ] **refactoring:** `GemPolishingStationBlockEntity` 일부 진행함.  
+
+### Done
+- [x] **fix:** `GemPolishingStationBlockEntity.tick` 이 부분 중 `resetProgress()` 의 위치가 잘못 되어 수정함.  
+
+</details>
