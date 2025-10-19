@@ -353,3 +353,11 @@ class field 는 상속되지 않는다.
 - [x] **fix:** `IntStream.of` - > `IntStream.range` 로 수정
 
 </details>
+
+### Day 25
+<details>
+<summary>JEI</summary>
+
+- JEI(just enough item) compatibility
+
+</details>
