@@ -186,10 +186,6 @@ public class GemPolishingStationBlockEntity extends BlockEntity implements MenuP
         return output.getCount() + count <= output.getMaxStackSize();
     }
 
-    private boolean hasCraftingItem() {
-        return itemHandler.getStackInSlot(INPUT_SLOT).getItem() == NewItems.RAW_SAPPHIRE.get();
-    }
-
     private void resetProgress() {
         progress = 0;
     }

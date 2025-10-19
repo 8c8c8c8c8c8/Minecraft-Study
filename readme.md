@@ -344,10 +344,6 @@ class field 는 상속되지 않는다.
 - Day 22, 23 일부 수정.
 - Day 23 미흡한 부분 추가.
 
-### Todo
-- [ ] **refactoring:** `GemPolishingStationBlockEntity` 일부 진행함, `GemPolishingStationMenu`
-- [ ] **feat:** `diamond`, `sapphire` 에 대한 `gem_polishing` recipe 를 provider 로 생성해보기.  
-
 ### Done
 - [x] **fix:** `GemPolishingStationBlockEntity.tick` 이 부분 중 `resetProgress()` 의 위치가 잘못 되어 수정함.  
 - [x] **fix:** `IntStream.of` - > `IntStream.range` 로 수정
@@ -359,6 +355,27 @@ class field 는 상속되지 않는다.
 <summary>JEI, block entity renderer</summary>
 
 - JEI(just enough item) compatibility
+  - inventory, recipe 탐색을 도와주는 mod. 
 - block entity renderer
+  - gem polishing station 에 recipe 에 맞는 input 을 넣으면 station 에 icon 이 나온다.  
+  - output 이 생성되면 icon 이 교체된다.  
+  - 매 tick 마다 rendering 한다.  
+  - rendering 에 난수가 사용되는데 이는 객체에 미묘한 불규칙성을 부여한다.  
+  - 예를 들어 동일한 block 이라도 드랍시 난수 기반으로 약간 회전을 시키거나 반복되는 패턴을 피하기 위함이다.  
+  - 모든 요소를 완벽히 계산하는 것 보다 난수를 이용해 효율적으로 계산할 수 있다.  
+
+`NBT(Named Binary Tag)` 게임 데이터를 저장하기 위해 NBT 형식을 사용한다.  
+
+`chunk` world 데이터를 관리하고 로드하는데 사용되는 가장 기본적인 구획 단위.  
+가로x세로x높이 16x16x256 블록.  
+해당 chunk 에 있는 모든 block의 위치, 종류, 상태와 entity, block entity 등을 파일로 저장한다.  
+`GemPolishingStationBlockEntity` 는 memory 에 해당 chunk 가 있을 때만 `tick` method 를 실행한다.  
+chunk 데이터가 release 되면 block entity 는 멈추고 상태를 저장한다.  
+chunk 를 release 하고 block entity 만 실행하게 할 수 없다.  
+영구적으로 block entity 를 실행하고 싶으면 강제로 chunk load 를 하여야 한다(IChunkloader 혹은 ForgeHooks.onChunkLoader 사용).  
+
+### Todo
+- [ ] **refactoring:** `GemPolishingStationBlockEntity`, `GemPolishingStationMenu`
+- [ ] **feat:** `diamond`, `sapphire` 에 대한 `gem_polishing` recipe 를 provider 로 생성해보기.
 
 </details>
