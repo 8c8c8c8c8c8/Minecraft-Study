@@ -356,8 +356,9 @@ class field 는 상속되지 않는다.
 
 ### Day 25
 <details>
-<summary>JEI</summary>
+<summary>JEI, block entity renderer</summary>
 
 - JEI(just enough item) compatibility
+- block entity renderer
 
 </details>
