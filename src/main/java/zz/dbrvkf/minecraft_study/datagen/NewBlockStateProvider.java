@@ -55,6 +55,27 @@ public class NewBlockStateProvider extends BlockStateProvider {
                 "corn_stage_", "corn_stage_");
         simpleBlockWithItem(NewBlocks.GEM_POLISHING_STATION.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/gem_polishing_station")));
+        logBlock((RotatedPillarBlock) NewBlocks.PINE_LOG.get());
+        axisBlock((RotatedPillarBlock) NewBlocks.PINE_WOOD.get(), blockTexture(NewBlocks.PINE_LOG.get()),
+                blockTexture(NewBlocks.PINE_LOG.get()));
+        axisBlock((RotatedPillarBlock) NewBlocks.STRIPPED_PINE_LOG.get(), blockTexture(NewBlocks.STRIPPED_PINE_LOG.get()),
+                modLoc("block/stripped_pine_log_top"));
+        axisBlock((RotatedPillarBlock) NewBlocks.STRIPPED_PINE_WOOD.get(), blockTexture(NewBlocks.STRIPPED_PINE_LOG.get()),
+                blockTexture(NewBlocks.PINE_LOG.get()));
+        simpleBlockItem(NewBlocks.PINE_LOG);
+        simpleBlockItem(NewBlocks.PINE_WOOD);
+        simpleBlockItem(NewBlocks.STRIPPED_PINE_LOG);
+        simpleBlockItem(NewBlocks.STRIPPED_PINE_WOOD);
+        blockWithItem(NewBlocks.PINE_PLANKS);
+        simpleBlockWithItem(NewBlocks.PINE_LEAVES.get(),
+                models().singleTexture(NewBlocks.PINE_LEAVES.getId().getPath(),
+                                mcLoc("block/leaves"), "all", blockTexture(NewBlocks.PINE_LEAVES.get()))
+                        .renderType("cutout"));
+    }
+
+    private void simpleBlockItem(RegistryObject<Block> block) {
+        simpleBlockItem(block.get(),
+                new ModelFile.UncheckedModelFile(blockTexture(block.get())));
     }
 
     private void blockWithItem(RegistryObject<Block> blockRegistryObject) {

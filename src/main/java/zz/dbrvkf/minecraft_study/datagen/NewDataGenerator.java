@@ -30,8 +30,8 @@ public class NewDataGenerator {
         generator.addProvider(event.includeClient(), new NewBlockStateProvider(packOutput, MinecraftStudy.MOD_ID, existingFileHelper));
         generator.addProvider(event.includeClient(), new NewItemModelProvider(packOutput, MinecraftStudy.MOD_ID, existingFileHelper));
 
-        NewBlockTagProvider blockTagProvider = generator.addProvider(event.includeServer(),
-                new NewBlockTagProvider(packOutput, lookupProvider, MinecraftStudy.MOD_ID, existingFileHelper));
+        NewBlockTagsProvider blockTagProvider = generator.addProvider(event.includeServer(),
+                new NewBlockTagsProvider(packOutput, lookupProvider, MinecraftStudy.MOD_ID, existingFileHelper));
         generator.addProvider(event.includeServer(),
                 new NewItemTagsProvider(packOutput, lookupProvider, blockTagProvider.contentsGetter(),
                         MinecraftStudy.MOD_ID, existingFileHelper));

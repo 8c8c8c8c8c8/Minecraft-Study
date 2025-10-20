@@ -374,6 +374,32 @@ chunk 데이터가 release 되면 block entity 는 멈추고 상태를 저장한
 chunk 를 release 하고 block entity 만 실행하게 할 수 없다.  
 영구적으로 block entity 를 실행하고 싶으면 강제로 chunk load 를 하여야 한다(IChunkloader 혹은 ForgeHooks.onChunkLoader 사용).  
 
+</details>
+
+### Day 26
+<details>
+<summary>custom wood</summary>
+
+- custom wood
+  - 영상에서 pine log -> pine planks 를 만드는 recipe 생략했다.  
+  - `BlockBehaviour.Properties.strength`
+    - `hardness` 높을수록 손이나 도구로 파괴하는데 오래 걸림.  
+    - `resistance` 높을수록 폭발 저항이 높음.  
+  - `NewFlammableRotatedPillarBlock` 에 의해 불이 붙는 기능을 구현했더라도 `BlockTags.LOGS_THAT_BURN` tag 가 없으면 동작하지 않는다.  
+
+`renderType`
+  - `cutout` 특정 pixel 을 투명하게 처리하여 leaves block 의 구멍 뚫린 texture 를 표현해준다. 주변 빛을 투과할 수 있다.  
+  - `solid` 기본값으로 불투명하고 단단한 것처럼 표현해준다.  
+
+`Wrapper` primitive type 을 객체로 변환하여 기존 type 에 없는 기능을 **동적으로** 추가할 수 있다.  
+
+```java
+// example
+LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> itemHandler);
+```
+`IItemHandler` 는 핵심 기능이고 추가로 `LazyOptional` 에 의해 지연 초기화 및 안전성을 제공받는다.  
+
+
 ### Todo
 - [ ] **refactoring:** `GemPolishingStationBlockEntity`, `GemPolishingStationMenu`
 - [ ] **feat:** `diamond`, `sapphire` 에 대한 `gem_polishing` recipe 를 provider 로 생성해보기.

@@ -54,6 +54,12 @@ public class NewEnLangProvider extends LanguageProvider {
         addBlock(NewBlocks.SAPPHIRE_TRAPDOOR, "Sapphire Trapdoor");
         addBlock(NewBlocks.CATMINT, "Catmint");
         addBlock(NewBlocks.GEM_POLISHING_STATION, "Gem Polishing Station");
+        addBlock(NewBlocks.PINE_LOG, "Pine Log");
+        addBlock(NewBlocks.PINE_WOOD, "Pine Wood");
+        addBlock(NewBlocks.STRIPPED_PINE_LOG, "Stripped Pine Log");
+        addBlock(NewBlocks.STRIPPED_PINE_WOOD, "Stripped Pine Wood");
+        addBlock(NewBlocks.PINE_PLANKS, "Pine Planks");
+        addBlock(NewBlocks.PINE_LEAVES, "Pine Leaves");
         add("creativetab.tutorial_tab", "Tutorial tab");
         add("tooltip.minecraft_study.metal_detector.tooltip", "Finds valuables underground.\nwhenever used one time, hp will be decreased -1");
         add("tooltip.minecraft_study.sound_block.tooltip", "Makes some sound when touched.");

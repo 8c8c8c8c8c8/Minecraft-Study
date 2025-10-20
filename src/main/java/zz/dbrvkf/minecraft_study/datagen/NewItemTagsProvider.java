@@ -5,9 +5,9 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import org.jetbrains.annotations.Nullable;
+import zz.dbrvkf.minecraft_study.block.NewBlocks;
 import zz.dbrvkf.minecraft_study.item.NewItems;
 
 import java.util.concurrent.CompletableFuture;
@@ -28,5 +28,12 @@ public class NewItemTagsProvider extends ItemTagsProvider {
                         NewItems.SAPPHIRE_BOOTS.get());
         this.tag(ItemTags.MUSIC_DISCS)
                 .add(NewItems.BAR_BRAWL_MUSIC_DISC.get());
+        this.tag(ItemTags.LOGS_THAT_BURN)
+                .add(NewBlocks.PINE_LOG.get().asItem(),
+                        NewBlocks.PINE_WOOD.get().asItem(),
+                        NewBlocks.STRIPPED_PINE_LOG.get().asItem(),
+                        NewBlocks.STRIPPED_PINE_WOOD.get().asItem());
+        this.tag(ItemTags.PLANKS)
+                .add(NewBlocks.PINE_PLANKS.get().asItem());
     }
 }

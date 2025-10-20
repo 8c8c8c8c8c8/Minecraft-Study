@@ -20,6 +20,7 @@ import zz.dbrvkf.minecraft_study.block.custom.StrawberryCropBlock;
 import zz.dbrvkf.minecraft_study.item.NewItems;
 
 import java.util.Set;
+import java.util.stream.Stream;
 
 public class NewBlockLootTables extends BlockLootSubProvider {
     public NewBlockLootTables() {
@@ -53,7 +54,7 @@ public class NewBlockLootTables extends BlockLootSubProvider {
                 .hasBlockStateProperties(NewBlocks.STRAWBERRY_CROP.get())
                 .setProperties(StatePropertiesPredicate.Builder
                         .properties().hasProperty(StrawberryCropBlock.AGE, 5));
-        this.add(NewBlocks.STRAWBERRY_CROP.get(), createCropDrops(NewBlocks.STRAWBERRY_CROP.get(), NewItems.STRAWBERRY.get(),
+        add(NewBlocks.STRAWBERRY_CROP.get(), createCropDrops(NewBlocks.STRAWBERRY_CROP.get(), NewItems.STRAWBERRY.get(),
                 NewItems.STRAWBERRY_SEEDS.get(), strawberryLootItemConditionBuilder));
         LootItemCondition.Builder cornLootItemConditionBuilder = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(NewBlocks.CORN_CROP.get())
@@ -61,11 +62,18 @@ public class NewBlockLootTables extends BlockLootSubProvider {
                 .or(LootItemBlockStatePropertyCondition
                         .hasBlockStateProperties(NewBlocks.CORN_CROP.get())
                         .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornCropBlock.AGE, 8)));
-        this.add(NewBlocks.CORN_CROP.get(), createCropDrops(NewBlocks.CORN_CROP.get(), NewItems.CORN.get(),
+        add(NewBlocks.CORN_CROP.get(), createCropDrops(NewBlocks.CORN_CROP.get(), NewItems.CORN.get(),
                 NewItems.CORN_SEEDS.get(), cornLootItemConditionBuilder));
         dropSelf(NewBlocks.CATMINT.get());
-        this.add(NewBlocks.POTTED_CATMINT.get(), createPotFlowerItemTable(NewBlocks.CATMINT.get()));
+        add(NewBlocks.POTTED_CATMINT.get(), createPotFlowerItemTable(NewBlocks.CATMINT.get()));
         dropSelf(NewBlocks.GEM_POLISHING_STATION.get());
+        dropSelf(NewBlocks.PINE_LOG.get());
+        dropSelf(NewBlocks.PINE_WOOD.get());
+        dropSelf(NewBlocks.STRIPPED_PINE_LOG.get());
+        dropSelf(NewBlocks.STRIPPED_PINE_WOOD.get());
+        dropSelf(NewBlocks.PINE_PLANKS.get());
+        add(NewBlocks.PINE_LEAVES.get(), block ->
+                createLeavesDrops(block, NewBlocks.PINE_LEAVES.get(), NORMAL_LEAVES_SAPLING_CHANCES));
     }
 
     protected LootTable.Builder createCopperLikeOreDrops(Block pBlock, Item item) {
@@ -78,7 +86,7 @@ public class NewBlockLootTables extends BlockLootSubProvider {
 
     @Override
     protected Iterable<Block> getKnownBlocks() {
-        return java.util.stream.Stream.concat(
+        return Stream.concat(
                 NewBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get),
                 NewBlocks.NO_BLOCK_ITEMS.getEntries().stream().map(RegistryObject::get)
         )::iterator;
