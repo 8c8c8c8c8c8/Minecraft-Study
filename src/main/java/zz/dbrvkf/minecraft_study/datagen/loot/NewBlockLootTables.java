@@ -74,6 +74,10 @@ public class NewBlockLootTables extends BlockLootSubProvider {
         dropSelf(NewBlocks.PINE_PLANKS.get());
         add(NewBlocks.PINE_LEAVES.get(), block ->
                 createLeavesDrops(block, NewBlocks.PINE_LEAVES.get(), NORMAL_LEAVES_SAPLING_CHANCES));
+        add(NewBlocks.PINE_SIGN.get(), this::createSingleItemTable);
+        add(NewBlocks.PINE_WALL_SIGN.get(), this::createSingleItemTable);
+        add(NewBlocks.PINE_HANGING_SIGN.get(), this::createSingleItemTable);
+        add(NewBlocks.PINE_WALL_HANGING_SIGN.get(), this::createSingleItemTable);
     }
 
     protected LootTable.Builder createCopperLikeOreDrops(Block pBlock, Item item) {

@@ -81,6 +81,8 @@ public class NewItemModelProvider extends ItemModelProvider {
                 .texture("layer0", getModLocWithObj(NewBlocks.CATMINT, "block"));
         basicItem(NewItems.BAR_BRAWL_MUSIC_DISC.get());
         simpleItem(NewItems.RHINO_SPAWN_EGG, "item/template_spawn_egg");
+        basicItem(NewItems.PINE_SIGN.get());
+        basicItem(NewItems.PINE_HANGING_SIGN.get());
     }
 
     private void trimmableArmorItem(RegistryObject<Item> item) {

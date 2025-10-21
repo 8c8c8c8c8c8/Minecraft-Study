@@ -20,6 +20,7 @@ import zz.dbrvkf.minecraft_study.MinecraftStudy;
 import zz.dbrvkf.minecraft_study.block.custom.*;
 import zz.dbrvkf.minecraft_study.item.NewItems;
 import zz.dbrvkf.minecraft_study.sound.NewSounds;
+import zz.dbrvkf.minecraft_study.util.NewWoodTypes;
 
 import java.util.function.Supplier;
 
@@ -123,6 +124,14 @@ public class NewBlocks {
                     return 30;
                 }
             });
+    public static final RegistryObject<Block> PINE_SIGN = BLOCKS.register("pine_sign",
+            () -> new NewStandingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_SIGN), NewWoodTypes.PINE));
+    public static final RegistryObject<Block> PINE_WALL_SIGN = BLOCKS.register("pine_wall_sign",
+            () -> new NewWallSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_SIGN), NewWoodTypes.PINE));
+    public static final RegistryObject<Block> PINE_HANGING_SIGN = BLOCKS.register("pine_hanging_sign",
+            () -> new NewHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_HANGING_SIGN), NewWoodTypes.PINE));
+    public static final RegistryObject<Block> PINE_WALL_HANGING_SIGN = BLOCKS.register("pine_wall_hanging_sign",
+            () -> new NewWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_HANGING_SIGN), NewWoodTypes.PINE));
 
     public static <T extends Block> RegistryObject<T> registryBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

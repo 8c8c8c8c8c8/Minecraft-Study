@@ -399,9 +399,20 @@ LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> itemHandler);
 ```
 `IItemHandler` 는 핵심 기능이고 추가로 `LazyOptional` 에 의해 지연 초기화 및 안전성을 제공받는다.  
 
+</details>
+
+### Day 27
+<details>
+<summary>custom sign</summary>
+
+- custom sign
+  - 표지판, 걸이형 표지판 블럭
 
 ### Todo
-- [ ] **refactoring:** `GemPolishingStationBlockEntity`, `GemPolishingStationMenu`
+- [ ] **refactoring**
+  - [ ] `GemPolishingStationBlockEntity`
+  - [ ] `GemPolishingStationMenu`
+  - [ ] `SignBlockEntity` 굳이 새로운 class 가 필요한가... 기존 class 를 활용해보자.  
 - [ ] **feat:** `diamond`, `sapphire` 에 대한 `gem_polishing` recipe 를 provider 로 생성해보기.
 
 </details>

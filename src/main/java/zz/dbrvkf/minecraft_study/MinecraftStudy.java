@@ -3,6 +3,7 @@ package zz.dbrvkf.minecraft_study;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraft.world.item.CreativeModeTabs;
@@ -33,6 +34,7 @@ import zz.dbrvkf.minecraft_study.tab.NewCreativeTabs;
 import zz.dbrvkf.minecraft_study.item.NewItems;
 import zz.dbrvkf.minecraft_study.loot.NewLootModifiers;
 import zz.dbrvkf.minecraft_study.sound.NewSounds;
+import zz.dbrvkf.minecraft_study.util.NewWoodTypes;
 import zz.dbrvkf.minecraft_study.villager.NewVillagers;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -107,6 +109,7 @@ public class MinecraftStudy {
             EntityRenderers.register(NewEntities.RHINO.get(),
                     (EntityRendererProvider.Context pContext) -> new RhinoRenderer(pContext, new RhinoModel<>(pContext.bakeLayer(NewModelLayers.RHINO_LAYER)), 2f));
             MenuScreens.register(NewMenuTypes.GEM_POLISHING_MENU.get(), GemPolishingStationScreen::new);
+            Sheets.addWoodType(NewWoodTypes.PINE);
         }
     }
 }

@@ -1,5 +1,7 @@
 package zz.dbrvkf.minecraft_study.event;
 
+import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
+import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -21,5 +23,7 @@ public class NewClientEventBus {
     @SubscribeEvent
     public static void registerBER(EntityRenderersEvent.RegisterRenderers event) {
         event.registerBlockEntityRenderer(NewBlockEntities.GEM_POLISHING_STATION.get(), GemPolishingBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(NewBlockEntities.SIGNS.get(), SignRenderer::new);
+        event.registerBlockEntityRenderer(NewBlockEntities.HANGING_SIGNS.get(), HangingSignRenderer::new);
     }
 }

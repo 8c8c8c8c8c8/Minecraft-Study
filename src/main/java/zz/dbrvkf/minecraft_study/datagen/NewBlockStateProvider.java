@@ -1,6 +1,7 @@
 package zz.dbrvkf.minecraft_study.datagen;
 
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
@@ -71,6 +72,16 @@ public class NewBlockStateProvider extends BlockStateProvider {
                 models().singleTexture(NewBlocks.PINE_LEAVES.getId().getPath(),
                                 mcLoc("block/leaves"), "all", blockTexture(NewBlocks.PINE_LEAVES.get()))
                         .renderType("cutout"));
+        signBlock(NewBlocks.PINE_SIGN.get(), NewBlocks.PINE_WALL_SIGN.get(),
+                blockTexture(NewBlocks.PINE_PLANKS.get()));
+        signBlock(NewBlocks.PINE_HANGING_SIGN.get(), NewBlocks.PINE_WALL_HANGING_SIGN.get(),
+                blockTexture(NewBlocks.PINE_PLANKS.get()));
+    }
+
+    private void signBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
+        ModelFile sign = models().sign(signBlock.getDescriptionId(), texture);
+        simpleBlock(signBlock, sign);
+        simpleBlock(wallSignBlock, sign);
     }
 
     private void simpleBlockItem(RegistryObject<Block> block) {

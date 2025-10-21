@@ -62,6 +62,10 @@ public class NewItems {
             () -> new RecordItem(6, NewSounds.BAR_BRAWL, new Item.Properties().stacksTo(1), 2440));
     public static final RegistryObject<Item> RHINO_SPAWN_EGG = ITEMS.register("rhino_spawn_egg",
             () -> new ForgeSpawnEggItem(NewEntities.RHINO, 0x7e9680, 0xc5d1c5, new Item.Properties()));
+    public static final RegistryObject<Item> PINE_SIGN = ITEMS.register("pine_sign",
+            () -> new SignItem(new Item.Properties().stacksTo(16), NewBlocks.PINE_SIGN.get(), NewBlocks.PINE_WALL_SIGN.get()));
+    public static final RegistryObject<Item> PINE_HANGING_SIGN = ITEMS.register("pine_hanging_sign",
+            () -> new HangingSignItem(NewBlocks.PINE_HANGING_SIGN.get(), NewBlocks.PINE_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

@@ -16,6 +16,14 @@ public class NewBlockEntities {
             BLOCK_ENTITIES.register("gem_polishing_station",
                     () -> BlockEntityType.Builder.of(GemPolishingStationBlockEntity::new,
                             NewBlocks.GEM_POLISHING_STATION.get()).build(null));
+    public static final RegistryObject<BlockEntityType<NewSignBlockEntity>> SIGNS =
+            BLOCK_ENTITIES.register("signs",
+                    () -> BlockEntityType.Builder.of(NewSignBlockEntity::new, NewBlocks.PINE_SIGN.get(),
+                            NewBlocks.PINE_WALL_SIGN.get()).build(null));
+    public static final RegistryObject<BlockEntityType<NewHangingSignBlockEntity>> HANGING_SIGNS =
+            BLOCK_ENTITIES.register("hanging_signs",
+                    () -> BlockEntityType.Builder.of(NewHangingSignBlockEntity::new, NewBlocks.PINE_HANGING_SIGN.get(),
+                            NewBlocks.PINE_WALL_HANGING_SIGN.get()).build(null));
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

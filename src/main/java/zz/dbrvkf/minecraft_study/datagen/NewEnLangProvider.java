@@ -60,6 +60,8 @@ public class NewEnLangProvider extends LanguageProvider {
         addBlock(NewBlocks.STRIPPED_PINE_WOOD, "Stripped Pine Wood");
         addBlock(NewBlocks.PINE_PLANKS, "Pine Planks");
         addBlock(NewBlocks.PINE_LEAVES, "Pine Leaves");
+        addBlock(NewBlocks.PINE_SIGN, "Pine Sign");
+        addBlock(NewBlocks.PINE_HANGING_SIGN, "Pine Hanging Sign");
         add("creativetab.tutorial_tab", "Tutorial tab");
         add("tooltip.minecraft_study.metal_detector.tooltip", "Finds valuables underground.\nwhenever used one time, hp will be decreased -1");
         add("tooltip.minecraft_study.sound_block.tooltip", "Makes some sound when touched.");
