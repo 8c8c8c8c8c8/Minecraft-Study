@@ -408,11 +408,25 @@ LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> itemHandler);
 - custom sign
   - 표지판, 걸이형 표지판 블럭
 
+</details>
+
+### Day 28
+<details>
+<summary>custom boat</summary>
+
+- custom boat
+  - custom boat entity 정의
+  - entity 등록
+  - boat item 생성 및 등록
+  - boat renderer 생성 및 등록, texture asset 경로 추가
+  - provider 에 등록
+
 ### Todo
 - [ ] **refactoring**
-  - [ ] `GemPolishingStationBlockEntity`
-  - [ ] `GemPolishingStationMenu`
-  - [ ] `SignBlockEntity` 굳이 새로운 class 가 필요한가... 기존 class 를 활용해보자.  
+    - [ ] `GemPolishingStationBlockEntity`
+    - [ ] `GemPolishingStationMenu`
+    - [ ] `SignBlockEntity` 굳이 새로운 class 가 필요한가... 기존 class 를 활용해보자.
+    - [ ] `BoatEntity` 중복되는 코드가 많아 이를 줄이는 방법을 고민 중이다.
 - [ ] **feat:** `diamond`, `sapphire` 에 대한 `gem_polishing` recipe 를 provider 로 생성해보기.
 
 </details>

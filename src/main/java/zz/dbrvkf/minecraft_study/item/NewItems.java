@@ -9,8 +9,10 @@ import net.minecraftforge.registries.RegistryObject;
 import zz.dbrvkf.minecraft_study.MinecraftStudy;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
 import zz.dbrvkf.minecraft_study.entity.NewEntities;
+import zz.dbrvkf.minecraft_study.entity.custom.NewBoatEntity;
 import zz.dbrvkf.minecraft_study.item.custom.MetalDetectorItem;
 import zz.dbrvkf.minecraft_study.item.custom.NewArmorItem;
+import zz.dbrvkf.minecraft_study.item.custom.NewBoatItem;
 import zz.dbrvkf.minecraft_study.item.custom.PineConeItem;
 import zz.dbrvkf.minecraft_study.sound.NewSounds;
 
@@ -66,6 +68,10 @@ public class NewItems {
             () -> new SignItem(new Item.Properties().stacksTo(16), NewBlocks.PINE_SIGN.get(), NewBlocks.PINE_WALL_SIGN.get()));
     public static final RegistryObject<Item> PINE_HANGING_SIGN = ITEMS.register("pine_hanging_sign",
             () -> new HangingSignItem(NewBlocks.PINE_HANGING_SIGN.get(), NewBlocks.PINE_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)));
+    public static final RegistryObject<Item> PINE_BOAT = ITEMS.register("pine_boat",
+            () -> new NewBoatItem(false, NewBoatEntity.Type.PINE, new Item.Properties()));
+    public static final RegistryObject<Item> PINE_CHEST_BOAT = ITEMS.register("pine_chest_boat",
+            () -> new NewBoatItem(true, NewBoatEntity.Type.PINE, new Item.Properties()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);

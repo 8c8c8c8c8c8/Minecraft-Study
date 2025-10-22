@@ -24,6 +24,7 @@ import org.slf4j.Logger;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
 import zz.dbrvkf.minecraft_study.block.entity.NewBlockEntities;
 import zz.dbrvkf.minecraft_study.entity.NewEntities;
+import zz.dbrvkf.minecraft_study.entity.client.NewBoatRenderer;
 import zz.dbrvkf.minecraft_study.entity.client.NewModelLayers;
 import zz.dbrvkf.minecraft_study.entity.client.RhinoModel;
 import zz.dbrvkf.minecraft_study.entity.client.RhinoRenderer;
@@ -108,6 +109,8 @@ public class MinecraftStudy {
             LOGGER.info("MINECRAFT NAME >> {}", Minecraft.getInstance().getUser().getName());
             EntityRenderers.register(NewEntities.RHINO.get(),
                     (EntityRendererProvider.Context pContext) -> new RhinoRenderer(pContext, new RhinoModel<>(pContext.bakeLayer(NewModelLayers.RHINO_LAYER)), 2f));
+            EntityRenderers.register(NewEntities.BOAT.get(), pContext -> new NewBoatRenderer(pContext, false));
+            EntityRenderers.register(NewEntities.CHEST_BOAT.get(), pContext -> new NewBoatRenderer(pContext, true));
             MenuScreens.register(NewMenuTypes.GEM_POLISHING_MENU.get(), GemPolishingStationScreen::new);
             Sheets.addWoodType(NewWoodTypes.PINE);
         }
