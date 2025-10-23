@@ -83,6 +83,9 @@ public class NewItemModelProvider extends ItemModelProvider {
         simpleItem(NewItems.RHINO_SPAWN_EGG, "item/template_spawn_egg");
         basicItem(NewItems.PINE_SIGN.get());
         basicItem(NewItems.PINE_HANGING_SIGN.get());
+        basicItem(NewItems.PINE_BOAT.get());
+        basicItem(NewItems.PINE_CHEST_BOAT.get());
+        basicItem(NewItems.DICE.get());
     }
 
     private void trimmableArmorItem(RegistryObject<Item> item) {

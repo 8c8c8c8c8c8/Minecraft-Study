@@ -8,6 +8,7 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
 import zz.dbrvkf.minecraft_study.block.custom.AbsCropBlock;
@@ -79,7 +80,7 @@ public class NewBlockStateProvider extends BlockStateProvider {
     }
 
     private void signBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
-        ModelFile sign = models().sign(signBlock.getDescriptionId(), texture);
+        ModelFile sign = models().sign(ForgeRegistries.BLOCKS.getKey(signBlock).getPath(), texture);
         simpleBlock(signBlock, sign);
         simpleBlock(wallSignBlock, sign);
     }

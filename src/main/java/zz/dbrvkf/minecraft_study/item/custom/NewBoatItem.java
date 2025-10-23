@@ -32,57 +32,56 @@ public class NewBoatItem extends Item {
         this.type = pType;
     }
 
+    @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
-        ItemStack itemstack = pPlayer.getItemInHand(pHand);
-        HitResult hitresult = getPlayerPOVHitResult(pLevel, pPlayer, ClipContext.Fluid.ANY);
-        if (hitresult.getType() == HitResult.Type.MISS) {
-            return InteractionResultHolder.pass(itemstack);
-        } else {
-            Vec3 vec3 = pPlayer.getViewVector(1.0F);
-            double d0 = 5.0D;
-            List<Entity> list = pLevel.getEntities(pPlayer, pPlayer.getBoundingBox().expandTowards(vec3.scale(5.0D)).inflate(1.0D), ENTITY_PREDICATE);
-            if (!list.isEmpty()) {
-                Vec3 vec31 = pPlayer.getEyePosition();
+        ItemStack itemStack = pPlayer.getItemInHand(pHand);
+        HitResult hitResult = getPlayerPOVHitResult(pLevel, pPlayer, ClipContext.Fluid.ANY);
+        if (hitResult.getType() == HitResult.Type.MISS)
+            return InteractionResultHolder.pass(itemStack);
 
-                for (Entity entity : list) {
-                    AABB aabb = entity.getBoundingBox().inflate((double) entity.getPickRadius());
-                    if (aabb.contains(vec31)) {
-                        return InteractionResultHolder.pass(itemstack);
-                    }
-                }
-            }
+        Vec3 vec3 = pPlayer.getViewVector(1.0F);
+        double d0 = 5.0D;
+        List<Entity> list = pLevel.getEntities(pPlayer, pPlayer.getBoundingBox().expandTowards(vec3.scale(d0)).inflate(1.0D), ENTITY_PREDICATE);
+        if (list.isEmpty())
+            return InteractionResultHolder.pass(itemStack);
 
-            if (hitresult.getType() == HitResult.Type.BLOCK) {
-                Boat boat = this.getBoat(pLevel, hitresult);
-                if (boat instanceof NewChestBoatEntity newBoat) {
-                    newBoat.setVariant(this.type);
-                }
-                if (boat instanceof NewBoatEntity newBoat) {
-                    newBoat.setVariant(type);
-                }
-                boat.setYRot(pPlayer.getYRot());
-                if (!pLevel.noCollision(boat, boat.getBoundingBox())) {
-                    return InteractionResultHolder.fail(itemstack);
-                } else {
-                    if (!pLevel.isClientSide) {
-                        pLevel.addFreshEntity(boat);
-                        pLevel.gameEvent(pPlayer, GameEvent.ENTITY_PLACE, hitresult.getLocation());
-                        if (!pPlayer.getAbilities().instabuild) {
-                            itemstack.shrink(1);
-                        }
-                    }
-
-                    pPlayer.awardStat(Stats.ITEM_USED.get(this));
-                    return InteractionResultHolder.sidedSuccess(itemstack, pLevel.isClientSide());
-                }
-            } else {
-                return InteractionResultHolder.pass(itemstack);
-            }
+        Vec3 vec31 = pPlayer.getEyePosition();
+        for (Entity entity : list) {
+            AABB aabb = entity.getBoundingBox().inflate((double) entity.getPickRadius());
+            if (aabb.contains(vec31))
+                return InteractionResultHolder.pass(itemStack);
         }
+
+        if (hitResult.getType() == HitResult.Type.BLOCK) {
+            Boat boat = this.getBoat(pLevel, hitResult);
+            if (boat instanceof NewChestBoatEntity newBoat) {
+                newBoat.setVariant(this.type);
+            }
+            if (boat instanceof NewBoatEntity newBoat) {
+                newBoat.setVariant(this.type);
+            }
+            boat.setYRot(pPlayer.getYRot());
+            if (!pLevel.noCollision(boat, boat.getBoundingBox())) {
+                return InteractionResultHolder.fail(itemStack);
+            }
+            pPlayer.awardStat(Stats.ITEM_USED.get(this));
+            if (pLevel.isClientSide)
+                return InteractionResultHolder.sidedSuccess(itemStack, pLevel.isClientSide());
+
+            pLevel.addFreshEntity(boat);
+            pLevel.gameEvent(pPlayer, GameEvent.ENTITY_PLACE, hitResult.getLocation());
+            if (!pPlayer.getAbilities().instabuild) {
+                itemStack.shrink(1);
+            }
+            return InteractionResultHolder.sidedSuccess(itemStack, pLevel.isClientSide());
+        }
+        return InteractionResultHolder.pass(itemStack);
     }
 
-    private Boat getBoat(Level p_220017_, HitResult p_220018_) {
-        return (this.hasChest ? new NewChestBoatEntity(p_220017_, p_220018_.getLocation().x, p_220018_.getLocation().y, p_220018_.getLocation().z)
-                : new NewBoatEntity(p_220017_, p_220018_.getLocation().x, p_220018_.getLocation().y, p_220018_.getLocation().z));
+    private Boat getBoat(Level level, HitResult hitResult) {
+        Vec3 location = hitResult.getLocation();
+        if (hasChest)
+            return new NewChestBoatEntity(level, location.x, location.y, location.z);
+        return new NewBoatEntity(level, location.x, location.y, location.z);
     }
 }

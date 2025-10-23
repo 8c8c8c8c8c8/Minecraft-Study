@@ -1,6 +1,5 @@
 package zz.dbrvkf.minecraft_study.entity.custom;
 
-import net.minecraft.client.model.geom.ModelLayerLocation;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -35,9 +34,7 @@ public class NewBoatEntity extends Boat {
 
     @Override
     public Item getDropItem() {
-        return switch (getNewVariant()) {
-            case PINE -> NewItems.PINE_BOAT.get();
-        };
+        return NewItems.PINE_BOAT.get();
     }
 
     public void setVariant(Type pVariant) {

@@ -30,25 +30,27 @@ public class NewBoatRenderer extends BoatRenderer {
     }
 
     private ListModel<Boat> createBoatModel(EntityRendererProvider.Context pContext, NewBoatEntity.Type pType, boolean pChestBoat) {
-        ModelLayerLocation modellayerlocation = pChestBoat ? NewBoatRenderer.createChestBoatModelName(pType) : NewBoatRenderer.createBoatModelName(pType);
-        ModelPart modelpart = pContext.bakeLayer(modellayerlocation);
-        return pChestBoat ? new ChestBoatModel(modelpart) : new BoatModel(modelpart);
+        ModelLayerLocation modelLayerLocation = createBoatModelName(pType, pChestBoat);
+        ModelPart modelPart = pContext.bakeLayer(modelLayerLocation);
+        return pChestBoat ? new ChestBoatModel(modelPart) : new BoatModel(modelPart);
     }
 
-    private static ModelLayerLocation createChestBoatModelName(NewBoatEntity.Type pType) {
-        return createLocation("chest_boat/" + pType.getName(), "main");
+    private ModelLayerLocation createBoatModelName(NewBoatEntity.Type pType, boolean isChestBoat) {
+        String dirName = getDirectoryName(isChestBoat);
+        return createLocation(dirName + pType.getName(), "main");
     }
 
-    private static ModelLayerLocation createBoatModelName(NewBoatEntity.Type pType) {
-        return createLocation("boat/" + pType.getName(), "main");
-    }
-
-    private static ModelLayerLocation createLocation(String pPath, String pModel) {
+    private ModelLayerLocation createLocation(String pPath, String pModel) {
         return new ModelLayerLocation(new ResourceLocation(MinecraftStudy.MOD_ID, pPath), pModel);
     }
 
-    private static String getTextureLocation(NewBoatEntity.Type pType, boolean pChestBoat) {
-        return pChestBoat ? "textures/entity/chest_boat/" + pType.getName() + ".png" : "textures/entity/boat/" + pType.getName() + ".png";
+    private String getTextureLocation(NewBoatEntity.Type pType, boolean pChestBoat) {
+        String dirName = getDirectoryName(pChestBoat);
+        return String.format("textures/entity/%s%s.png", dirName, pType.getName());
+    }
+
+    private String getDirectoryName(boolean isChestBoat) {
+        return isChestBoat ? "chest_boat/" : "boat/";
     }
 
     @Override

@@ -1,5 +1,7 @@
 package zz.dbrvkf.minecraft_study.event;
 
+import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraftforge.api.distmarker.Dist;
@@ -18,6 +20,8 @@ public class NewClientEventBus {
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(NewModelLayers.RHINO_LAYER, RhinoModel::createBodyLayer);
+        event.registerLayerDefinition(NewModelLayers.PINE_BOAT_LAYER, BoatModel::createBodyModel);
+        event.registerLayerDefinition(NewModelLayers.PINE_CHEST_BOAT_LAYER, ChestBoatModel::createBodyModel);
     }
 
     @SubscribeEvent

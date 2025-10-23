@@ -6,6 +6,7 @@ import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.EntityRenderers;
+import net.minecraft.client.renderer.entity.ThrownItemRenderer;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -111,6 +112,7 @@ public class MinecraftStudy {
                     (EntityRendererProvider.Context pContext) -> new RhinoRenderer(pContext, new RhinoModel<>(pContext.bakeLayer(NewModelLayers.RHINO_LAYER)), 2f));
             EntityRenderers.register(NewEntities.BOAT.get(), pContext -> new NewBoatRenderer(pContext, false));
             EntityRenderers.register(NewEntities.CHEST_BOAT.get(), pContext -> new NewBoatRenderer(pContext, true));
+            EntityRenderers.register(NewEntities.DICE_PROJECTILE.get(), ThrownItemRenderer::new);
             MenuScreens.register(NewMenuTypes.GEM_POLISHING_MENU.get(), GemPolishingStationScreen::new);
             Sheets.addWoodType(NewWoodTypes.PINE);
         }

@@ -421,12 +421,25 @@ LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> itemHandler);
   - boat renderer 생성 및 등록, texture asset 경로 추가
   - provider 에 등록
 
+</details>
+
+### Day 29
+<details>
+<summary>throwable projectiles</summary>
+
+- throwable projectiles
+
 ### Todo
 - [ ] **refactoring**
     - [ ] `GemPolishingStationBlockEntity`
     - [ ] `GemPolishingStationMenu`
     - [ ] `SignBlockEntity` 굳이 새로운 class 가 필요한가... 기존 class 를 활용해보자.
-    - [ ] `BoatEntity` 중복되는 코드가 많아 이를 줄이는 방법을 고민 중이다.
-- [ ] **feat:** `diamond`, `sapphire` 에 대한 `gem_polishing` recipe 를 provider 로 생성해보기.
+- [ ] **feat**
+  - [ ] `diamond`, `sapphire` 에 대한 `gem_polishing` recipe 를 provider 로 생성해보기.
+  - [ ] `dice` 관련 model json 을 provider 로 생성해보기
+- [ ] **fix:** `Dice` 관련 creative tab 에 object 추가 과정에서 문제가 발생.
+
+### Done
+- [x] `NewBoatEntity`, `NewChestBoatEntity` 중복되는 코드가 많지만 고민 끝에 지금 방법이 최선이라 판단했다.  
 
 </details>

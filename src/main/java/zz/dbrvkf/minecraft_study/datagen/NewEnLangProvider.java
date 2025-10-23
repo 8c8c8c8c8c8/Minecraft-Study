@@ -36,6 +36,9 @@ public class NewEnLangProvider extends LanguageProvider {
         addItem(NewItems.CORN, "Corn");
         addItem(NewItems.BAR_BRAWL_MUSIC_DISC, "Bar Brawl Music Disc", "Bryan Tech - Bar Brawl (CC0)");
         addItem(NewItems.RHINO_SPAWN_EGG, "Rhino Egg");
+        addItem(NewItems.PINE_BOAT, "Pine Boat");
+        addItem(NewItems.PINE_CHEST_BOAT, "Pine Chest Boat");
+        addItem(NewItems.DICE, "Dice");
         addBlock(NewBlocks.SAPPHIRE_BLOCK, "Block of Sapphire");
         addBlock(NewBlocks.RAW_SAPPHIRE_BLOCK, "Block of Raw Sapphire");
         addBlock(NewBlocks.SAPPHIRE_ORE, "Sapphire Ore");
