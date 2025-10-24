@@ -15,25 +15,28 @@ import zz.dbrvkf.minecraft_study.block.entity.GemPolishingStationBlockEntity;
 import java.util.stream.IntStream;
 
 public class GemPolishingStationMenu extends AbstractContainerMenu {
-    public final GemPolishingStationBlockEntity blockEntity;
+    private static final int INPUT_SLOT = 0;
+    private static final int OUTPUT_SLOT = 1;
+    private static final int SLOT_SIZE = 2;
     private final Level level;
     private final ContainerData data;
+    public final GemPolishingStationBlockEntity blockEntity;
 
     public GemPolishingStationMenu(int pContainerId, Inventory inv, FriendlyByteBuf extraData) {
-        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(2));
+        this(pContainerId, inv, inv.player.level().getBlockEntity(extraData.readBlockPos()), new SimpleContainerData(SLOT_SIZE));
     }
 
     public GemPolishingStationMenu(int pContainerId, Inventory inv, BlockEntity entity, ContainerData data) {
         super(NewMenuTypes.GEM_POLISHING_MENU.get(), pContainerId);
-        checkContainerSize(inv, 2);
+        checkContainerSize(inv, SLOT_SIZE);
         this.blockEntity = (GemPolishingStationBlockEntity) entity;
         this.level = inv.player.level();
         this.data = data;
         addPlayerInventory(inv);
         addPlayerHotbar(inv);
         blockEntity.getCapability(ForgeCapabilities.ITEM_HANDLER).ifPresent(handler -> {
-            addSlot(new SlotItemHandler(handler, 0, 80, 11));
-            addSlot(new SlotItemHandler(handler, 1, 80, 59));
+            addSlot(new SlotItemHandler(handler, INPUT_SLOT, 80, 11));
+            addSlot(new SlotItemHandler(handler, OUTPUT_SLOT, 80, 59));
         });
         addDataSlots(data);
     }
@@ -45,34 +48,34 @@ public class GemPolishingStationMenu extends AbstractContainerMenu {
     //  0 - 8 = hotbar slots (which will map to the InventoryPlayer slot numbers 0 - 8)
     //  9 - 35 = player inventory slots (which map to the InventoryPlayer slot numbers 9 - 35)
     //  36 - 44 = TileInventory slots, which map to our TileEntity slot numbers 0 - 8)
-    private static final int HOTBAR_SLOT_COUNT = 9;
-    private static final int PLAYER_INVENTORY_ROW_COUNT = 3;
-    private static final int PLAYER_INVENTORY_COLUMN_COUNT = 9;
-    private static final int PLAYER_INVENTORY_SLOT_COUNT = PLAYER_INVENTORY_COLUMN_COUNT * PLAYER_INVENTORY_ROW_COUNT;
-    private static final int VANILLA_SLOT_COUNT = HOTBAR_SLOT_COUNT + PLAYER_INVENTORY_SLOT_COUNT;
-    private static final int VANILLA_FIRST_SLOT_INDEX = 0;
-    private static final int TE_INVENTORY_FIRST_SLOT_INDEX = VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT;
-
-    // THIS YOU HAVE TO DEFINE!
-    private static final int TE_INVENTORY_SLOT_COUNT = 2;  // must be the number of slots you have!
 
     @Override
     public ItemStack quickMoveStack(Player playerIn, int pIndex) {
+        int hotbarSlotCount = 9;
+        int playerInventoryRowCount = 3;
+        int playerInventoryColumnCount = 9;
+        int playerInventorySlotCount = playerInventoryColumnCount * playerInventoryRowCount;
+        int vanillaSlotCount = hotbarSlotCount + playerInventorySlotCount;
+        int vanillaFirstSlotIndex = 0;
+        int teInventoryFirstSlotIndex = vanillaFirstSlotIndex + vanillaSlotCount;
+        int teInventorySlotCount = SLOT_SIZE;  // must be the number of slots you have!
+
         Slot sourceSlot = slots.get(pIndex);
-        if (sourceSlot == null || !sourceSlot.hasItem()) return ItemStack.EMPTY;  //EMPTY_ITEM
+        if (!sourceSlot.hasItem())
+            return ItemStack.EMPTY;  //EMPTY_ITEM
         ItemStack sourceStack = sourceSlot.getItem();
         ItemStack copyOfSourceStack = sourceStack.copy();
 
         // Check if the slot clicked is one of the vanilla container slots
-        if (pIndex < VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT) {
+        if (pIndex < vanillaFirstSlotIndex + vanillaSlotCount) {
             // This is a vanilla container slot so merge the stack into the tile inventory
-            if (!moveItemStackTo(sourceStack, TE_INVENTORY_FIRST_SLOT_INDEX, TE_INVENTORY_FIRST_SLOT_INDEX
-                    + TE_INVENTORY_SLOT_COUNT, false)) {
+            if (!moveItemStackTo(sourceStack, teInventoryFirstSlotIndex, teInventoryFirstSlotIndex
+                    + teInventorySlotCount, false)) {
                 return ItemStack.EMPTY;  // EMPTY_ITEM
             }
-        } else if (pIndex < TE_INVENTORY_FIRST_SLOT_INDEX + TE_INVENTORY_SLOT_COUNT) {
+        } else if (pIndex < teInventoryFirstSlotIndex + teInventorySlotCount) {
             // This is a TE slot so merge the stack into the players inventory
-            if (!moveItemStackTo(sourceStack, VANILLA_FIRST_SLOT_INDEX, VANILLA_FIRST_SLOT_INDEX + VANILLA_SLOT_COUNT, false)) {
+            if (!moveItemStackTo(sourceStack, vanillaFirstSlotIndex, vanillaFirstSlotIndex + vanillaSlotCount, false)) {
                 return ItemStack.EMPTY;
             }
         } else {
@@ -96,13 +99,13 @@ public class GemPolishingStationMenu extends AbstractContainerMenu {
     }
 
     public boolean isCrafting() {
-        int progress = data.get(0);
+        int progress = data.get(INPUT_SLOT);
         return progress > 0;
     }
 
     public int getScaledProgress() {
-        int progress = data.get(0);
-        int maxProgress = data.get(1);
+        int progress = data.get(INPUT_SLOT);
+        int maxProgress = data.get(OUTPUT_SLOT);
         int progressArrowSize = 26;
         return maxProgress != 0 && progress != 0 ? progress * progressArrowSize / maxProgress : 0;
     }
@@ -116,7 +119,8 @@ public class GemPolishingStationMenu extends AbstractContainerMenu {
     }
 
     private void addPlayerHotbar(Inventory pInventory) {
-        IntStream.range(1, 9).forEach(i -> addSlot(new Slot(pInventory, i, 8 + i * 18, 142)));
+        int hotBarStart = 0;
+        int hotBarEnd = 9;
+        IntStream.range(hotBarStart, hotBarEnd).forEach(i -> addSlot(new Slot(pInventory, i, 8 + i * 18, 142)));
     }
-
 }

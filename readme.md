@@ -429,17 +429,25 @@ LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> itemHandler);
 
 - throwable projectiles
 
-### Todo
-- [ ] **refactoring**
-    - [ ] `GemPolishingStationBlockEntity`
-    - [ ] `GemPolishingStationMenu`
-    - [ ] `SignBlockEntity` 굳이 새로운 class 가 필요한가... 기존 class 를 활용해보자.
-- [ ] **feat**
-  - [ ] `diamond`, `sapphire` 에 대한 `gem_polishing` recipe 를 provider 로 생성해보기.
-  - [ ] `dice` 관련 model json 을 provider 로 생성해보기
-- [ ] **fix:** `Dice` 관련 creative tab 에 object 추가 과정에서 문제가 발생.
-
 ### Done
 - [x] `NewBoatEntity`, `NewChestBoatEntity` 중복되는 코드가 많지만 고민 끝에 지금 방법이 최선이라 판단했다.  
+
+</details>
+
+### Day 30
+<details>
+<summary>bug fix, refactoring</summary>
+
+### Todo
+- [ ] **refactoring**
+    - [ ] `SignBlockEntity` 굳이 새로운 class 가 필요한가... 기존 class 를 활용해보자.
+- [ ] **feat**
+    - [ ] `diamond`, `sapphire` 에 대한 `gem_polishing` recipe 를 provider 로 생성해보기.
+    - [ ] `dice` 관련 model json 을 provider 로 생성해보기
+
+### Done
+- **refactoring**
+  - [x] `GemPolishingStationBlockEntity`, `GemPolishingStationMenu` 일부 hard-coding 제거. 
+- [x] **fix:** `NewBlocks` 의 `DICE` block 을 `NO_BLOCK_ITEM` 으로 등록했더니 해결했다.  
 
 </details>

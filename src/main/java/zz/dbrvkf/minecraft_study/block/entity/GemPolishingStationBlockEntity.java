@@ -28,7 +28,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import zz.dbrvkf.minecraft_study.MinecraftStudy;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
-import zz.dbrvkf.minecraft_study.item.NewItems;
 import zz.dbrvkf.minecraft_study.recipe.GemPolishingRecipe;
 import zz.dbrvkf.minecraft_study.screen.GemPolishingStationMenu;
 
@@ -36,6 +35,8 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 public class GemPolishingStationBlockEntity extends BlockEntity implements MenuProvider {
+    private final String PROCEESS_KEY = "gem_polishing_station.progress";
+    private final String ITEM_HANDLER_KEY = "inventory";
     private int progress = 0;
     private int maxProgress = 78;
     private LazyOptional<IItemHandler> lazyItemHandler = LazyOptional.empty();
@@ -114,16 +115,16 @@ public class GemPolishingStationBlockEntity extends BlockEntity implements MenuP
 
     @Override
     protected void saveAdditional(CompoundTag pTag) {
-        pTag.put("inventory", itemHandler.serializeNBT());
-        pTag.putInt("gem_polishing_station.progress", progress);
+        pTag.put(ITEM_HANDLER_KEY, itemHandler.serializeNBT());
+        pTag.putInt(PROCEESS_KEY, progress);
         super.saveAdditional(pTag);
     }
 
     @Override
     public void load(CompoundTag pTag) {
         super.load(pTag);
-        itemHandler.deserializeNBT(pTag.getCompound("inventory"));
-        progress = pTag.getInt("gem_polishing_station.progress");
+        itemHandler.deserializeNBT(pTag.getCompound(ITEM_HANDLER_KEY));
+        progress = pTag.getInt(PROCEESS_KEY);
     }
 
     public void drops() {

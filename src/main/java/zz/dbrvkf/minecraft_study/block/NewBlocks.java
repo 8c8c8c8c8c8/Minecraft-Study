@@ -132,7 +132,7 @@ public class NewBlocks {
             () -> new NewHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_HANGING_SIGN), NewWoodTypes.PINE));
     public static final RegistryObject<Block> PINE_WALL_HANGING_SIGN = BLOCKS.register("pine_wall_hanging_sign",
             () -> new NewWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_HANGING_SIGN), NewWoodTypes.PINE));
-    public static final RegistryObject<Block> DICE = BLOCKS.register("dice",
+    public static final RegistryObject<Block> DICE = NO_BLOCK_ITEMS.register("dice",
             () -> new DiceBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noLootTable()));
 
     public static <T extends Block> RegistryObject<T> registryBlock(String name, Supplier<T> block) {
