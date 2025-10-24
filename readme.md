@@ -436,7 +436,11 @@ LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> itemHandler);
 
 ### Day 30
 <details>
-<summary>bug fix, refactoring</summary>
+<summary>bug fix, refactoring, ore generation</summary>
+
+- ore generation
+  - `NewConfiguredFeatures` over-world, nether, end 차원에서 어떤 ore 가 sapphire ore 로 대체되는지, 어떤 크기로 생성할지에 대한 정보를 나타낸다.  
+  - `RuleTest` ore 가 어떤 block 을 대체할 수 있는지 검사하는 조건이다.  
 
 ### Todo
 - [ ] **refactoring**
