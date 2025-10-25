@@ -9,6 +9,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import zz.dbrvkf.minecraft_study.MinecraftStudy;
 
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 @Mod.EventBusSubscriber(modid = MinecraftStudy.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -29,6 +30,7 @@ public class NewDataGenerator {
         generator.addProvider(event.includeClient(), new NewEnLangProvider(packOutput, MinecraftStudy.MOD_ID, "en_us"));
         generator.addProvider(event.includeClient(), new NewBlockStateProvider(packOutput, MinecraftStudy.MOD_ID, existingFileHelper));
         generator.addProvider(event.includeClient(), new NewItemModelProvider(packOutput, MinecraftStudy.MOD_ID, existingFileHelper));
+        generator.addProvider(event.includeServer(), new NewWorldProvider(packOutput, lookupProvider, Set.of(MinecraftStudy.MOD_ID)));
 
         NewBlockTagsProvider blockTagProvider = generator.addProvider(event.includeServer(),
                 new NewBlockTagsProvider(packOutput, lookupProvider, MinecraftStudy.MOD_ID, existingFileHelper));

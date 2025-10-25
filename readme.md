@@ -442,16 +442,35 @@ LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> itemHandler);
   - `NewConfiguredFeatures` over-world, nether, end 차원에서 어떤 ore 가 sapphire ore 로 대체되는지, 어떤 크기로 생성할지에 대한 정보를 나타낸다.  
   - `RuleTest` ore 가 어떤 block 을 대체할 수 있는지 검사하는 조건이다.  
 
+### Done
+- **refactoring**
+  - [x] `GemPolishingStationBlockEntity`, `GemPolishingStationMenu` 일부 hard-coding 제거. 
+- [x] **fix:** `NewBlocks` 의 `DICE` block 을 `NO_BLOCK_ITEM` 으로 등록했더니 해결했다.  
+
+</details>
+
+### Day 31
+<details>
+<summary>ore generation</summary>
+
+- ore generation
+  - `NewOrePlacements` 의 method 는 `OrePlacements` 에서 가져왔으며 private 이라 그대로 가져왔다.
+  - `Registry` vanilla minecraft 의 중앙 데이터베이스이며 모든 object 의 id 를 갖고 있다.  
+  - `ForgeRegistries` vanilla registry 사용을 편리하게 하기 위한 helper class 이다.
+  - `DeferredRegister` `Registry` 에 안전하게 등록 해준다.  
+  - `ResourceKey` 객체의 id 이며 `RegistryObject` 등록할 때 내부적으로 생성된다.
+  - `ConfiguredFeature` 무엇을 생성할 것인가, `PlacedFeature` 어디에 생성할 것인가, `BiomeModifier` 어떤 biome 에 무엇을 어디에 생성할 지 결정한다.  
+  - `BiomeFeature` 아닌 `BiomeModifier` 이유 : 기존 vanilla system 을 건드리지 않고 추가하거나 변경하는 방식이다.
+- `Data-Driven` 예를 들어 곡괭이에 관한 데이터를 코드와 함께 유지한다면 수정하고 나서 다시 compile 해야 된다.  
+하지만 데이터를 코드와 분리한다면 json 과 같은 데이터 파일을 수정하면 된다.  
+이런 방식으로 기존 데이터를 건드리지 않고 추가하거난 덮어쓰는 것으로 사용할 수 있다.  
+
 ### Todo
 - [ ] **refactoring**
     - [ ] `SignBlockEntity` 굳이 새로운 class 가 필요한가... 기존 class 를 활용해보자.
 - [ ] **feat**
     - [ ] `diamond`, `sapphire` 에 대한 `gem_polishing` recipe 를 provider 로 생성해보기.
     - [ ] `dice` 관련 model json 을 provider 로 생성해보기
-
-### Done
-- **refactoring**
-  - [x] `GemPolishingStationBlockEntity`, `GemPolishingStationMenu` 일부 hard-coding 제거. 
-- [x] **fix:** `NewBlocks` 의 `DICE` block 을 `NO_BLOCK_ITEM` 으로 등록했더니 해결했다.  
+- [ ] **fix:** `pine boat` 설치가 제대로 작동하지 않는다.
 
 </details>
