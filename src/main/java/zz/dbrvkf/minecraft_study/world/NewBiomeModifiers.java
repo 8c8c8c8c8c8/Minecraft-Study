@@ -10,6 +10,7 @@ import net.minecraft.tags.BiomeTags;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.levelgen.GenerationStep;
 import net.minecraft.world.level.levelgen.placement.PlacedFeature;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.world.BiomeModifier;
 import net.minecraftforge.common.world.ForgeBiomeModifiers;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -19,6 +20,7 @@ public class NewBiomeModifiers {
     public static final ResourceKey<BiomeModifier> ADD_SAPPHIRE_ORE = registerKey("add_sapphire_ore");
     public static final ResourceKey<BiomeModifier> ADD_NETHER_SAPPHIRE_ORE = registerKey("add_nether_sapphire_ore");
     public static final ResourceKey<BiomeModifier> ADD_END_SAPPHIRE_ORE = registerKey("add_end_sapphire_ore");
+    public static final ResourceKey<BiomeModifier> ADD_PINE_TREE = registerKey("add_pine_tree");
 
     public static void bootstrap(BootstapContext<BiomeModifier> context) {
         HolderGetter<PlacedFeature> placedFeatures = context.lookup(Registries.PLACED_FEATURE);
@@ -35,6 +37,11 @@ public class NewBiomeModifiers {
                 new ForgeBiomeModifiers.AddFeaturesBiomeModifier(biomes.getOrThrow(BiomeTags.IS_END),
                         HolderSet.direct(placedFeatures.getOrThrow(NewPlacedFeatures.END_SAPPHIRE_ORE_PLACED_KEY)),
                         GenerationStep.Decoration.UNDERGROUND_ORES));
+        context.register(ADD_PINE_TREE,
+                new ForgeBiomeModifiers.AddFeaturesBiomeModifier(biomes.getOrThrow(Tags.Biomes.IS_PLAINS),
+                        HolderSet.direct(placedFeatures.getOrThrow(NewPlacedFeatures.PINE_PLACED_KEY)),
+                        GenerationStep.Decoration.VEGETAL_DECORATION));
+
     }
 
     private static ResourceKey<BiomeModifier> registerKey(String name) {

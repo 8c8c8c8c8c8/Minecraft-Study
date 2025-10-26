@@ -469,9 +469,13 @@ LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> itemHandler);
 
 ### Day 32
 <details>
-<summary>custom tree</summary>
+<summary>custom tree, tree generation</summary>
 
 - custom tree
+- tree generation
+  - `NewPlacedFeatures` 중 `pine tree` 를 등록할때 contextExtra 의 `extraChance` 값은 반드시 `1 / N` 꼴이어야 한다.  
+  그렇지 않으면 exception 발생한다.  
+  `float (1 / N)` 이런 식으로 사용 가능하다.  
 
 ### Todo
 - [ ] **refactoring**
