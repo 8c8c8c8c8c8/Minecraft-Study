@@ -18,6 +18,7 @@ import zz.dbrvkf.minecraft_study.block.NewBlocks;
 import zz.dbrvkf.minecraft_study.item.NewItems;
 
 import java.util.LinkedHashMap;
+import java.util.function.Function;
 
 public class NewItemModelProvider extends ItemModelProvider {
     private static final LinkedHashMap<ResourceKey<TrimMaterial>, Float> TRIM_MATERIALS = new LinkedHashMap<>();
@@ -61,11 +62,11 @@ public class NewItemModelProvider extends ItemModelProvider {
         basicItem(NewItems.STRAWBERRY.get());
         basicItem(NewItems.CORN_SEEDS.get());
         basicItem(NewItems.CORN.get());
-        simpleItem(NewBlocks.SAPPHIRE_TRAPDOOR, getModLocWithObj(NewBlocks.SAPPHIRE_TRAPDOOR, "block", "_bottom"));
-        simpleItem(NewBlocks.SAPPHIRE_STAIRS, getModLocWithObj(NewBlocks.SAPPHIRE_STAIRS, "block"));
-        simpleItem(NewBlocks.SAPPHIRE_SLAB, getModLocWithObj(NewBlocks.SAPPHIRE_SLAB, "block"));
-        simpleItem(NewBlocks.SAPPHIRE_PRESSURE_PLATE, getModLocWithObj(NewBlocks.SAPPHIRE_PRESSURE_PLATE, "block"));
-        simpleItem(NewBlocks.SAPPHIRE_FENCE_GATE, getModLocWithObj(NewBlocks.SAPPHIRE_FENCE_GATE, "block"));
+        simpleItem(NewBlocks.SAPPHIRE_TRAPDOOR, block -> getModLocWithObj(block, "block", "_bottom"));
+        simpleItem(NewBlocks.SAPPHIRE_STAIRS, block -> getModLocWithObj(block, "block"));
+        simpleItem(NewBlocks.SAPPHIRE_SLAB, block -> getModLocWithObj(block, "block"));
+        simpleItem(NewBlocks.SAPPHIRE_PRESSURE_PLATE, block -> getModLocWithObj(block, "block"));
+        simpleItem(NewBlocks.SAPPHIRE_FENCE_GATE, block -> getModLocWithObj(block, "block"));
         simpleItem(NewBlocks.SAPPHIRE_FENCE, "block/fence_inventory")
                 .texture("texture", getModLocWithObj(NewBlocks.SAPPHIRE_BLOCK, "block"));
         simpleItem(NewBlocks.SAPPHIRE_BUTTON, "block/button_inventory")
@@ -86,6 +87,7 @@ public class NewItemModelProvider extends ItemModelProvider {
         basicItem(NewItems.PINE_BOAT.get());
         basicItem(NewItems.PINE_CHEST_BOAT.get());
         basicItem(NewItems.DICE.get());
+        simpleItem(NewBlocks.PINE_SAPLING, block -> getModLocWithObj(block, "block"));
     }
 
     private void trimmableArmorItem(RegistryObject<Item> item) {
@@ -129,7 +131,9 @@ public class NewItemModelProvider extends ItemModelProvider {
         return withExistingParent(getPath(obj), mcLoc(parent));
     }
 
-    private <T> ItemModelBuilder simpleItem(RegistryObject<T> obj, ResourceLocation parent) {
+    private <T> ItemModelBuilder simpleItem(RegistryObject<T> obj,
+                                            Function<RegistryObject<T>, ResourceLocation> function) {
+        ResourceLocation parent = function.apply(obj);
         return withExistingParent(getPath(obj), parent);
     }
 
@@ -140,5 +144,4 @@ public class NewItemModelProvider extends ItemModelProvider {
     private <T> String getPath(RegistryObject<T> obj) {
         return obj.getId().getPath();
     }
-
 }

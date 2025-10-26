@@ -77,6 +77,9 @@ public class NewBlockStateProvider extends BlockStateProvider {
                 blockTexture(NewBlocks.PINE_PLANKS.get()));
         signBlock(NewBlocks.PINE_HANGING_SIGN.get(), NewBlocks.PINE_WALL_HANGING_SIGN.get(),
                 blockTexture(NewBlocks.PINE_PLANKS.get()));
+        simpleBlock(NewBlocks.PINE_SAPLING.get(),
+                models().cross(NewBlocks.PINE_SAPLING.getId().getPath(),
+                        blockTexture(NewBlocks.PINE_SAPLING.get())).renderType("cutout"));
     }
 
     private void signBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {

@@ -465,6 +465,14 @@ LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> itemHandler);
 하지만 데이터를 코드와 분리한다면 json 과 같은 데이터 파일을 수정하면 된다.  
 이런 방식으로 기존 데이터를 건드리지 않고 추가하거난 덮어쓰는 것으로 사용할 수 있다.  
 
+</details>
+
+### Day 32
+<details>
+<summary>custom tree</summary>
+
+- custom tree
+
 ### Todo
 - [ ] **refactoring**
     - [ ] `SignBlockEntity` 굳이 새로운 class 가 필요한가... 기존 class 를 활용해보자.
@@ -472,5 +480,8 @@ LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> itemHandler);
     - [ ] `diamond`, `sapphire` 에 대한 `gem_polishing` recipe 를 provider 로 생성해보기.
     - [ ] `dice` 관련 model json 을 provider 로 생성해보기
 - [ ] **fix:** `pine boat` 설치가 제대로 작동하지 않는다.
+
+### Done
+- [x] **refactoring:** `NewItemModelProvider` `functional interface` 사용했다.
 
 </details>

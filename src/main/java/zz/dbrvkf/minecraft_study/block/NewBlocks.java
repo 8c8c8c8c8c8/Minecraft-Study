@@ -21,6 +21,7 @@ import zz.dbrvkf.minecraft_study.block.custom.*;
 import zz.dbrvkf.minecraft_study.item.NewItems;
 import zz.dbrvkf.minecraft_study.sound.NewSounds;
 import zz.dbrvkf.minecraft_study.util.NewWoodTypes;
+import zz.dbrvkf.minecraft_study.world.tree.PineTreeGrower;
 
 import java.util.function.Supplier;
 
@@ -134,6 +135,8 @@ public class NewBlocks {
             () -> new NewWallHangingSignBlock(BlockBehaviour.Properties.copy(Blocks.OAK_WALL_HANGING_SIGN), NewWoodTypes.PINE));
     public static final RegistryObject<Block> DICE = NO_BLOCK_ITEMS.register("dice",
             () -> new DiceBlock(BlockBehaviour.Properties.copy(Blocks.STONE).noLootTable()));
+    public static final RegistryObject<Block> PINE_SAPLING = registryBlock("pine_sapling",
+            () -> new SaplingBlock(new PineTreeGrower(), BlockBehaviour.Properties.copy(Blocks.OAK_SAPLING)));
 
     public static <T extends Block> RegistryObject<T> registryBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
