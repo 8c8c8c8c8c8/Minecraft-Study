@@ -477,15 +477,30 @@ LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> itemHandler);
   그렇지 않으면 exception 발생한다.  
   `float (1 / N)` 이런 식으로 사용 가능하다.  
 
+### Done
+- [x] **refactoring:** `NewItemModelProvider` `functional interface` 사용했다.
+
+</details>
+
+### Day 33
+<details>
+<summary>refactoring</summary>
+
+- `@FunctionalInterface` 는 `->` 와 `::` 를 지원해준다.  
+오직 하나의 추상 method 를 가진다.  
+- `Builder.of` 는 `Builder` pattern 이며 `of` method 는 보통 instance 를 생성하는 의미로 쓴다.  
+constructor 로 생성하는 것보다 더 가독성이 좋고 특정 타입의 객체를 반환함을 보장한다.  
+
 ### Todo
-- [ ] **refactoring**
-    - [ ] `SignBlockEntity` 굳이 새로운 class 가 필요한가... 기존 class 를 활용해보자.
 - [ ] **feat**
-    - [ ] `diamond`, `sapphire` 에 대한 `gem_polishing` recipe 를 provider 로 생성해보기.
-    - [ ] `dice` 관련 model json 을 provider 로 생성해보기
+  - [ ] `diamond`, `sapphire` 에 대한 `gem_polishing` recipe 를 provider 로 생성해보기.
+  - [ ] `dice` 관련 model json 을 provider 로 생성해보기
 - [ ] **fix:** `pine boat` 설치가 제대로 작동하지 않는다.
 
 ### Done
-- [x] **refactoring:** `NewItemModelProvider` `functional interface` 사용했다.
+- [x] **refactoring**
+  - [x] `New(Hanging)SignBlockEntity`, `NewBlockEntities.(HANGING)SIGNS` 순환 의존성(circular dependency) 인줄 알았으나 아니었다.
+  - [x] `NewSignBlock` 들은 `new NewSignBlockEntity` 를 사용하고 있어서 높은 결합도를 가진다.  
+  따라서 이를 수정했다.  
 
 </details>

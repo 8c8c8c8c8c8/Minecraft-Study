@@ -5,7 +5,7 @@ import net.minecraft.world.level.block.WallSignBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.WoodType;
-import zz.dbrvkf.minecraft_study.block.entity.NewSignBlockEntity;
+import zz.dbrvkf.minecraft_study.block.entity.NewBlockEntities;
 
 public class NewWallSignBlock extends WallSignBlock {
     public NewWallSignBlock(Properties pProperties, WoodType pType) {
@@ -14,6 +14,6 @@ public class NewWallSignBlock extends WallSignBlock {
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new NewSignBlockEntity(pPos, pState);
+        return NewBlockEntities.SIGNS.get().create(pPos, pState);
     }
 }
