@@ -490,17 +490,27 @@ LazyOptional<IItemHandler> itemHandler = LazyOptional.of(() -> itemHandler);
 오직 하나의 추상 method 를 가진다.  
 - `Builder.of` 는 `Builder` pattern 이며 `of` method 는 보통 instance 를 생성하는 의미로 쓴다.  
 constructor 로 생성하는 것보다 더 가독성이 좋고 특정 타입의 객체를 반환함을 보장한다.  
-
-### Todo
-- [ ] **feat**
-  - [ ] `diamond`, `sapphire` 에 대한 `gem_polishing` recipe 를 provider 로 생성해보기.
-  - [ ] `dice` 관련 model json 을 provider 로 생성해보기
-- [ ] **fix:** `pine boat` 설치가 제대로 작동하지 않는다.
+- `advancements/recipes` 도전과제 recipe unlock 조건을 나타낸다.  
+- `GemPolishingRecipe` 는 vanilla recipe format 과 다른 custom format 을 읽기 위해 구현한 custom recipe type 이다.
 
 ### Done
 - [x] **refactoring**
   - [x] `New(Hanging)SignBlockEntity`, `NewBlockEntities.(HANGING)SIGNS` 순환 의존성(circular dependency) 인줄 알았으나 아니었다.
   - [x] `NewSignBlock` 들은 `new NewSignBlockEntity` 를 사용하고 있어서 높은 결합도를 가진다.  
   따라서 이를 수정했다.  
+
+</details>
+
+### Day 34
+<details>
+<summary>RecipeBuilder</summary>
+
+### Todo
+- [ ] **feat**
+    - [ ] vanilla recipe builder 로는 custom recipe 를 json 으로 생성할 수 없다.  
+    따라서 custom builder 가 필요한데(예: `ShapelessRecipeBuilder`) 일단 `GemPolishing` 관련 builder 만 구현하고  
+    나중에 필요에 따라 추상화를 할 예정이다.  
+    - [ ] `dice` 관련 model json 을 provider 로 생성해보기
+- [ ] **fix:** `pine boat` 설치가 제대로 작동하지 않는다.
 
 </details>
