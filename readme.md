@@ -503,7 +503,11 @@ constructor 로 생성하는 것보다 더 가독성이 좋고 특정 타입의 
 
 ### Day 34
 <details>
-<summary>RecipeBuilder</summary>
+<summary>RecipeBuilder, trunk placers</summary>
+
+- trunk placer
+  - trunk placer(줄기 배치)
+  - foliage placer(잎사귀 배치)
 
 ### Todo
 - [ ] **feat**
@@ -512,5 +516,6 @@ constructor 로 생성하는 것보다 더 가독성이 좋고 특정 타입의 
     나중에 필요에 따라 추상화를 할 예정이다.  
     - [ ] `dice` 관련 model json 을 provider 로 생성해보기
 - [ ] **fix:** `pine boat` 설치가 제대로 작동하지 않는다.
+- [ ] **refactoring:** `PineTrunkPlacer.placeTrunk`  
 
 </details>

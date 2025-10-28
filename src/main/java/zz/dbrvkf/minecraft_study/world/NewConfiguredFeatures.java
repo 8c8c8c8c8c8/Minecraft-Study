@@ -21,6 +21,7 @@ import net.minecraft.world.level.levelgen.structure.templatesystem.RuleTest;
 import net.minecraft.world.level.levelgen.structure.templatesystem.TagMatchTest;
 import zz.dbrvkf.minecraft_study.MinecraftStudy;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
+import zz.dbrvkf.minecraft_study.world.tree.custom.PineTrunkPlacer;
 
 import java.util.List;
 
@@ -48,7 +49,7 @@ public class NewConfiguredFeatures {
                 new OreConfiguration(endReplaceable, NewBlocks.END_STONE_SAPPHIRE_ORE.get().defaultBlockState(), 9));
         register(context, PINE_KEY, Feature.TREE,
                 new TreeConfiguration.TreeConfigurationBuilder(BlockStateProvider.simple(NewBlocks.PINE_LOG.get()),
-                        new StraightTrunkPlacer(5, 4, 3),
+                        new PineTrunkPlacer(5, 4, 3),
                         BlockStateProvider.simple(NewBlocks.PINE_LEAVES.get()),
                         new BlobFoliagePlacer(ConstantInt.of(3), ConstantInt.of(2), 3),
                         new TwoLayersFeatureSize(1, 0, 2)).build());
