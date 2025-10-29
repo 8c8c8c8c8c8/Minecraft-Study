@@ -513,7 +513,7 @@ constructor 로 생성하는 것보다 더 가독성이 좋고 특정 타입의 
 
 ### Day 35
 <details>
-<summary>foliage placer</summary>
+<summary>foliage placer, features</summary>
 
 - foliage placer
 
@@ -523,13 +523,18 @@ constructor 로 생성하는 것보다 더 가독성이 좋고 특정 타입의 
 interface 에 default 를 붙여 구현하면 기능 확장과 compile error 를 막을 수 있다.  
 interface 의 default 는 접근 제어자가 아닌 구현 class 에 구현을 강제하지 않는 의미이다.  
 
+`공변 반환 타입(covariant return type)` overriding method 의 return type 은 변하지 않거나 subclass 일 수 있다.  
+이는 builder pattern 에서 유용한데 만약 return type 을 강제로 한다면 chaining 시 불필요한 casting 이 필요하다.  
+
 ### Todo
 - [ ] **feat**
-    - [ ] vanilla recipe builder 로는 custom recipe 를 json 으로 생성할 수 없다.  
-      따라서 custom builder 가 필요한데(예: `ShapelessRecipeBuilder`) 일단 `GemPolishing` 관련 builder 만 구현하고  
-      나중에 필요에 따라 추상화를 할 예정이다.
     - [ ] `dice` 관련 model json 을 provider 로 생성해보기
 - [ ] **fix:** `pine boat` 설치가 제대로 작동하지 않는다.
 - [ ] **refactoring:** `PineTrunkPlacer.placeTrunk`
+
+### Done
+- [x] **feat:** `GemPolishingRecipeBuilder` `ShapelessRecipeBuilder` 를 참고하여 구현했다.  
+private field 를 가지고 있어 상속하는 것이 불편했다.  
+나중에 또 다른 custom recipe 을 만든다면 그때 추상화할 예정이다.  
 
 </details>
