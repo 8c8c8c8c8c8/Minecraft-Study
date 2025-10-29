@@ -38,6 +38,7 @@ import zz.dbrvkf.minecraft_study.loot.NewLootModifiers;
 import zz.dbrvkf.minecraft_study.sound.NewSounds;
 import zz.dbrvkf.minecraft_study.util.NewWoodTypes;
 import zz.dbrvkf.minecraft_study.villager.NewVillagers;
+import zz.dbrvkf.minecraft_study.world.tree.NewFoliagePlacerType;
 import zz.dbrvkf.minecraft_study.world.tree.NewTrunkPlacerType;
 
 // The value here should match an entry in the META-INF/mods.toml file
@@ -63,6 +64,7 @@ public class MinecraftStudy {
         NewMenuTypes.register(modEventBus);
         NewRecipes.register(modEventBus);
         NewTrunkPlacerType.register(modEventBus);
+        NewFoliagePlacerType.register(modEventBus);
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);

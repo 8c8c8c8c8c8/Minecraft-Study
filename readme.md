@@ -509,13 +509,27 @@ constructor 로 생성하는 것보다 더 가독성이 좋고 특정 타입의 
   - trunk placer(줄기 배치)
   - foliage placer(잎사귀 배치)
 
+</details>
+
+### Day 35
+<details>
+<summary>foliage placer</summary>
+
+- foliage placer
+
+`interface.default` interface 는 기본적으로 public 을 원칙으로 한다.  
+`default` 를 붙여 method 를 구현하는 것을 interface method 의 확장이라고 한다.  
+예를 들어 기존의 interface 에 기능 추가를 위해 method 를 추가하면 이를 사용하는 모든 class 는 구현하지 않으면 compile error 가 발생한다.  
+interface 에 default 를 붙여 구현하면 기능 확장과 compile error 를 막을 수 있다.  
+interface 의 default 는 접근 제어자가 아닌 구현 class 에 구현을 강제하지 않는 의미이다.  
+
 ### Todo
 - [ ] **feat**
     - [ ] vanilla recipe builder 로는 custom recipe 를 json 으로 생성할 수 없다.  
-    따라서 custom builder 가 필요한데(예: `ShapelessRecipeBuilder`) 일단 `GemPolishing` 관련 builder 만 구현하고  
-    나중에 필요에 따라 추상화를 할 예정이다.  
+      따라서 custom builder 가 필요한데(예: `ShapelessRecipeBuilder`) 일단 `GemPolishing` 관련 builder 만 구현하고  
+      나중에 필요에 따라 추상화를 할 예정이다.
     - [ ] `dice` 관련 model json 을 provider 로 생성해보기
 - [ ] **fix:** `pine boat` 설치가 제대로 작동하지 않는다.
-- [ ] **refactoring:** `PineTrunkPlacer.placeTrunk`  
+- [ ] **refactoring:** `PineTrunkPlacer.placeTrunk`
 
 </details>
