@@ -526,15 +526,33 @@ interface 의 default 는 접근 제어자가 아닌 구현 class 에 구현을 
 `공변 반환 타입(covariant return type)` overriding method 의 return type 은 변하지 않거나 subclass 일 수 있다.  
 이는 builder pattern 에서 유용한데 만약 return type 을 강제로 한다면 chaining 시 불필요한 casting 이 필요하다.  
 
-### Todo
-- [ ] **feat**
-    - [ ] `dice` 관련 model json 을 provider 로 생성해보기
-- [ ] **fix:** `pine boat` 설치가 제대로 작동하지 않는다.
-- [ ] **refactoring:** `PineTrunkPlacer.placeTrunk`
-
 ### Done
 - [x] **feat:** `GemPolishingRecipeBuilder` `ShapelessRecipeBuilder` 를 참고하여 구현했다.  
 private field 를 가지고 있어 상속하는 것이 불편했다.  
 나중에 또 다른 custom recipe 을 만든다면 그때 추상화할 예정이다.  
+
+</details>
+
+### Day 36
+<details>
+<summary>custom biome</summary>
+
+- custom biome
+  - `TerraBlender` world generation 과 biome 추가를 위한 mod.
+  - testBiome 동작 원리?
+
+`mods.toml` 는 runtime 시 특정 mod 설치를 강요하여 안정적인 실행을 보장한다.  
+`build.gradle` 은 개발 환경을 위해 mod 를 설치한다.  
+즉, 둘의 목적이 다르다.  
+custom biome 을 추가하기 위해 terrablender mod 를 사용하려고 한다.  
+그래서 mods.toml 에 runtime 시 필요한 의존설 설정을 했다.  
+
+### Todo
+- [ ] **feat**
+    - [ ] `dice` 관련 model json 을 provider 로 생성해보기
+- [ ] **fix**
+  - [ ] `pine boat` 설치가 제대로 작동하지 않는다.  
+  - [ ] `runData` 오류가 발생한다.  forge 에서 `terrablender` 를 인식하지 못해서 발생하는데 원인을 모르겠다...  
+- [ ] **refactoring:** `PineTrunkPlacer.placeTrunk`
 
 </details>

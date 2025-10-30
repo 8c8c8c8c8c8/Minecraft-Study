@@ -22,6 +22,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.slf4j.Logger;
+import terrablender.api.SurfaceRuleManager;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
 import zz.dbrvkf.minecraft_study.block.entity.NewBlockEntities;
 import zz.dbrvkf.minecraft_study.entity.NewEntities;
@@ -38,6 +39,8 @@ import zz.dbrvkf.minecraft_study.loot.NewLootModifiers;
 import zz.dbrvkf.minecraft_study.sound.NewSounds;
 import zz.dbrvkf.minecraft_study.util.NewWoodTypes;
 import zz.dbrvkf.minecraft_study.villager.NewVillagers;
+import zz.dbrvkf.minecraft_study.world.biome.NewTerraBlender;
+import zz.dbrvkf.minecraft_study.world.biome.surface.NewSurfaceRules;
 import zz.dbrvkf.minecraft_study.world.tree.NewFoliagePlacerType;
 import zz.dbrvkf.minecraft_study.world.tree.NewTrunkPlacerType;
 
@@ -65,6 +68,7 @@ public class MinecraftStudy {
         NewRecipes.register(modEventBus);
         NewTrunkPlacerType.register(modEventBus);
         NewFoliagePlacerType.register(modEventBus);
+        NewTerraBlender.registerBiomes();
 
         // Register the commonSetup method for modloading
         modEventBus.addListener(this::commonSetup);
@@ -85,6 +89,7 @@ public class MinecraftStudy {
 
         event.enqueueWork(() -> {
             ((FlowerPotBlock) Blocks.FLOWER_POT).addPlant(NewBlocks.CATMINT.getId(), NewBlocks.POTTED_CATMINT);
+            SurfaceRuleManager.addSurfaceRules(SurfaceRuleManager.RuleCategory.OVERWORLD, MOD_ID, NewSurfaceRules.makeRules());
         });
     }
 
