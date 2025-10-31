@@ -547,12 +547,24 @@ private field 를 가지고 있어 상속하는 것이 불편했다.
 custom biome 을 추가하기 위해 terrablender mod 를 사용하려고 한다.  
 그래서 mods.toml 에 runtime 시 필요한 의존설 설정을 했다.  
 
+</details>
+
+### Day 37
+<details>
+<summary>custom dimension</summary>
+
+- Day 36
+  - 새롭게 정의된 Biome 은 새로 생성된 world 나 기존 world 중 탐험하지 않은 chunk 에 적용된다.   
+
 ### Todo
 - [ ] **feat**
     - [ ] `dice` 관련 model json 을 provider 로 생성해보기
 - [ ] **fix**
   - [ ] `pine boat` 설치가 제대로 작동하지 않는다.  
-  - [ ] `runData` 오류가 발생한다.  forge 에서 `terrablender` 를 인식하지 못해서 발생하는데 원인을 모르겠다...  
 - [ ] **refactoring:** `PineTrunkPlacer.placeTrunk`
+
+### Done
+- [x] **fix:** `runData` 오류가 발생한다.  forge 에서 `terrablender` 를 인식하지 못해서 발생하는데 원인을 모르겠다...  
+  - forge version 을 높였더니 간단하게 해결되었다... 
 
 </details>

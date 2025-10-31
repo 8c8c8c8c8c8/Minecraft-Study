@@ -80,6 +80,7 @@ public class NewBlockStateProvider extends BlockStateProvider {
         simpleBlock(NewBlocks.PINE_SAPLING.get(),
                 models().cross(NewBlocks.PINE_SAPLING.getId().getPath(),
                         blockTexture(NewBlocks.PINE_SAPLING.get())).renderType("cutout"));
+        blockWithItem(NewBlocks.NEW_PORTAL);
     }
 
     private void signBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
