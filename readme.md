@@ -556,15 +556,41 @@ custom biome 을 추가하기 위해 terrablender mod 를 사용하려고 한다
 - Day 36
   - 새롭게 정의된 Biome 은 새로 생성된 world 나 기존 world 중 탐험하지 않은 chunk 에 적용된다.   
 
+### Done
+- [x] **fix:** `runData` 오류가 발생한다.  forge 에서 `terrablender` 를 인식하지 못해서 발생하는데 원인을 모르겠다...  
+  - forge version 을 높였더니 간단하게 해결되었다... 
+
+</details>
+
+### Day 38
+<details>
+<summary>Item, Block, ...</summary>
+
+이전에 공부한 내용을 정리할 예정이다.  
+
+- `Item`
+  - `useOn` block 을 직접 우클릭했을 때 호출된다.  
+  반환할 때 `InteractionResult.PASS` 를 반환하면 `use` 가 호출된다.  
+  - `use` item 을 사용하고 나면 상태가 변한다.  
+  예를 들어 빵 3개 -> 2개, 화살 10개 -> 0개.  
+  따라서 사용 성공 여부와 성공 후 상태 변화를 저장하여 반환한다.  
+- `Block`
+  - `BlockBehaviour` 는 block 의 정적인 속성을 정의한다.  
+  여기에 `use` method 가 정의되어 있는데 `Block` 으로 이동했다.  
+  그래서 `BlockBehaviour` 의 `use` method 에 `@Deprecated` 가 붙여졌다.  
+- `InteractionHand` 상호작용 시 어떤 손을 사용했는지를 나타낸다.
+- `BlockHitResult` block 과 상호작용 시 block 의 좌표, 어떤 방향, block 의 click position 를 담고 있다.
+- `ForgeHooks` 특정 이벤트가 발생하기 직전/후에 사용하는데 쓰이는 게이트웨이이다.  
+
 ### Todo
 - [ ] **feat**
     - [ ] `dice` 관련 model json 을 provider 로 생성해보기
 - [ ] **fix**
-  - [ ] `pine boat` 설치가 제대로 작동하지 않는다.  
+    - [ ] `pine boat` 설치가 제대로 작동하지 않는다.
 - [ ] **refactoring:** `PineTrunkPlacer.placeTrunk`
 
 ### Done
-- [x] **fix:** `runData` 오류가 발생한다.  forge 에서 `terrablender` 를 인식하지 못해서 발생하는데 원인을 모르겠다...  
-  - forge version 을 높였더니 간단하게 해결되었다... 
+- [x] **refactoring** `CornCropBlock`, `MetalDetectorItem`
+- [x] **renaming** `SoundBlock` -> `NewSoundBlock`
 
 </details>

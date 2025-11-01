@@ -49,7 +49,7 @@ public class NewBlocks {
             () -> new DropExperienceBlock(BlockBehaviour.Properties.copy(Blocks.END_STONE)
                     .strength(5f).requiresCorrectToolForDrops(), UniformInt.of(3, 7)));
     public static final RegistryObject<Block> SOUND_BLOCK = registryBlock("sound_block",
-            () -> new SoundBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(NewSounds.SOUND_BLOCK_SOUNDS)));
+            () -> new NewSoundBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(NewSounds.SOUND_BLOCK_SOUNDS)));
     public static final RegistryObject<Block> SAPPHIRE_STAIRS = registryBlock("sapphire_stairs",
             () -> new StairBlock(() -> NewBlocks.SAPPHIRE_BLOCK.get().defaultBlockState(),
                     BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).sound(SoundType.AMETHYST)));

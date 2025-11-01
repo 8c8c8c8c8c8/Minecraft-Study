@@ -59,26 +59,25 @@ public class CornCropBlock extends AbsCropBlock {
     }
 
     public void randomTick(BlockState pState, ServerLevel pLevel, BlockPos pPos, RandomSource pRandom) {
-        if (!pLevel.isAreaLoaded(pPos, 1)) return ;
-        if (pLevel.getRawBrightness(pPos, 0) >= 9) {
-            int currentAge = this.getAge(pState);
+        if (!pLevel.isAreaLoaded(pPos, 1)) return;
+        if (pLevel.getRawBrightness(pPos, 0) < 9) return;
 
-            if (currentAge < this.getMaxAge()) {
-                float growthSpeed = getGrowthSpeed(this, pLevel, pPos);
+        int currentAge = this.getAge(pState);
+        if (currentAge >= this.getMaxAge()) return;
 
-                if (ForgeHooks.onCropsGrowPre(pLevel, pPos, pState,
-                        pRandom.nextInt((int) (25.0f / growthSpeed) + 1) == 0)) {
-                    if (currentAge == FIRST_STAGE_MAX_AGE) {
-                        if (pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
-                            pLevel.setBlock(pPos.above(1), this.getStateForAge(currentAge + 1), 2);
-                        } else {
-                            pLevel.setBlock(pPos, this.getStateForAge(currentAge + 1), 2);
-                        }
-                    }
-                    ForgeHooks.onCropsGrowPost(pLevel, pPos, pState);
-                }
+        float growthSpeed = getGrowthSpeed(this, pLevel, pPos);
+        boolean isGrowUp = ForgeHooks.onCropsGrowPre(pLevel, pPos, pState,
+                pRandom.nextInt((int) (25.0f / growthSpeed) + 1) == 0);
+        if (!isGrowUp) return;
+
+        int pos = 0;
+        if (currentAge == FIRST_STAGE_MAX_AGE) {
+            if (pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
+                pos = 1;
             }
+            pLevel.setBlock(pPos.above(pos), this.getStateForAge(currentAge + 1), 2);
         }
+        ForgeHooks.onCropsGrowPost(pLevel, pPos, pState);
     }
 
     @Override
@@ -89,8 +88,8 @@ public class CornCropBlock extends AbsCropBlock {
     @Override
     public boolean canSurvive(BlockState pState, LevelReader pLevel, BlockPos pPos) {
         return super.canSurvive(pState, pLevel, pPos) ||
-                (pLevel.getBlockState(pPos.below(1)).is(this) &&
-                        pLevel.getBlockState(pPos.below(1)).getValue(AGE) == 7);
+                pLevel.getBlockState(pPos.below(1)).is(this) &&
+                        pLevel.getBlockState(pPos.below(1)).getValue(AGE) == 7;
     }
 
     @Override
@@ -100,12 +99,14 @@ public class CornCropBlock extends AbsCropBlock {
         if (nextAge > maxAge) {
             nextAge = maxAge;
         }
-        if (this.getAge(pState) == FIRST_STAGE_MAX_AGE
-                && pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
+
+        if (this.getAge(pState) == FIRST_STAGE_MAX_AGE &&
+                pLevel.getBlockState(pPos.above(1)).is(Blocks.AIR)) {
             pLevel.setBlock(pPos.above(1), this.getStateForAge(nextAge), 2);
-        } else {
-            pLevel.setBlock(pPos, this.getStateForAge(nextAge - SECOND_STAGE_MAX_AGE), 2);
+            return;
         }
+
+        pLevel.setBlock(pPos, this.getStateForAge(nextAge - SECOND_STAGE_MAX_AGE), 2);
     }
 
     @Override

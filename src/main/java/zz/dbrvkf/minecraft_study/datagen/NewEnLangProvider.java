@@ -67,8 +67,8 @@ public class NewEnLangProvider extends LanguageProvider {
         addBlock(NewBlocks.PINE_HANGING_SIGN, "Pine Hanging Sign");
         addBlock(NewBlocks.PINE_SAPLING, "Pine Sapling");
         add("creativetab.tutorial_tab", "Tutorial tab");
-        add("tooltip.minecraft_study.metal_detector.tooltip", "Finds valuables underground.\nwhenever used one time, hp will be decreased -1");
-        add("tooltip.minecraft_study.sound_block.tooltip", "Makes some sound when touched.");
+        add("tooltip.minecraft_study.metal_detector", "Finds valuables underground.\nwhenever used one time, hp will be decreased -1");
+        add("tooltip.minecraft_study.sound_block", "Makes some sound when touched.");
         add("entity.minecraft.villager.minecraft_study.sound_master", "Sound Master");
         add("sounds.minecraft_study.metal_detector_found_ore", "Metal Detector Jingle");
     }

@@ -18,8 +18,8 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class SoundBlock extends Block {
-    public SoundBlock(Properties properties) {
+public class NewSoundBlock extends Block {
+    public NewSoundBlock(Properties properties) {
         super(properties);
     }
 
@@ -33,7 +33,6 @@ public class SoundBlock extends Block {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable BlockGetter pLevel, List<Component> pTooltip, TooltipFlag pFlag) {
-        pTooltip.add(Component.translatable("tooltip.minecraft_study.sound_block.tooltip"));
-        super.appendHoverText(pStack, pLevel, pTooltip, pFlag);
+        pTooltip.add(Component.translatable("tooltip.minecraft_study.sound_block"));
     }
 }

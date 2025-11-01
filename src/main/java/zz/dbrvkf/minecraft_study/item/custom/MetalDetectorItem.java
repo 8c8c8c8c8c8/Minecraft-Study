@@ -37,15 +37,17 @@ public class MetalDetectorItem extends Item {
         boolean hasValuableBlock = false;
         for (int i = 0; i <= posClicked.getY() + 64; i++) {
             BlockState state = pContext.getLevel().getBlockState(posClicked.below(i));
-            if (isValuableBlock(state)) {
-                printValuableCoordinates(posClicked.below(i), player, state.getBlock());
-                hasValuableBlock = true;
-                pContext.getLevel().playSeededSound(null,
-                        posClicked.getX(), posClicked.getY(), posClicked.getZ(),
-                        NewSounds.METAL_DETECTOR_FOUND_ORE.get(), SoundSource.BLOCKS,
-                        1f, 1f, 0);
-                break;
-            }
+
+            if (!isValuableBlock(state))
+                continue;
+
+            printValuableCoordinates(posClicked.below(i), player, state.getBlock());
+            hasValuableBlock = true;
+            pContext.getLevel().playSeededSound(null,
+                    posClicked.getX(), posClicked.getY(), posClicked.getZ(),
+                    NewSounds.METAL_DETECTOR_FOUND_ORE.get(), SoundSource.BLOCKS,
+                    1f, 1f, 0);
+            break;
         }
 
         if (!hasValuableBlock) {
@@ -57,8 +59,7 @@ public class MetalDetectorItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
-        pTooltipComponents.add(Component.translatable("tooltip.minecraft_study.metal_detector.tooltip"));
-        super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
+        pTooltipComponents.add(Component.translatable("tooltip.minecraft_study.metal_detector"));
     }
 
     private void printValuableCoordinates(BlockPos blockPos, Player player, Block block) {
