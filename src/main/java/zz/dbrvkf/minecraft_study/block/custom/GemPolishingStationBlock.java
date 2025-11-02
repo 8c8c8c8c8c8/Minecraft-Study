@@ -46,11 +46,14 @@ public class GemPolishingStationBlock extends BaseEntityBlock {
 
     @Override
     public void onRemove(BlockState pState, Level pLevel, BlockPos pPos, BlockState pNewState, boolean pIsMoving) {
-        if (pState.getBlock() != pNewState.getBlock()) {
-            BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
-            if (blockEntity instanceof GemPolishingStationBlockEntity gps) {
-                gps.drops();
-            }
+        if (pState.getBlock() == pNewState.getBlock()) {
+            super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
+            return;
+        }
+
+        BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
+        if (blockEntity instanceof GemPolishingStationBlockEntity gps) {
+            gps.drops();
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
@@ -60,9 +63,11 @@ public class GemPolishingStationBlock extends BaseEntityBlock {
                                  Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (pLevel.isClientSide())
             return InteractionResult.sidedSuccess(pLevel.isClientSide());
+
         BlockEntity blockEntity = pLevel.getBlockEntity(pPos);
         if (!(blockEntity instanceof GemPolishingStationBlockEntity))
             throw new IllegalStateException("Our container provider is missing!");
+
         NetworkHooks.openScreen((ServerPlayer) pPlayer, (GemPolishingStationBlockEntity) blockEntity, pPos);
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }
@@ -72,6 +77,7 @@ public class GemPolishingStationBlock extends BaseEntityBlock {
                                                                             BlockEntityType<T> pBlockEntityType) {
         if (pLevel.isClientSide())
             return null;
+
         return createTickerHelper(pBlockEntityType, NewBlockEntities.GEM_POLISHING_STATION.get(),
                 (pLevel1, pPos, pState1, pBlockEntity) -> pBlockEntity.tick(pLevel1, pPos, pState1));
     }

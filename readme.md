@@ -582,15 +582,28 @@ custom biome 을 추가하기 위해 terrablender mod 를 사용하려고 한다
 - `BlockHitResult` block 과 상호작용 시 block 의 좌표, 어떤 방향, block 의 click position 를 담고 있다.
 - `ForgeHooks` 특정 이벤트가 발생하기 직전/후에 사용하는데 쓰이는 게이트웨이이다.  
 
+### Done
+- [x] **refactoring** `CornCropBlock`, `MetalDetectorItem`
+- [x] **renaming** `SoundBlock` -> `NewSoundBlock`
+
+</details>
+
+### Day 39
+<details>
+<summary>review</summary>
+
+- `BlockBehaviour` 변하지 않는 정적 속성을 가진다.  
+시스템적으로 변경이 불가능하지는 않지만 변경하지 않는다.  
+만일 변경한다면 이 class 는 singleton 이라 관련된 모든 block 에 영향을 준다.  
+속성에 변화를 주고 싶다면 `BlockState` 혹은 `BlockEntity` 를 이용한다.  
+- `BlockState` 변할 수 있는 동적 속성을 가진다.  
+객체 자체는 `Immutable` 이며 변경 시 새 객체를 생성한다.  
+
 ### Todo
 - [ ] **feat**
     - [ ] `dice` 관련 model json 을 provider 로 생성해보기
 - [ ] **fix**
     - [ ] `pine boat` 설치가 제대로 작동하지 않는다.
 - [ ] **refactoring:** `PineTrunkPlacer.placeTrunk`
-
-### Done
-- [x] **refactoring** `CornCropBlock`, `MetalDetectorItem`
-- [x] **renaming** `SoundBlock` -> `NewSoundBlock`
 
 </details>
