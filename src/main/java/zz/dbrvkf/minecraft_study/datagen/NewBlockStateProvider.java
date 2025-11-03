@@ -81,6 +81,7 @@ public class NewBlockStateProvider extends BlockStateProvider {
                 models().cross(NewBlocks.PINE_SAPLING.getId().getPath(),
                         blockTexture(NewBlocks.PINE_SAPLING.get())).renderType("cutout"));
         blockWithItem(NewBlocks.NEW_PORTAL);
+        diceBlock(NewBlocks.DICE);
     }
 
     private void signBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
@@ -98,7 +99,7 @@ public class NewBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
     }
 
-    public <T extends AbsCropBlock> void makeToCrop(T block, String modelName, String textureName) {
+    public void makeToCrop(AbsCropBlock block, String modelName, String textureName) {
         Function<BlockState, ConfiguredModel[]> function = state -> statesForCropBlock(state, block, modelName, textureName);
         getVariantBuilder(block).forAllStates(function);
     }
@@ -109,5 +110,17 @@ public class NewBlockStateProvider extends BlockStateProvider {
         return new ConfiguredModel[]{new ConfiguredModel(
                 models().crop(modelName + age, modLoc("block/" + textureName + age))
                         .renderType("cutout"))};
+    }
+
+    private void diceBlock(RegistryObject<Block> block) {
+        Function<BlockState, ConfiguredModel[]> function = state -> statesForDiceBlock(state);
+        getVariantBuilder(block.get()).forAllStates(function);
+    }
+
+    private ConfiguredModel[] statesForDiceBlock(BlockState state) {
+//        return new ConfiguredModel[]{
+//                new ConfiguredModel(models())
+//        };
+        return null;
     }
 }

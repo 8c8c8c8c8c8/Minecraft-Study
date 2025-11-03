@@ -599,9 +599,18 @@ custom biome 을 추가하기 위해 terrablender mod 를 사용하려고 한다
 - `BlockState` 변할 수 있는 동적 속성을 가진다.  
 객체 자체는 `Immutable` 이며 변경 시 새 객체를 생성한다.  
 
+</details>
+
+### Day 40
+<details>
+<summary>review</summary>
+
+- `Player` 플레이어를 나타내는 모든 데이터와 동작을 담고 있다.  
+
 ### Todo
 - [ ] **feat**
     - [ ] `dice` 관련 model json 을 provider 로 생성해보기
+    - [ ] player hp bar 만들어 보기
 - [ ] **fix**
     - [ ] `pine boat` 설치가 제대로 작동하지 않는다.
 - [ ] **refactoring:** `PineTrunkPlacer.placeTrunk`
