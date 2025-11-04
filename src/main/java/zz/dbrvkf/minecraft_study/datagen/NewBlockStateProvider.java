@@ -1,5 +1,6 @@
 package zz.dbrvkf.minecraft_study.datagen;
 
+import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.*;
@@ -13,8 +14,10 @@ import net.minecraftforge.registries.RegistryObject;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
 import zz.dbrvkf.minecraft_study.block.custom.AbsCropBlock;
 import zz.dbrvkf.minecraft_study.block.custom.CornCropBlock;
+import zz.dbrvkf.minecraft_study.block.custom.DiceBlock;
 import zz.dbrvkf.minecraft_study.block.custom.StrawberryCropBlock;
 
+import java.util.function.BiFunction;
 import java.util.function.Function;
 
 public class NewBlockStateProvider extends BlockStateProvider {
@@ -81,7 +84,15 @@ public class NewBlockStateProvider extends BlockStateProvider {
                 models().cross(NewBlocks.PINE_SAPLING.getId().getPath(),
                         blockTexture(NewBlocks.PINE_SAPLING.get())).renderType("cutout"));
         blockWithItem(NewBlocks.NEW_PORTAL);
-        diceBlock(NewBlocks.DICE);
+        blockForStates(NewBlocks.STRAWBERRY_CROP.get(),
+                (state, block) -> statesForCropBlock(state, (AbsCropBlock) block,
+                        "strawberry_stage", "strawberry_stage"));
+        blockForStates(NewBlocks.CORN_CROP.get(),
+                (state, block) -> statesForCropBlock(state, (AbsCropBlock) block,
+                        "corn_stage_", "corn_stage_"));
+        blockForStates(NewBlocks.DICE.get(),
+                (state, block) -> statesForDiceBlock(state, block,
+                        "dice_", "dice_"));
     }
 
     private void signBlock(Block signBlock, Block wallSignBlock, ResourceLocation texture) {
@@ -99,6 +110,10 @@ public class NewBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(blockRegistryObject.get(), cubeAll(blockRegistryObject.get()));
     }
 
+    private <T extends Block> void blockForStates(T block, BiFunction<BlockState, T, ConfiguredModel[]> mapper) {
+        getVariantBuilder(block).forAllStates(state -> mapper.apply(state, block));
+    }
+
     public void makeToCrop(AbsCropBlock block, String modelName, String textureName) {
         Function<BlockState, ConfiguredModel[]> function = state -> statesForCropBlock(state, block, modelName, textureName);
         getVariantBuilder(block).forAllStates(function);
@@ -112,15 +127,12 @@ public class NewBlockStateProvider extends BlockStateProvider {
                         .renderType("cutout"))};
     }
 
-    private void diceBlock(RegistryObject<Block> block) {
-        Function<BlockState, ConfiguredModel[]> function = state -> statesForDiceBlock(state);
-        getVariantBuilder(block.get()).forAllStates(function);
-    }
-
-    private ConfiguredModel[] statesForDiceBlock(BlockState state) {
-//        return new ConfiguredModel[]{
-//                new ConfiguredModel(models())
-//        };
-        return null;
+    private ConfiguredModel[] statesForDiceBlock(BlockState state, Block block, String modelName, String textureName) {
+        Direction direction = state.getValue(DiceBlock.FACING);
+        return new ConfiguredModel[]{
+                new ConfiguredModel(models()
+                        .sign(modelName, modLoc(textureName))
+                        .parent(new ModelFile.UncheckedModelFile("block/cube")))
+        };
     }
 }
