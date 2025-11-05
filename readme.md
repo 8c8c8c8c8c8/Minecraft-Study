@@ -574,10 +574,6 @@ custom biome 을 추가하기 위해 terrablender mod 를 사용하려고 한다
   - `use` item 을 사용하고 나면 상태가 변한다.  
   예를 들어 빵 3개 -> 2개, 화살 10개 -> 0개.  
   따라서 사용 성공 여부와 성공 후 상태 변화를 저장하여 반환한다.  
-- `Block`
-  - `BlockBehaviour` 는 block 의 정적인 속성을 정의한다.  
-  여기에 `use` method 가 정의되어 있는데 `Block` 으로 이동했다.  
-  그래서 `BlockBehaviour` 의 `use` method 에 `@Deprecated` 가 붙여졌다.  
 - `InteractionHand` 상호작용 시 어떤 손을 사용했는지를 나타낸다.
 - `BlockHitResult` block 과 상호작용 시 block 의 좌표, 어떤 방향, block 의 click position 를 담고 있다.
 - `ForgeHooks` 특정 이벤트가 발생하기 직전/후에 사용하는데 쓰이는 게이트웨이이다.  
@@ -607,9 +603,29 @@ custom biome 을 추가하기 위해 terrablender mod 를 사용하려고 한다
 
 - `Player` 플레이어를 나타내는 모든 데이터와 동작을 담고 있다.  
 
+</details>
+
+### Day 41
+<details>
+<summary>review</summary>
+
+- `ConfiguredModel` blockState.json 에 사용될 model/block.json 과 이 model 이 world 에 표시될 때 적용될 설정을 담는 container 이다.  
+- `BlockEntity` 와 `BaseEntityBlock`
+  - 동적인 기능을 block 에 추가하려면 전자를 상속 후 구현하면 된다.
+  - 이때 특정 block 에 앞서 구현한 `BlockEntity` 를 연결해야 되는데 권장하는 방법은 `BaseEntityBlock` 을 상속 후 구현하는 것이다.
+  - 물론 후자를 사용하지 않고 연결하는 방법이 있지만 그리 권장하지 않는다.
+- `BlockBehaviour` 대부분 method 들의 `@deprecated` 이유  
+`Mojang` 의 디자인 변경으로 `Block` class 동작 방식에서 `BlockState` 객체로 바뀌었다.  
+`BlockState` 는 block 의 동적 상태를 가지고 있어 상태 정보에 좀 더 쉽게 접근할 수 있다.  
+여기서 `@deprecated` 의미는 `Block(or BlockBehaviour)` 에서 직접 method 를 호출하지 말라는 의미이다.  
+따라서 overriding 해도 문제 없다.  
+- `Client/Server-side` 코드가 실행되는 context 는 두가지뿐이다.  
+client/server 에서 실행될 때 반환 값으로 `InteractionResult` 의 의미는 조금 다르다.  
+
 ### Todo
 - [ ] **feat**
-    - [ ] `dice` 관련 model json 을 provider 로 생성해보기
+    - [ ] `dice` 관련 model json 을 provider 로 생성해보기.  
+    model/dice_1~6.json 을 만드는 게 생각 보다 귀찮다.
     - [ ] player hp bar 만들어 보기
 - [ ] **fix**
     - [ ] `pine boat` 설치가 제대로 작동하지 않는다.

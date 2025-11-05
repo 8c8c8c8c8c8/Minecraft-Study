@@ -54,10 +54,6 @@ public class NewBlockStateProvider extends BlockStateProvider {
                 models().singleTexture("potted_catmint", mcLoc("flower_pot_cross"), "plant",
                                 blockTexture(NewBlocks.CATMINT.get()))
                         .renderType("cutout"));
-        makeToCrop((StrawberryCropBlock) NewBlocks.STRAWBERRY_CROP.get(),
-                "strawberry_stage", "strawberry_stage");
-        makeToCrop((CornCropBlock) NewBlocks.CORN_CROP.get(),
-                "corn_stage_", "corn_stage_");
         simpleBlockWithItem(NewBlocks.GEM_POLISHING_STATION.get(),
                 new ModelFile.UncheckedModelFile(modLoc("block/gem_polishing_station")));
         logBlock((RotatedPillarBlock) NewBlocks.PINE_LOG.get());
@@ -114,11 +110,6 @@ public class NewBlockStateProvider extends BlockStateProvider {
         getVariantBuilder(block).forAllStates(state -> mapper.apply(state, block));
     }
 
-    public void makeToCrop(AbsCropBlock block, String modelName, String textureName) {
-        Function<BlockState, ConfiguredModel[]> function = state -> statesForCropBlock(state, block, modelName, textureName);
-        getVariantBuilder(block).forAllStates(function);
-    }
-
     private ConfiguredModel[] statesForCropBlock(BlockState state, AbsCropBlock block,
                                                  String modelName, String textureName) {
         int age = state.getValue(block.getAgeProperty());
@@ -130,9 +121,12 @@ public class NewBlockStateProvider extends BlockStateProvider {
     private ConfiguredModel[] statesForDiceBlock(BlockState state, Block block, String modelName, String textureName) {
         Direction direction = state.getValue(DiceBlock.FACING);
         return new ConfiguredModel[]{
-                new ConfiguredModel(models()
-                        .sign(modelName, modLoc(textureName))
-                        .parent(new ModelFile.UncheckedModelFile("block/cube")))
+                new ConfiguredModel(getDiceModelFile(direction, modelName, textureName))
         };
+    }
+
+    private ModelFile getDiceModelFile(Direction direction, String modelName, String textureName) {
+        // todo
+        return null;
     }
 }
