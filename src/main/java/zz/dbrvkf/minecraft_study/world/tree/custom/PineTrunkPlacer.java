@@ -17,12 +17,14 @@ import zz.dbrvkf.minecraft_study.world.tree.NewTrunkPlacerType;
 
 import java.util.List;
 import java.util.function.BiConsumer;
-import java.util.function.Function;
 
 public class PineTrunkPlacer extends TrunkPlacer {
     public static final Codec<PineTrunkPlacer> CODEC =
             RecordCodecBuilder.create(instance
                     -> trunkPlacerParts(instance).apply(instance, PineTrunkPlacer::new));
+    private static float BRANCH_CHANCE = 0.25f;
+    private static int BRANCH_LENGTH = 4;
+    private static List<Direction> DIRECTIONS = List.of(Direction.NORTH, Direction.WEST, Direction.EAST, Direction.SOUTH);
 
     public PineTrunkPlacer(int pBaseHeight, int pHeightRandA, int pHeightRandB) {
         super(pBaseHeight, pHeightRandA, pHeightRandB);
@@ -42,49 +44,35 @@ public class PineTrunkPlacer extends TrunkPlacer {
                                                             TreeConfiguration pConfig) {
         setDirtAt(pLevel, pBlockSetter, pRandom, pPos.below(), pConfig);
         int height = pFreeTreeHeight + pRandom.nextInt(heightRandA, heightRandA + 3) + pRandom.nextInt(heightRandB - 1, heightRandB + 1);
-//        IntStream.range(0, height).forEach(i -> placeLog(pLevel, pBlockSetter, pRandom, pPos.above(i), pConfig));
         for (int i = 0; i < height; i++) {
-            placeLog(pLevel, pBlockSetter, pRandom, pPos.above(i), pConfig);
+            BlockPos currentPos = pPos.above(i);
+            placeLog(pLevel, pBlockSetter, pRandom, currentPos, pConfig);
 
-            if (i % 2 == 0 && pRandom.nextBoolean()) {
-                if (pRandom.nextFloat() > 0.25f) {
-                    for (int j = 0; j < 4; j++) {
-                        pBlockSetter.accept(pPos.above(i).relative(Direction.NORTH, j),
-                                (BlockState) Function.identity().apply(
-                                        pConfig.trunkProvider
-                                                .getState(pRandom, pPos)
-                                                .setValue(RotatedPillarBlock.AXIS, Direction.Axis.Z)));
-                    }
-                }
-                if (pRandom.nextFloat() > 0.25f) {
-                    for (int j = 0; j < 4; j++) {
-                        pBlockSetter.accept(pPos.above(i).relative(Direction.EAST, j),
-                                (BlockState) Function.identity().apply(
-                                        pConfig.trunkProvider
-                                                .getState(pRandom, pPos)
-                                                .setValue(RotatedPillarBlock.AXIS, Direction.Axis.X)));
-                    }
-                }
-                if (pRandom.nextFloat() > 0.25f) {
-                    for (int j = 0; j < 4; j++) {
-                        pBlockSetter.accept(pPos.above(i).relative(Direction.SOUTH, j),
-                                (BlockState) Function.identity().apply(
-                                        pConfig.trunkProvider
-                                                .getState(pRandom, pPos)
-                                                .setValue(RotatedPillarBlock.AXIS, Direction.Axis.Z)));
-                    }
-                }
-                if (pRandom.nextFloat() > 0.25f) {
-                    for (int j = 0; j < 4; j++) {
-                        pBlockSetter.accept(pPos.above(i).relative(Direction.WEST, j),
-                                (BlockState) Function.identity().apply(
-                                        pConfig.trunkProvider
-                                                .getState(pRandom, pPos)
-                                                .setValue(RotatedPillarBlock.AXIS, Direction.Axis.X)));
-                    }
-                }
-            }
+            if (i % 2 != 0 || pRandom.nextBoolean()) continue;
+
+            DIRECTIONS.forEach(direction ->
+                    placeSingleTrunk(pBlockSetter, currentPos, pPos, pConfig, pRandom, direction));
         }
         return ImmutableList.of(new FoliagePlacer.FoliageAttachment(pPos.above(height), 0, false));
+    }
+
+    private void placeSingleTrunk(BiConsumer<BlockPos, BlockState> pBlockSetter,
+                                  BlockPos currentPos, BlockPos beforePos, TreeConfiguration config,
+                                  RandomSource random, Direction direction) {
+        if (!canPlaceSingleTrunk(random)) return;
+
+        Direction.Axis axis = switch (direction) {
+            case EAST, WEST -> Direction.Axis.X;
+            default -> Direction.Axis.Z;
+        };
+        BlockState blockState = config.trunkProvider.getState(random, beforePos)
+                .setValue(RotatedPillarBlock.AXIS, axis);
+        for (int j = 0; j < BRANCH_LENGTH; j++) {
+            pBlockSetter.accept(currentPos.relative(direction, j), blockState);
+        }
+    }
+
+    private boolean canPlaceSingleTrunk(RandomSource random) {
+        return random.nextFloat() < BRANCH_CHANCE;
     }
 }

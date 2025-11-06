@@ -622,13 +622,30 @@ custom biome 을 추가하기 위해 terrablender mod 를 사용하려고 한다
 - `Client/Server-side` 코드가 실행되는 context 는 두가지뿐이다.  
 client/server 에서 실행될 때 반환 값으로 `InteractionResult` 의 의미는 조금 다르다.  
 
+</details>
+
+### Day 42
+<details>
+<summary>review</summary>
+
+- `tick` 메모리에 올라와 있는 chunk 의 `BlockEntity`와 `Block` 의 `tick` 은 `integrated server thread` 에서 실행된다(single thread).  
+여러 thread 가 동시에 접근하여 데이터에 접근하면 race condition 이 발생해 단일 스레드로 실행한다.  
+하지만 latency 가 긴 작업은 비동기로 하여 멀티 스레딩을 사용한다.
+- block 이 설치될 때마다 해당 block 의 instance 를 생성하지 않는다.  
+singleton pattern 을 사용한다.  
+- 하지만 `BlockEntity` 와 `BlockState` 는 설치 위치마다 instance 를 생성한다.  
+정확히는 `BlockState` instance 생성이 아닌 해당 block 이 가질 수 있는 type 의 index 를 저장한다.
+예: `CornCropBlock` 은 `AGE` 가 0-8 이며 이 중 해당되는 것에 대한 index 를 생성한다.
+
 ### Todo
 - [ ] **feat**
     - [ ] `dice` 관련 model json 을 provider 로 생성해보기.  
-    model/dice_1~6.json 을 만드는 게 생각 보다 귀찮다.
+      model/dice_1~6.json 을 만드는 게 생각 보다 귀찮다.
     - [ ] player hp bar 만들어 보기
 - [ ] **fix**
     - [ ] `pine boat` 설치가 제대로 작동하지 않는다.
-- [ ] **refactoring:** `PineTrunkPlacer.placeTrunk`
+
+### Done
+- [x] **refactoring:** `PineTrunkPlacer.placeTrunk`
 
 </details>
