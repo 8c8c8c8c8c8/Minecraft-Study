@@ -13,12 +13,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
 import zz.dbrvkf.minecraft_study.block.custom.AbsCropBlock;
-import zz.dbrvkf.minecraft_study.block.custom.CornCropBlock;
 import zz.dbrvkf.minecraft_study.block.custom.DiceBlock;
-import zz.dbrvkf.minecraft_study.block.custom.StrawberryCropBlock;
 
 import java.util.function.BiFunction;
-import java.util.function.Function;
 
 public class NewBlockStateProvider extends BlockStateProvider {
     public NewBlockStateProvider(PackOutput output, String modid, ExistingFileHelper exFileHelper) {
@@ -120,13 +117,16 @@ public class NewBlockStateProvider extends BlockStateProvider {
 
     private ConfiguredModel[] statesForDiceBlock(BlockState state, Block block, String modelName, String textureName) {
         Direction direction = state.getValue(DiceBlock.FACING);
-        return new ConfiguredModel[]{
-                new ConfiguredModel(getDiceModelFile(direction, modelName, textureName))
+        int number = switch (direction) {
+            case UP -> 1;
+            case NORTH -> 2;
+            case EAST -> 3;
+            case SOUTH -> 5;
+            case WEST -> 4;
+            case DOWN -> 6;
         };
-    }
-
-    private ModelFile getDiceModelFile(Direction direction, String modelName, String textureName) {
-        // todo
-        return null;
+        return new ConfiguredModel[]{
+                new ConfiguredModel(new ModelFile.UncheckedModelFile(modLoc("block/" + modelName + number)))
+        };
     }
 }

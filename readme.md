@@ -637,15 +637,35 @@ singleton pattern 을 사용한다.
 정확히는 `BlockState` instance 생성이 아닌 해당 block 이 가질 수 있는 type 의 index 를 저장한다.
 예: `CornCropBlock` 은 `AGE` 가 0-8 이며 이 중 해당되는 것에 대한 index 를 생성한다.
 
+### Done
+- [x] **refactoring:** `PineTrunkPlacer.placeTrunk`
+
+</details>
+
+### Day 43
+<details>
+<summary>review</summary>
+
+- `AutoCloseable` 이 interface 를 구현하는 객체는 사용 후 release resource 를 반드시 해야 된다.  
+그렇지 않으면 resource leak 이 발생하여 문제가 발생하기 때문이다.  
+예를 들어, db connection, file stream, network socket, ...
+- `Level` class 는 이 interface 를 구현하는데 resource leak 때문이 아니라  
+여러 thread 에서 접근을 하여 race condition 방지와 integrity 유지를 위함이다.  
+근데 굳이 `try-with-resource` 안해도 될듯...
+- `Level` 의 역할
+  - data
+  - entity, tick
+  - player interaction, physics
+- 실제 `tick` 을 호출하는 건 `ServerLevel` 이다.
+
 ### Todo
 - [ ] **feat**
-    - [ ] `dice` 관련 model json 을 provider 로 생성해보기.  
-      model/dice_1~6.json 을 만드는 게 생각 보다 귀찮다.
     - [ ] player hp bar 만들어 보기
 - [ ] **fix**
     - [ ] `pine boat` 설치가 제대로 작동하지 않는다.
 
 ### Done
-- [x] **refactoring:** `PineTrunkPlacer.placeTrunk`
+- [x] **feat:** `Dice provider`  이걸 함수로 만들어서 하는게 복잡할 것 같고 하드 코딩하기엔 차라리 json 으로 남겨두는게 좋을 듯.  
+그래서 model/block.json 은 남기고 blockstates.json 은 provider 로 생성하기로 했다.  
 
 </details>
