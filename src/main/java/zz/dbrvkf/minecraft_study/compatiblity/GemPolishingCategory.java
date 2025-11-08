@@ -15,12 +15,12 @@ import org.jetbrains.annotations.Nullable;
 import zz.dbrvkf.minecraft_study.MinecraftStudy;
 import zz.dbrvkf.minecraft_study.block.NewBlocks;
 import zz.dbrvkf.minecraft_study.recipe.GemPolishingRecipe;
+import zz.dbrvkf.minecraft_study.util.Utils;
 
 public class GemPolishingCategory implements IRecipeCategory<GemPolishingRecipe> {
-    public static final ResourceLocation UID = new ResourceLocation(MinecraftStudy.MOD_ID, "gem_polishing");
-    public static final ResourceLocation TEXTURE = new ResourceLocation(MinecraftStudy.MOD_ID, "textures/gui/gem_polishing_station.png");
+    public static final ResourceLocation TEXTURE = Utils.modLoc("textures/gui/gem_polishing_station.png");
     public static final RecipeType<GemPolishingRecipe> GEM_POLISHING_RECIPE_TYPE =
-            new RecipeType<>(UID, GemPolishingRecipe.class);
+            RecipeType.create(MinecraftStudy.MOD_ID, "gem_polishing", GemPolishingRecipe.class);
 
     private final IDrawable background;
     private final IDrawable icon;

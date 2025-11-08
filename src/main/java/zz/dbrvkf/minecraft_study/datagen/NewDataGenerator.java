@@ -1,12 +1,15 @@
 package zz.dbrvkf.minecraft_study.datagen;
 
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.BuiltInRegistries;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 import zz.dbrvkf.minecraft_study.MinecraftStudy;
 
 import java.util.Set;
@@ -33,7 +36,9 @@ public class NewDataGenerator {
         generator.addProvider(event.includeServer(), new NewWorldProvider(packOutput, lookupProvider, Set.of(MinecraftStudy.MOD_ID)));
 
         NewBlockTagsProvider blockTagProvider = generator.addProvider(event.includeServer(),
-                new NewBlockTagsProvider(packOutput, lookupProvider, MinecraftStudy.MOD_ID, existingFileHelper));
+                new NewBlockTagsProvider(packOutput, Registries.BLOCK, lookupProvider,
+                        block -> ForgeRegistries.BLOCKS.getResourceKey(block).get(),
+                        MinecraftStudy.MOD_ID, existingFileHelper));
         generator.addProvider(event.includeServer(),
                 new NewItemTagsProvider(packOutput, lookupProvider, blockTagProvider.contentsGetter(),
                         MinecraftStudy.MOD_ID, existingFileHelper));

@@ -658,6 +658,21 @@ singleton pattern 을 사용한다.
   - player interaction, physics
 - 실제 `tick` 을 호출하는 건 `ServerLevel` 이다.
 
+### Done
+- [x] **feat:** `Dice provider`  이걸 함수로 만들어서 하는게 복잡할 것 같고 하드 코딩하기엔 차라리 json 으로 남겨두는게 좋을 듯.  
+그래서 model/block.json 은 남기고 blockstates.json 은 provider 로 생성하기로 했다.  
+
+</details>
+
+### Day 44
+<details>
+<summary>review</summary>
+
+- `IntrinsicHolderTagsProvider<Block>` custom block tag provider 는 이 class 를 상속하여 구현하면 된다.  
+`BlockTagsProvider` 는 deprecation 이다.  
+- `void addtags(HolderLookup.Provider pProvider)` overriding 해 원하는 tag 를 block 혹은 item 에 추가하면 된다.  
+권장하는 방법은 pProvider 로 block 혹은 item `HolderLookup<>` 을 가져오고 원하는 object 의 `Holder<>` 를 가져와서 추가하면 된다.  
+
 ### Todo
 - [ ] **feat**
     - [ ] player hp bar 만들어 보기
@@ -665,7 +680,6 @@ singleton pattern 을 사용한다.
     - [ ] `pine boat` 설치가 제대로 작동하지 않는다.
 
 ### Done
-- [x] **feat:** `Dice provider`  이걸 함수로 만들어서 하는게 복잡할 것 같고 하드 코딩하기엔 차라리 json 으로 남겨두는게 좋을 듯.  
-그래서 model/block.json 은 남기고 blockstates.json 은 provider 로 생성하기로 했다.  
+- **refactoring** `GemPolishingCategory`, `NewBlockLootTables`
 
 </details>

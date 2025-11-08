@@ -4,11 +4,8 @@ import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.loot.BlockLootSubProvider;
 import net.minecraft.world.flag.FeatureFlags;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.storage.loot.LootTable;
-import net.minecraft.world.level.storage.loot.entries.LootItem;
-import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemCondition;
@@ -50,22 +47,24 @@ public class NewBlockLootTables extends BlockLootSubProvider {
         add(NewBlocks.SAPPHIRE_SLAB.get(), this::createSlabItemTable);
         add(NewBlocks.SAPPHIRE_DOOR.get(), this::createDoorTable);
 
-        LootItemCondition.Builder strawberryLootItemConditionBuilder = LootItemBlockStatePropertyCondition
+        LootItemCondition.Builder strawberryLootItemCondition$builder = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(NewBlocks.STRAWBERRY_CROP.get())
                 .setProperties(StatePropertiesPredicate.Builder
                         .properties().hasProperty(StrawberryCropBlock.AGE, 5));
         add(NewBlocks.STRAWBERRY_CROP.get(), createCropDrops(NewBlocks.STRAWBERRY_CROP.get(), NewItems.STRAWBERRY.get(),
-                NewItems.STRAWBERRY_SEEDS.get(), strawberryLootItemConditionBuilder));
-        LootItemCondition.Builder cornLootItemConditionBuilder = LootItemBlockStatePropertyCondition
+                NewItems.STRAWBERRY_SEEDS.get(), strawberryLootItemCondition$builder));
+
+        LootItemCondition.Builder cornLootItemCondition$builder = LootItemBlockStatePropertyCondition
                 .hasBlockStateProperties(NewBlocks.CORN_CROP.get())
                 .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornCropBlock.AGE, 7))
                 .or(LootItemBlockStatePropertyCondition
                         .hasBlockStateProperties(NewBlocks.CORN_CROP.get())
                         .setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CornCropBlock.AGE, 8)));
         add(NewBlocks.CORN_CROP.get(), createCropDrops(NewBlocks.CORN_CROP.get(), NewItems.CORN.get(),
-                NewItems.CORN_SEEDS.get(), cornLootItemConditionBuilder));
+                NewItems.CORN_SEEDS.get(), cornLootItemCondition$builder));
+
         dropSelf(NewBlocks.CATMINT.get());
-        add(NewBlocks.POTTED_CATMINT.get(), createPotFlowerItemTable(NewBlocks.CATMINT.get()));
+        dropPottedContents(NewBlocks.POTTED_CATMINT.get());
         dropSelf(NewBlocks.GEM_POLISHING_STATION.get());
         dropSelf(NewBlocks.PINE_LOG.get());
         dropSelf(NewBlocks.PINE_WOOD.get());
@@ -82,11 +81,8 @@ public class NewBlockLootTables extends BlockLootSubProvider {
     }
 
     protected LootTable.Builder createCopperLikeOreDrops(Block pBlock, Item item) {
-        return createSilkTouchDispatchTable(pBlock,
-                this.applyExplosionDecay(pBlock,
-                        LootItem.lootTableItem(item)
-                                .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0f, 5.0f)))
-                                .apply(ApplyBonusCount.addOreBonusCount(Enchantments.BLOCK_FORTUNE))));
+        return createOreDrop(pBlock, item)
+                .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0f, 5.0f)));
     }
 
     @Override
