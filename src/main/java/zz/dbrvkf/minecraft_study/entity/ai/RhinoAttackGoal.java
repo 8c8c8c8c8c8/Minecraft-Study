@@ -14,7 +14,7 @@ public class RhinoAttackGoal extends MeleeAttackGoal {
 
     public RhinoAttackGoal(PathfinderMob pMob, double pSpeedModifier, boolean pFollowingTargetEvenIfNotSeen) {
         super(pMob, pSpeedModifier, pFollowingTargetEvenIfNotSeen);
-        entity = (RhinoEntity) pMob;
+        this.entity = (RhinoEntity) pMob;
     }
 
     @Override

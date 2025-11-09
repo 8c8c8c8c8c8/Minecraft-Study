@@ -29,10 +29,6 @@ public class NewDataGenerator {
         generator.addProvider(event.includeServer(), new NewGlobalModifierProvider(packOutput, MinecraftStudy.MOD_ID));
         generator.addProvider(event.includeServer(),
                 new NewPoiTypeProvider(packOutput, lookupProvider, MinecraftStudy.MOD_ID, existingFileHelper));
-
-        generator.addProvider(event.includeClient(), new NewEnLangProvider(packOutput, MinecraftStudy.MOD_ID, "en_us"));
-        generator.addProvider(event.includeClient(), new NewBlockStateProvider(packOutput, MinecraftStudy.MOD_ID, existingFileHelper));
-        generator.addProvider(event.includeClient(), new NewItemModelProvider(packOutput, MinecraftStudy.MOD_ID, existingFileHelper));
         generator.addProvider(event.includeServer(), new NewWorldProvider(packOutput, lookupProvider, Set.of(MinecraftStudy.MOD_ID)));
 
         NewBlockTagsProvider blockTagProvider = generator.addProvider(event.includeServer(),
@@ -42,5 +38,9 @@ public class NewDataGenerator {
         generator.addProvider(event.includeServer(),
                 new NewItemTagsProvider(packOutput, lookupProvider, blockTagProvider.contentsGetter(),
                         MinecraftStudy.MOD_ID, existingFileHelper));
+
+        generator.addProvider(event.includeClient(), new NewEnLangProvider(packOutput, MinecraftStudy.MOD_ID, "en_us"));
+        generator.addProvider(event.includeClient(), new NewBlockStateProvider(packOutput, MinecraftStudy.MOD_ID, existingFileHelper));
+        generator.addProvider(event.includeClient(), new NewItemModelProvider(packOutput, MinecraftStudy.MOD_ID, existingFileHelper));
     }
 }

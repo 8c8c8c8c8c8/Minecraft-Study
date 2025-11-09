@@ -673,13 +673,23 @@ singleton pattern 을 사용한다.
 - `void addtags(HolderLookup.Provider pProvider)` overriding 해 원하는 tag 를 block 혹은 item 에 추가하면 된다.  
 권장하는 방법은 pProvider 로 block 혹은 item `HolderLookup<>` 을 가져오고 원하는 object 의 `Holder<>` 를 가져와서 추가하면 된다.  
 
+### Done
+- **refactoring** `GemPolishingCategory`, `NewBlockLootTables`
+
+</details>
+
+### Day 45
+<details>
+<summary>review</summary>
+
+- `record` data container class 를 간편하게 생성해준다.  
+모든 field 는 final, thread-safe 이다.  
+- `NewWorldProvider` instance 생성하면 vanilla datapack 에 포함되지 않은 custom dimension, biome, world 를 포함하는 과정을 한다.
+
 ### Todo
 - [ ] **feat**
     - [ ] player hp bar 만들어 보기
 - [ ] **fix**
     - [ ] `pine boat` 설치가 제대로 작동하지 않는다.
-
-### Done
-- **refactoring** `GemPolishingCategory`, `NewBlockLootTables`
 
 </details>
